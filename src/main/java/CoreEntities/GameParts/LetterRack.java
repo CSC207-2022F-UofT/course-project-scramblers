@@ -9,7 +9,7 @@ public class LetterRack implements Serializable {
     final int RACK_LEN = 7;
 
     //Default Constructor
-    public LetterRack(){
+    public LetterRack(Bag inputBag) {
 
     }
 
