@@ -9,8 +9,8 @@ public class Tile {
         this.value = value;
     }
 
-    public String getLetter() {
-        return letter;
+    public char getLetter() {
+        return letter.charAt(0);
     }
 
     public int getValue() {
