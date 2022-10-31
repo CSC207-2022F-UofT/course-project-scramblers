@@ -63,6 +63,10 @@ public class LetterRack implements Serializable {
         return -1; //if error occurs
     }
 
+    /**
+     * Determines if the the rack is full of 7.
+     * @return true if the rack is not full, false otherwise.
+     */
     public boolean rackNotFull(){
         for(Tile tile: LETTERS){
             if(tile == null){
@@ -70,5 +74,9 @@ public class LetterRack implements Serializable {
             }
         }
         return false;
+    }
+
+    public Tile[] getLETTERS() {
+        return LETTERS;
     }
 }
