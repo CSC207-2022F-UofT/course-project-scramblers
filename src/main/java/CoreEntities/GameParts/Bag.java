@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Bag {
-    static final ArrayList<Tile> initialSupply = generateInitialSupply();
+    private static final ArrayList<Tile> initialSupply = generateInitialSupply();
     public ArrayList<Tile> supply;
 
+    /**
+     * Creates the list of tiles that are to be in the bag at the beginning of a game.
+     * @return List of tiles to be in the bag at the beginning of a game.
+     */
     private static ArrayList<Tile> generateInitialSupply() {
         char[] letters = new char[]{'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
                                         'B', 'B',
@@ -65,15 +69,25 @@ public class Bag {
         return initialSupply;
     }
 
-
+    /**
+     * Class representing the bag of letter tiles of the scrabble game.
+     */
     public Bag() {
         this.supply = initialSupply;
     }
 
+    /**
+     * Checks whether the bag is empty or not.
+     * @return Whether the bag is empty or not.
+     */
     public boolean isEmpty(){
         return this.supply.isEmpty();
     }
 
+    /**
+     * Takes out a random letter tile from the bag.
+     * @return A random Tile.
+     */
     public Tile pop(){
         Random random = new Random();
         int index = random.nextInt(supply.size());
@@ -82,6 +96,11 @@ public class Bag {
         return item;
     }
 
+    /**
+     * Takes out number amount of letter tiles from the bag.
+     * @param number The number of tiles to be distributed.
+     * @return An ArrayList of number amount of tiles
+     */
     public ArrayList<Tile> distribute(int number){
         ArrayList<Tile> lst = new ArrayList<>();
         for (int i = 0; i < number; i++){
@@ -90,10 +109,19 @@ public class Bag {
         return lst;
     }
 
+    /**
+     * Adds a list of letter tiles to the bag.
+     * @param tiles An ArrayList of Tiles to be added.
+     */
     public void add(ArrayList<Tile> tiles){
         this.supply.addAll(tiles);
     }
 
+
+    /**
+     * Adds a letter tile to the bag.
+     * @param t The tile to be added.
+     */
     public void add(Tile t){
         this.supply.add(t);
     }
