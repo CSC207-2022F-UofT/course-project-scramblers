@@ -1,47 +1,70 @@
 package CoreEntities.GameParts;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
-import java.util.Arrays;
 
 public class LetterRack implements Serializable {
 
-    private Bag bagReference;
-    private Tile[] letters;
+    private final Bag BAG_REFERENCE;
+    private final Tile[] LETTERS;
     final int RACK_LEN = 7;
 
     //Default Constructor
     public LetterRack(Bag inputBag) {
-        this.bagReference = inputBag;
-        this.letters = new Tile[RACK_LEN];
+        this.BAG_REFERENCE = inputBag;
+        this.LETTERS = new Tile[RACK_LEN];
         for (int index = 0; index < RACK_LEN; index++){
-            this.letters[index] = this.bagReference.pop();
+            this.LETTERS[index] = this.BAG_REFERENCE.pop();
         }
     }
 
+    /**
+     * refills the rack back to full.
+     * @return true if the method worked and false otherwise
+     */
     public boolean refill(){
+        for(int index = 0; index < RACK_LEN; index++){
+            if(this.LETTERS[index] == null){
+                this.LETTERS[index] = this.BAG_REFERENCE.pop();
+            }
+        }
 
+        return true;
     }
 
     /**
      *  Removes letters based on a given string
-     * @param inputWord have all letters in the letter rack
+     * @param inputWord has all letters in the letter rack and len(inputWord) <= RACK_LEN
      * @return nothing but object is modified with the letters specified removes
      */
-    public boolean removeLetters(String inputWord){
-        for(char characterInWord: inputWord){
-            this.letters[]
+    public boolean removeLetters(@NotNull String inputWord){
+        for(char characterInWord: inputWord.toCharArray()){
+            this.LETTERS[findTile(characterInWord)] = null;
         }
+        return true;
     }
 
+    /**
+     * finds the index of a tile based on the given letter
+     * @param inputChar the desired character tile to be found in the rack
+     * @return index of a tile in letters Array
+     */
     private int findTile(char inputChar){
-        int output = 0;
-        for(Tile tile: letters){
-            if(tile)
+        int outputInt = 0;
+        for(Tile tile: this.LETTERS){
+            if(tile.getLetter() == inputChar){
+                return outputInt;
+            }
+            else{
+                outputInt++;
+            }
         }
+        return -1; //if error occurs
     }
 
     public boolean rackNotFull(){
-        for(Tile tile: letters){
+        for(Tile tile: LETTERS){
             if(tile == null){
                 return true;
             }
