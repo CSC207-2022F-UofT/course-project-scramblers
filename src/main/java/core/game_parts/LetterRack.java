@@ -1,4 +1,4 @@
-package CoreEntities.GameParts;
+package core.game_parts;
 
 import java.io.Serializable;
 

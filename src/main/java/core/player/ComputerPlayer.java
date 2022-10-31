@@ -1,6 +1,6 @@
-package CoreEntities.Player;
+package core.player;
 
-import CoreEntities.GameParts.LetterRack;
+import core.game_parts.LetterRack;
 
 public class ComputerPlayer extends Player{
     public ComputerPlayer(String name, LetterRack rack, int score) {

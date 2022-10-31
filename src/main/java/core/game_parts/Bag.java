@@ -1,4 +1,4 @@
-package CoreEntities.GameParts;
+package core.game_parts;
 
 import java.util.ArrayList;
 import java.util.Random;

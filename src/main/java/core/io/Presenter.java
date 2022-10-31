@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package core.io;
 
 public class Presenter {
 }

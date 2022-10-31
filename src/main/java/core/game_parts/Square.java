@@ -1,4 +1,4 @@
-package CoreEntities.GameParts;
+package core.game_parts;
 
 public class Square {
     private final String multiplier;
