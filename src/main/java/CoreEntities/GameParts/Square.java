@@ -8,6 +8,10 @@ public class Square {
         this.multiplier = multiplier;
         this.tile = tile;
     }
+    public Square (String multiplier) {
+        this.multiplier = multiplier;
+        this.tile = null;
+    }
     public void setTile(Tile newTile) {
         this.tile = newTile;
     }
