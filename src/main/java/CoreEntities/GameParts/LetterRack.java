@@ -21,28 +21,23 @@ public class LetterRack implements Serializable {
 
     /**
      * refills the rack back to full.
-     * @return true if the method worked and false otherwise
      */
-    public boolean refill(){
+    public void refill(){
         for(int index = 0; index < RACK_LEN; index++){
             if(this.LETTERS[index] == null){
                 this.LETTERS[index] = this.BAG_REFERENCE.pop();
             }
         }
-
-        return true;
     }
 
     /**
      *  Removes letters based on a given string
      * @param inputWord has all letters in the letter rack and len(inputWord) <= RACK_LEN
-     * @return nothing but object is modified with the letters specified removes
      */
-    public boolean removeLetters(@NotNull String inputWord){
+    public void removeLetters(@NotNull String inputWord){
         for(char characterInWord: inputWord.toCharArray()){
             this.LETTERS[findTile(characterInWord)] = null;
         }
-        return true;
     }
 
     /**
@@ -64,7 +59,7 @@ public class LetterRack implements Serializable {
     }
 
     /**
-     * Determines if the the rack is full of 7.
+     * Determines if the rack is full.
      * @return true if the rack is not full, false otherwise.
      */
     public boolean rackNotFull(){
