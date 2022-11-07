@@ -1,4 +1,4 @@
-package core.game_parts;
+package CoreEntities.GameParts;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
