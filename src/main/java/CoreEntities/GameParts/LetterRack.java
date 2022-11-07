@@ -47,7 +47,7 @@ public class LetterRack implements Serializable {
     private int findTile(char inputChar){
         int outputInt = 0;
         for(Tile tile: this.LETTERS){
-            if(tile.getLetter() == inputChar){
+            if(tile.getLetter().charAt(0) == inputChar){
                 return outputInt;
             }
             else{
