@@ -22,6 +22,15 @@ public class Board implements Serializable{
         this.p2 = p2;
         this.grid = generateDefaultGrid();
     }
+    public Player getP1() {
+        return this.p1;
+    }
+    public Player getP2() {
+        return this.p2;
+    }
+    public Square [][] getGrid() {
+        return this.grid;
+    }
     /**
      * @return The default grid of a Scrabble Game, of size DEFUALT_BOARD_SIZE
      */
