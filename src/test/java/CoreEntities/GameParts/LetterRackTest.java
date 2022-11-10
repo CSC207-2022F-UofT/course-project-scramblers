@@ -49,6 +49,7 @@ class LetterRackTest {
         int index = 0;
         for (Tile eachTile: letterRack.getLETTERS()){
             Assertions.assertEquals(tileArray[index].getLetter().charAt(0), eachTile.getLetter().charAt(0));
+            index++;
         }
     }
 }
