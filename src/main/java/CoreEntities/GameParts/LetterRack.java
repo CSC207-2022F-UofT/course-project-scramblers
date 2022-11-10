@@ -1,5 +1,7 @@
 package CoreEntities.GameParts;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 
 
@@ -32,11 +34,14 @@ public class LetterRack implements Serializable {
 
     /**
      *  Removes letters based on a given string
-     * @param inputWord has all letters in the letter rack and len(inputWord) <= RACK_LEN
+     * @param inputWord is an all alphabetical string and len(inputWord) <= RACK_LEN
      */
-    public void removeLetters(String inputWord){
+    public void removeLetters(@NotNull String inputWord){
         for(char characterInWord: inputWord.toCharArray()){
-            this.LETTERS[findTile(characterInWord)] = null;
+            int index = findTile(characterInWord);
+            if(index != -1 ) {
+                this.LETTERS[index] =null;
+            }
         }
     }
 
@@ -46,13 +51,13 @@ public class LetterRack implements Serializable {
      * @return index of a tile in letters Array
      */
     private int findTile(char inputChar){
-        int outputInt = 0;
+        int outputTileIndex = 0;
         for(Tile tile: this.LETTERS){
             if(tile.getLetter().charAt(0) == inputChar){
-                return outputInt;
+                return outputTileIndex;
             }
             else{
-                outputInt++;
+                outputTileIndex++;
             }
         }
         return -1; //if error occurs
