@@ -57,8 +57,11 @@ public class Dictionary {
         return set;
     }
 
-    public ArrayList<String> getCharacterSetDictionary(String s){
 
-        return characterSetDictionary.get(strToSet(s));
+    public ArrayList<String> getCharacterSetDictionary(String s){
+        ArrayList<String> list;
+        list = characterSetDictionary.get(strToSet(s));
+        Collections.sort(list, (o1, o2) -> 0);
+        return list;
     }
 }
