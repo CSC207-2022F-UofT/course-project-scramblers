@@ -10,8 +10,7 @@ class LetterRackTest {
     @Test
     public void GeneralCase() {
         //instantiating needed objects
-        Bag bag = new Bag();
-        LetterRack letterRack = new LetterRack(bag);
+        LetterRack letterRack = new LetterRack(new Bag());
         Tile[] tileArray = letterRack.getLETTERS();
         Random rand = new Random();
         rand.setSeed(0);
@@ -32,5 +31,24 @@ class LetterRackTest {
             Assertions.assertNotNull(tile);
         }
 
+    }
+
+    /**
+     * Test expected outcome: letterRack does not change
+     */
+    @Test
+    public void refillWhileFull(){
+        //instantiating needed objects
+        LetterRack letterRack = new LetterRack(new Bag());
+        Tile[] tileArray = letterRack.getLETTERS();
+        Random rand = new Random();
+        rand.setSeed(0);
+
+        letterRack.refill();
+
+        int index = 0;
+        for (Tile eachTile: letterRack.getLETTERS()){
+            Assertions.assertEquals(tileArray[index].getLetter().charAt(0), eachTile.getLetter().charAt(0));
+        }
     }
 }
