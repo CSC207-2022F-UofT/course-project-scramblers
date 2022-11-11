@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Bag {
+    /**
+     * Class representing the bag of letter tiles of the scrabble game.
+     */
     private static final ArrayList<Tile> initialSupply = generateInitialSupply();
     public ArrayList<Tile> supply;
 
@@ -69,9 +72,6 @@ public class Bag {
         return initialSupply;
     }
 
-    /**
-     * Class representing the bag of letter tiles of the scrabble game.
-     */
     public Bag() {
         this.supply = initialSupply;
     }
@@ -89,10 +89,19 @@ public class Bag {
      * @return A random Tile.
      */
     public Tile pop(){
+        Tile item = getRandomTile();
+        this.supply.remove(item);
+        return item;
+    }
+
+    /**
+     * Find a random tile from the bag.
+     * @return A random tile from the bag.
+     */
+    private Tile getRandomTile() {
         Random random = new Random();
         int index = random.nextInt(supply.size());
         Tile item = this.supply.get(index);
-        this.supply.remove(item);
         return item;
     }
 
@@ -104,7 +113,7 @@ public class Bag {
     public ArrayList<Tile> distribute(int number){
         ArrayList<Tile> lst = new ArrayList<>();
         for (int i = 0; i < number; i++){
-            lst.add(pop());
+            lst.add(this.pop());
         }
         return lst;
     }
