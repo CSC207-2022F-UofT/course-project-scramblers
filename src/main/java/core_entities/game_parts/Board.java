@@ -4,6 +4,6 @@ import CoreEntities.GameParts.Square;
 import CoreEntities.GameParts.Tile;
 
 public interface Board{
-    void setGrid(Square [][] newGrid);
-    void placeTiles(Tile[] tileList, int [] startCoordinates, int [] endCoordinates);
+    Square [][] getGrid();
+    void placeTiles(Tile[] tileList, Coordinate c1, Coordinate c2);
 }

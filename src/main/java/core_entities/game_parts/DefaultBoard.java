@@ -6,17 +6,20 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class DefaultBoard implements Serializable, Board{
-    private Square[][] grid;
-    private final HashMap<Square, Coordinate[]> tilePlacement = new HashMap();
+    private final Square[][] grid;
+    private final HashMap<Square, Coordinate[]> tilePlacement = new HashMap<Square, Coordinate[]>();
     public DefaultBoard () {
         this.grid = generateDefaultGrid();
     }
     public Square [][] getGrid() {
         return this.grid;
     }
+    /*
+    Potentially unused
     public void setGrid(Square [][] newGrid) {
-        this.grid = newGrid;
+          this.grid = newGrid;
     }
+    */
     /**
      * @return The default grid of a Scrabble Game, of size DEFUALT_BOARD_SIZE
      */
@@ -35,13 +38,13 @@ public class DefaultBoard implements Serializable, Board{
      * Preconditions: startCoordinates and endCoordinates are arrays of the form [x, y]
      * Postconditions: The word is placed on the board
      * @param tileList A list of tiles that needs to be placed
-     * @param startCoordinates Array indicating start position of the word
-     * @param endCoordinates Array indicating end position of the word
+     * @param c1 Coordinate object indicating the start of the word
+     * @param c2 Coordinate indicating the end of the word
      */
-    public void placeTiles(Tile[] tileList, int [] startCoordinates, int [] endCoordinates) {
-        boolean horizontal = startCoordinates[0] < endCoordinates[0];
-        int initialXCoordinate = startCoordinates[0];
-        int initialYCoordinate = startCoordinates[1];
+    public void placeTiles(Tile[] tileList, Coordinate c1, Coordinate c2) {
+        boolean horizontal = c1.getXCoordinate() < c2.getXCoordinate();
+        int initialXCoordinate = c1.getXCoordinate();
+        int initialYCoordinate = c1.getYCoordinate();
         for (int i = 0; i < tileList.length; i++) {
             if (horizontal) {
                 this.grid[initialXCoordinate + i][initialYCoordinate].setTile(tileList[i]);
