@@ -18,7 +18,7 @@ class BoardTest {
     Board board;
     BoardFactory factory;
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         bag = new Bag();
         rackOne = new LetterRack(bag, 7);
         rackTwo = new LetterRack(bag, 7);
