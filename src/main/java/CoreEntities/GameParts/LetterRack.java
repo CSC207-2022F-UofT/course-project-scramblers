@@ -12,8 +12,8 @@ public class LetterRack implements Serializable {
     int rackLen; //Not final since we're opening it to expandability for custom games
 
     //Default Constructor that will be used in the program
-    public LetterRack(Bag inputBag) {
-        this.rackLen = 7;
+    public LetterRack(Bag inputBag, int inputRackLen) {
+        this.rackLen = inputRackLen;
         this.BAG_REFERENCE = inputBag;
         this.LETTERS = new Tile[rackLen];
         for (int index = 0; index < rackLen; index++){
