@@ -1,19 +1,28 @@
 package CoreEntities.GameParts;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 class LetterRackTest {
 
+    LetterRack letterRack;
+    Tile[] tileArray;
+    Random rand;
+
+    @BeforeEach
+    public void init(){
+        //instantiating needed objects
+        letterRack = new LetterRack(new Bag(), 7);
+        tileArray = letterRack.getLETTERS();
+        rand = new Random();
+        rand.setSeed(0);
+    }
+
     @Test
     public void GeneralCase() {
-        //instantiating needed objects
-        LetterRack letterRack = new LetterRack(new Bag());
-        Tile[] tileArray = letterRack.getLETTERS();
-        Random rand = new Random();
-        rand.setSeed(0);
 
         //Testing removeLetters
         int removedIndex = rand.nextInt(tileArray.length);
@@ -38,11 +47,6 @@ class LetterRackTest {
      */
     @Test
     public void refillWhileFull(){
-        //instantiating needed objects
-        LetterRack letterRack = new LetterRack(new Bag());
-        Tile[] tileArray = letterRack.getLETTERS();
-        Random rand = new Random();
-        rand.setSeed(0);
 
         letterRack.refill();
 
