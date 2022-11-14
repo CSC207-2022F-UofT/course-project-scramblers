@@ -3,23 +3,15 @@ package core_entities.game_parts;
 import CoreEntities.GameParts.Square;
 import CoreEntities.GameParts.Tile;
 import java.io.Serializable;
-import java.util.HashMap;
 
 public class DefaultBoard implements Serializable, Board{
     private final Square[][] grid;
-    private final HashMap<Square, Coordinate[]> tilePlacement = new HashMap<Square, Coordinate[]>();
     public DefaultBoard () {
         this.grid = generateDefaultGrid();
     }
     public Square [][] getGrid() {
         return this.grid;
     }
-    /*
-    Potentially unused
-    public void setGrid(Square [][] newGrid) {
-          this.grid = newGrid;
-    }
-    */
     /**
      * @return The default grid of a Scrabble Game, of size DEFUALT_BOARD_SIZE
      */
