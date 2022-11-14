@@ -1,35 +1,21 @@
-package CoreEntities.GameParts;
+package core_entities.game_parts;
 
-import CoreEntities.Player.Player;
+import CoreEntities.GameParts.Square;
+import CoreEntities.GameParts.Tile;
 import java.io.Serializable;
+import java.util.HashMap;
 
-public class Board implements Serializable{
-    private final Player p1;
-    private final Player p2;
-    private Square [][] grid;
-    public Board (Player p1, Player p2, Square [][] grid) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.grid = grid;
-    }
-    /**
-     * Creates a new Board Object with two Players and the default board
-     * @param p1 The first Player of the game
-     * @param p2 The second Player of the game
-     */
-    public Board (Player p1, Player p2) {
-        this.p1 = p1;
-        this.p2 = p2;
+public class DefaultBoard implements Serializable, Board{
+    private Square[][] grid;
+    private final HashMap<Square, Coordinate[]> tilePlacement = new HashMap();
+    public DefaultBoard () {
         this.grid = generateDefaultGrid();
-    }
-    public Player getP1() {
-        return this.p1;
-    }
-    public Player getP2() {
-        return this.p2;
     }
     public Square [][] getGrid() {
         return this.grid;
+    }
+    public void setGrid(Square [][] newGrid) {
+        this.grid = newGrid;
     }
     /**
      * @return The default grid of a Scrabble Game, of size DEFUALT_BOARD_SIZE
@@ -45,7 +31,6 @@ public class Board implements Serializable{
         }
         return grid;
     }
-
     /**
      * Preconditions: startCoordinates and endCoordinates are arrays of the form [x, y]
      * Postconditions: The word is placed on the board
@@ -53,7 +38,7 @@ public class Board implements Serializable{
      * @param startCoordinates Array indicating start position of the word
      * @param endCoordinates Array indicating end position of the word
      */
-    public void placeTiles(Tile [] tileList, int [] startCoordinates, int [] endCoordinates) {
+    public void placeTiles(Tile[] tileList, int [] startCoordinates, int [] endCoordinates) {
         boolean horizontal = startCoordinates[0] < endCoordinates[0];
         int initialXCoordinate = startCoordinates[0];
         int initialYCoordinate = startCoordinates[1];
