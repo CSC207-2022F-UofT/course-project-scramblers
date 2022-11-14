@@ -1,6 +1,6 @@
 package CoreEntities.Player;
 
-import CoreEntities.GameParts.LetterRack;
+import core_entities.game_parts.LetterRack;
 
 public abstract class Player {
 
