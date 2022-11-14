@@ -1,18 +1,29 @@
 package CoreEntities.GameParts;
 
 public class Tile {
-    private final String letter;
+    /**
+     * Class representing a letter tile of the game
+     */
+    private final char letter;
     private final int value;
 
-    public Tile(String letter, int value) {
+    public Tile(char letter, int value) {
         this.letter = letter;
         this.value = value;
     }
 
-    public String getLetter() {
+    /**
+     * Get the char of the letter of this tile.
+      * @return char of the letter of this tile
+     */
+    public char getLetter() {
         return letter;
     }
 
+    /**
+     * Get the value of the letter of this tile.
+     * @return value of the letter of this tile.
+     */
     public int getValue() {
         return value;
     }

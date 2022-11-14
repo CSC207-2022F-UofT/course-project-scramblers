@@ -4,57 +4,65 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Bag {
-    static final ArrayList<Tile> initialSupply = generateInitialSupply();
+    /**
+     * Class representing the bag of letter tiles of the scrabble game.
+     */
+    private static final ArrayList<Tile> initialSupply = generateInitialSupply();
     public ArrayList<Tile> supply;
 
+    /**
+     * Creates the list of tiles that are to be in the bag at the beginning of a game.
+     * @return List of tiles to be in the bag at the beginning of a game.
+     */
     private static ArrayList<Tile> generateInitialSupply() {
-        String[] letters = new String[]{"A", "A", "A", "A", "A", "A", "A", "A", "A",
-                                        "B", "B",
-                                        "C", "C",
-                                        "D", "D", "D", "D",
-                                        "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
-                                        "F", "F",
-                                        "G", "G", "G",
-                                        "H", "H",
-                                        "I", "I", "I", "I", "I", "I", "I", "I", "I",
-                                        "J",
-                                        "K",
-                                        "L", "L", "L", "L",
-                                        "M", "M",
-                                        "N", "N", "N", "N", "N", "N",
-                                        "O", "O", "O", "O", "O", "O", "O", "O",
-                                        "P", "P",
-                                        "Q",
-                                        "R", "R", "R", "R", "R", "R",
-                                        "S", "S", "S", "S",
-                                        "T", "T", "T", "T", "T", "T",
-                                        "U", "U", "U", "U",
-                                        "V", "V",
-                                        "W", "W",
-                                        "Y", "Y",
-                                        "Z",
-                                        "*", "*"};
+        char[] letters = new char[]{'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
+                                        'B', 'B',
+                                        'C', 'C',
+                                        'D', 'D', 'D', 'D',
+                                        'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E', 'E',
+                                        'F', 'F',
+                                        'G', 'G', 'G',
+                                        'H', 'H',
+                                        'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I', 'I',
+                                        'J',
+                                        'K',
+                                        'L', 'L', 'L', 'L',
+                                        'M', 'M',
+                                        'N', 'N', 'N', 'N', 'N', 'N',
+                                        'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
+                                        'P', 'P',
+                                        'Q',
+                                        'R', 'R', 'R', 'R', 'R', 'R',
+                                        'S', 'S', 'S', 'S',
+                                        'T', 'T', 'T', 'T', 'T', 'T',
+                                        'U', 'U', 'U', 'U',
+                                        'V', 'V',
+                                        'W', 'W',
+                                        'X',
+                                        'Y', 'Y',
+                                        'Z',
+                                        '*', '*'};
         ArrayList<Tile> initialSupply = new ArrayList<>();
-        for (String letter : letters) {
-            if (letter.equals("A") || letter.equals("E") || letter.equals("I") || letter.equals("O")
-                    || letter.equals("U") || letter.equals("L") || letter.equals("N")  || letter.equals("S")
-                    || letter.equals("T")  || letter.equals("R")){
+        for (char letter : letters) {
+            if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O'
+                    || letter == 'U' || letter == 'L' || letter == 'N' || letter == 'S'
+                    || letter == 'T'  || letter == 'R'){
                 initialSupply.add(new Tile(letter, 1));
             }
-            else if (letter.equals("D") || letter.equals("G")){
+            else if (letter == 'D' || letter == 'G'){
                 initialSupply.add(new Tile(letter, 2));
             }
-            else if (letter.equals("B") || letter.equals("C") || letter.equals("M") || letter.equals("P")){
+            else if (letter == 'B' || letter == 'C' || letter == 'M' || letter == 'P'){
                 initialSupply.add(new Tile(letter, 3));
             }
-            else if (letter.equals("F") || letter.equals("H") || letter.equals("V") || letter.equals("W")
-                    || letter.equals("Y")){
+            else if (letter == 'F' || letter == 'H' || letter == 'V' || letter == 'W'
+                    || letter == 'Y'){
                 initialSupply.add(new Tile(letter, 4));
             }
-            else if (letter.equals("K")){
+            else if (letter == 'K'){
                 initialSupply.add(new Tile(letter, 5));
             }
-            else if (letter.equals("J") || letter.equals("X")){
+            else if (letter == 'J' || letter == 'X'){
                 initialSupply.add(new Tile(letter, 8));
             }
             else {
@@ -64,32 +72,65 @@ public class Bag {
         return initialSupply;
     }
 
-
     public Bag() {
         this.supply = initialSupply;
     }
 
+    /**
+     * Checks whether the bag is empty or not.
+     * @return Whether the bag is empty or not.
+     */
     public boolean isEmpty(){
         return this.supply.isEmpty();
     }
 
+    /**
+     * Takes out a random letter tile from the bag.
+     * @return A random Tile.
+     */
     public Tile pop(){
-        int length = supply.size();
-        Random random = new Random();
-        int index = random.nextInt(length);
-        Tile item = this.supply.get(index);
+        Tile item = getRandomTile();
         this.supply.remove(item);
         return item;
     }
 
+    /**
+     * Find a random tile from the bag.
+     * @return A random tile from the bag.
+     */
+    private Tile getRandomTile() {
+        Random random = new Random();
+        int index = random.nextInt(supply.size());
+        Tile item = this.supply.get(index);
+        return item;
+    }
+
+    /**
+     * Takes out number amount of letter tiles from the bag.
+     * @param number The number of tiles to be distributed.
+     * @return An ArrayList of number amount of tiles
+     */
     public ArrayList<Tile> distribute(int number){
         ArrayList<Tile> lst = new ArrayList<>();
         for (int i = 0; i < number; i++){
-            lst.add(pop());
+            lst.add(this.pop());
         }
         return lst;
     }
 
+    /**
+     * Adds a list of letter tiles to the bag.
+     * @param tiles An ArrayList of Tiles to be added.
+     */
+    public void add(ArrayList<Tile> tiles){
+        this.supply.addAll(tiles);
+    }
+
+
+    /**
+     * Adds a letter tile to the bag.
+     * @param t The tile to be added.
+     */
     public void add(Tile t){
         this.supply.add(t);
     }
