@@ -1,5 +1,7 @@
 package CoreEntities.GameParts;
 
+import core_entities.game_parts.Bag;
+import core_entities.game_parts.Tile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,8 @@
-package CoreEntities.GameParts;
+package core_entities.game_parts;
 
-public class Square {
+import java.io.Serializable;
+
+public class Square implements Serializable {
     private final String multiplier;
     private Tile tile;
 

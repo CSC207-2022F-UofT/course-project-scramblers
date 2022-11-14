@@ -1,7 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.GameParts.Square;
-import CoreEntities.GameParts.Tile;
 import java.io.Serializable;
 
 public class DefaultBoard implements Serializable, Board{

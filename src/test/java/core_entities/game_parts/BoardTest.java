@@ -1,7 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.GameParts.Tile;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

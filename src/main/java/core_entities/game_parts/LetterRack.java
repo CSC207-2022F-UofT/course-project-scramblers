@@ -1,7 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.GameParts.Bag;
-import CoreEntities.GameParts.Tile;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;

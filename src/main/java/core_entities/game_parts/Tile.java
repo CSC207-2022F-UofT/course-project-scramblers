@@ -1,6 +1,8 @@
-package CoreEntities.GameParts;
+package core_entities.game_parts;
 
-public class Tile {
+import java.io.Serializable;
+
+public class Tile implements Serializable {
     /**
      * Class representing a letter tile of the game
      */
