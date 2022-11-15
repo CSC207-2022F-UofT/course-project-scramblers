@@ -17,7 +17,7 @@ class LetterRackTest {
     public void init(){
         //instantiating needed objects
         letterRack = new LetterRack(new Bag(), 7);
-        tileArray = letterRack.getLETTERS();
+        tileArray = letterRack.getLetters();
         rand = new Random();
         rand.setSeed(0);
     }
@@ -30,14 +30,14 @@ class LetterRackTest {
         //admittedly weird string conversion
         String toRemove = "" + tileArray[removedIndex].getLetter();
         letterRack.removeLetters(toRemove);
-        Assertions.assertNull(letterRack.getLETTERS()[removedIndex]);
+        Assertions.assertNull(letterRack.getLetters()[removedIndex]);
 
         //Testing rackIsNotFull
         Assertions.assertTrue(letterRack.rackNotFull());
 
         //Testing refill
         letterRack.refill();
-        for(Tile tile: letterRack.getLETTERS()){
+        for(Tile tile: letterRack.getLetters()){
             Assertions.assertNotNull(tile);
         }
 
@@ -52,9 +52,16 @@ class LetterRackTest {
         letterRack.refill();
 
         int index = 0;
-        for (Tile eachTile: letterRack.getLETTERS()){
+        for (Tile eachTile: letterRack.getLetters()){
             Assertions.assertEquals(tileArray[index].getLetter(), eachTile.getLetter());
             index++;
         }
+    }
+
+    @Test
+    public void changeRackLength(){
+        int newLength = letterRack.getLetters().length + 2;
+        letterRack.changeRackLength(newLength);
+        Assertions.assertEquals(newLength, letterRack.getLetters().length);
     }
 }
