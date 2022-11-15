@@ -11,14 +11,14 @@ public class LetterRack implements Serializable {
 
     private final Bag BAG_REFERENCE;
     private final Tile[] LETTERS;
-    int rackLen; //Not final since we're opening it to expandability for custom games
+    private final int RACK_LEN; //Not final since we're opening it to expandability for custom games
 
     //Default Constructor that will be used in the program
     public LetterRack(Bag inputBag, int inputRackLen) {
-        this.rackLen = inputRackLen;
+        this.RACK_LEN = inputRackLen;
         this.BAG_REFERENCE = inputBag;
-        this.LETTERS = new Tile[rackLen];
-        for (int index = 0; index < rackLen; index++){
+        this.LETTERS = new Tile[this.RACK_LEN];
+        for (int index = 0; index < this.RACK_LEN; index++){
             this.LETTERS[index] = this.BAG_REFERENCE.pop();
         }
     }
@@ -27,7 +27,7 @@ public class LetterRack implements Serializable {
      * refills the rack back to full.
      */
     public void refill(){
-        for(int index = 0; index < rackLen; index++){
+        for(int index = 0; index < this.RACK_LEN; index++){
             if(this.LETTERS[index] == null){
                 this.LETTERS[index] = this.BAG_REFERENCE.pop();
             }
@@ -70,7 +70,7 @@ public class LetterRack implements Serializable {
      * @return true if the rack is not full, false otherwise.
      */
     public boolean rackNotFull(){
-        for(Tile tile: LETTERS){
+        for(Tile tile: this.LETTERS){
             if(tile == null){
                 return true;
             }
@@ -79,6 +79,6 @@ public class LetterRack implements Serializable {
     }
 
     public Tile[] getLETTERS() {
-        return LETTERS;
+        return this.LETTERS;
     }
 }
