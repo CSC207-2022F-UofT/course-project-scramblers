@@ -34,7 +34,7 @@ public class LetterRack implements Serializable {
 
     /**
      *  Removes letters based on a given string
-     * @param inputWord is an all alphabetical string and len(inputWord) <= RACK_LEN
+     * @param inputWord is an all alphabetical string and len(inputWord) <= rackLen
      */
     public void removeLetters(@NotNull String inputWord){
         for(char characterInWord: inputWord.toCharArray()){
