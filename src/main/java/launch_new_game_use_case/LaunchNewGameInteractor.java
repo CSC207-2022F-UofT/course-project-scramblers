@@ -14,6 +14,6 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
     @Override
     public void createGameState() {
         GameState.setBoard(factory.create());
-        presenter.updateViewModel(GameState.getBoard());
+        presenter.updateViewModel(GameState.getBoard().getMultiplierGrid());
     }
 }
