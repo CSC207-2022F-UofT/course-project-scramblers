@@ -8,6 +8,7 @@ public abstract class Player {
     protected LetterRack rack;
     protected int score;
 
+
     /**
      * Creating an object of type Player, which has a name, a letter rack, and a score
      * @param name The name of the player. Used to identify the turn
@@ -19,7 +20,6 @@ public abstract class Player {
         this.rack = rack;
         this.score = score;
     }
-   
     abstract boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y);
 
     abstract void replaceLetters(char[] toReplaceValues, char[] newValues);
@@ -38,9 +38,5 @@ public abstract class Player {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LetterRack getRack() {
-        return rack;
     }
 }
