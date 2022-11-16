@@ -1,9 +1,7 @@
 package core_entities.game_parts;
 
 import java.io.File;
-
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.*;
 
 
@@ -29,12 +27,16 @@ import java.util.*;
 */
 
 
-public class Dictionary implements Serializable {
+public class Dictionary {
 
-    private ArrayList<String> longDictionary;
+    private final ArrayList<String> longDictionary;
 
-    {
-        myDictionaryReader();
+    static {
+        try {
+            myDictionaryReader();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();
@@ -87,10 +89,6 @@ public class Dictionary implements Serializable {
             set.add(str.charAt(i));
         }
         return set;
-    }
-
-    public ArrayList<String> getLongDictionary() {
-        return longDictionary;
     }
 
     public ArrayList<String> getCharacterSetDictionary(String s){
