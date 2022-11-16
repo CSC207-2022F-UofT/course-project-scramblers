@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 public class DefaultBoard implements Serializable, Board{
     private final Square[][] grid;
+    private final int DEFAULT_BOARD_SIZE;
     public DefaultBoard () {
         this.grid = generateDefaultGrid();
+        this.DEFAULT_BOARD_SIZE = 15;
     }
     public Square [][] getGrid() {
         return this.grid;
@@ -15,7 +17,6 @@ public class DefaultBoard implements Serializable, Board{
      */
     private Square [][] generateDefaultGrid() {
         //TODO: Add multipliers
-        int DEFAULT_BOARD_SIZE = 15;
         Square [][] grid = new Square[DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
         for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
             for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
@@ -43,5 +44,23 @@ public class DefaultBoard implements Serializable, Board{
                 this.grid[initialXCoordinate][initialYCoordinate + i].setTile(tileList[i]);
             }
         }
+    }
+    public String [][] getMultiplierGrid() {
+        String [][] multiplierGrid = new String [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
+        for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
+            for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
+                multiplierGrid[i][j] = new String(this.grid[i][j].getMultiplier());
+            }
+        }
+        return multiplierGrid;
+    }
+    public char [][] getLetterGrid() {
+        char [][] letterGrid = new char [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
+        for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
+            for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
+                letterGrid[i][j] = this.grid[i][j].getTile().getLetter();
+            }
+        }
+        return letterGrid;
     }
 }
