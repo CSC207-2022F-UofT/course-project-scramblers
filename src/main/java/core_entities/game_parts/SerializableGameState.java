@@ -1,6 +1,6 @@
 package core_entities.game_parts;
 
-import CoreEntities.Player.Player;
+import core_entities.Player.Player;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package CoreEntities.IO;
 
-import static org.junit.jupiter.api.Assertions.*;
+import core_entities.IO.View;
 
 class ViewTest {
     public static void main(String[] args) {

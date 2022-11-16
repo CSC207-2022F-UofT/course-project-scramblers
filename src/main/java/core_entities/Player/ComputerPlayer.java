@@ -1,9 +1,9 @@
-package CoreEntities.Player;
+package core_entities.Player;
 
 import core_entities.game_parts.LetterRack;
 
-public class HumanPlayer extends Player {
-    public HumanPlayer(String name, LetterRack rack, int score) {
+public class ComputerPlayer extends Player{
+    public ComputerPlayer(String name, LetterRack rack, int score) {
         super(name, rack, score);
     }
 

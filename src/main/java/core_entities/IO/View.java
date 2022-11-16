@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package core_entities.IO;
 
 import javax.swing.JFrame;
 import java.awt.*;

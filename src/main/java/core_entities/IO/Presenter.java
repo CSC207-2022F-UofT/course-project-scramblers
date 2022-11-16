@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package core_entities.IO;
 import java.util.*;
 
 public class Presenter implements Observer{
