@@ -1,7 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.GameParts.Bag;
-import CoreEntities.GameParts.Tile;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
@@ -55,7 +53,7 @@ public class LetterRack implements Serializable {
     private int findTile(char inputChar){
         int outputTileIndex = 0;
         for(Tile tile: this.LETTERS){
-            if(tile.getLetter().charAt(0) == inputChar){
+            if(tile.getLetter() == inputChar){
                 return outputTileIndex;
             }
             else{
