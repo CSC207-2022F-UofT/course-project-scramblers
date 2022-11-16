@@ -1,7 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.GameParts.Bag;
-import CoreEntities.GameParts.Tile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,7 +52,7 @@ class LetterRackTest {
 
         int index = 0;
         for (Tile eachTile: letterRack.getLETTERS()){
-            Assertions.assertEquals(tileArray[index].getLetter().charAt(0), eachTile.getLetter().charAt(0));
+            Assertions.assertEquals(tileArray[index].getLetter(), eachTile.getLetter());
             index++;
         }
     }

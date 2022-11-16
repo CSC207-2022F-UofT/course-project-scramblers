@@ -1,9 +1,10 @@
-package CoreEntities.GameParts;
+package core_entities.game_parts;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Bag {
+public class Bag implements Serializable {
     /**
      * Class representing the bag of letter tiles of the scrabble game.
      */
