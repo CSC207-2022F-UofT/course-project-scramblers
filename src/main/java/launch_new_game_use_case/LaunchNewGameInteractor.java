@@ -1,6 +1,5 @@
 package launch_new_game_use_case;
 
-import core_entities.game_parts.Board;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.GameState;
 
