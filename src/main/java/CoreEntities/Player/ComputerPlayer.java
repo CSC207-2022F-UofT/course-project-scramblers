@@ -6,6 +6,34 @@ public class ComputerPlayer extends Player{
     public ComputerPlayer(String name, LetterRack rack, int score) {
         super(name, rack, score);
     }
+    /**
+     * generate a valid word that can be placed on the board
+     * use the makeMove method to place the word
+     */
+    void generateMove(){
+
+        String result = new String();
+        char[] my_char = new char[];
+
+        int i = 0;
+        for (Tile letters: rack){
+            my_char[i] = letters.getLetter();
+            i ++;
+        }
+
+
+        if (result.equals("")){
+
+        }
+        else {
+            if (makeMove(result)){
+                rack.remove(result);
+                rack.refill();
+            }
+            else {}
+
+        }
+    }
 
     /**
      * Place the word that is generated
