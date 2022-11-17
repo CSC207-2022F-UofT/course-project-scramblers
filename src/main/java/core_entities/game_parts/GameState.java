@@ -8,8 +8,7 @@ public class GameState implements Serializable {
     private static Player p1;
     private static Player p2;
     private static Board board;
-
-    private GameState(Player p1, Player p2, Board b) {
+    public GameState(Player p1, Player p2, Board b) {
         GameState.p1 = p1;
         GameState.p2 = p2;
         GameState.board = b;
