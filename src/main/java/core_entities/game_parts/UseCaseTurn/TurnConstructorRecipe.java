@@ -1,4 +1,4 @@
-package CoreEntities.GameParts;
+package core_entities.game_parts.UseCaseTurn;
 
 /**
     This interface contains a 'recipe' for each turn cycle.
@@ -19,16 +19,10 @@ public interface TurnConstructorRecipe {
     public boolean winState = false;
 
     public void getLocation();
-
-    public void verifyLocation();
-
     public void getWord();
-
     public void verifyWord();
-
+    public void verifyLocation();
     public void calculateWord();
-
     public void updateScore();
-
     public void updateTiles();
 }
