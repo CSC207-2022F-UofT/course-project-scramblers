@@ -8,7 +8,7 @@ public class ExchangeLettersInteractorTest {
     GameState gameState;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         Bag bagRef = new Bag();
         gameState = new GameState(new HumanPlayer("bob", new LetterRack(bagRef, 7), 0),
                 new HumanPlayer("bob2", new LetterRack(bagRef, 7), 0),
@@ -19,7 +19,7 @@ public class ExchangeLettersInteractorTest {
      * basic working case
      */
     @Test
-    void BaseWorkingCase(){
+    void BaseWorkingCase() {
 
     }
 
@@ -27,7 +27,7 @@ public class ExchangeLettersInteractorTest {
      * Exchange all letters
      */
     @Test
-    void AllLettersSwap(){
+    void AllLettersSwap() {
 
     }
 
@@ -35,7 +35,7 @@ public class ExchangeLettersInteractorTest {
      * No letters wanted to be swapped so the array is empty.
      */
     @Test
-    void NoLetterSwap(){
+    void NoLetterSwap() {
 
     }
 
@@ -43,8 +43,7 @@ public class ExchangeLettersInteractorTest {
      * Some/all letters no present in rack
      */
     @Test
-    void LettersNotPresent(){
+    void LettersNotPresent() {
 
     }
-
 }
