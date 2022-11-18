@@ -6,5 +6,5 @@ public interface ExchangeLettersInputBoundary {
     /**
      *
      */
-    boolean execute(Tile[] tileInputArray);
+    boolean exchangeLetters(Tile[] tileInputArray);
 }
