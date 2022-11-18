@@ -1,4 +1,4 @@
-package core_entities.game_parts.UseCaseTurn;
+package core_entities.game_parts.use_case_turn;
 
 /**
  * This is a linked list of words which a link is constructed each turn.

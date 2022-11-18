@@ -39,9 +39,7 @@ public class Dictionary {
         }
     }
 
-    private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();
-
-    {
+    private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();{
         characterSetDictionary = charSetDictionary();
     }
 
@@ -78,7 +76,13 @@ public class Dictionary {
             }
         return setDict;
     }
-    private static Set<Character> strToSet(final String str) {
+
+    /**
+     * This function stakes in a string value and converts it to a set of characters
+     * @param str is a String with no spaces or symbols please.
+     * @return
+     */
+    private static Set<Character> strToSet(String str) {
         Set<Character> set;
 
         if (str == null) {
@@ -91,9 +95,18 @@ public class Dictionary {
         return set;
     }
 
-    public ArrayList<String> getCharacterSetDictionary(String s){
+    /**
+     * This getter function is used to return specific ArrayList of all words in the
+     * Scrabble Dictionary that can be made from the String parameter submitted. It does this by converting the
+     * paramater to a set of its characters. Example, if you submit a string of 'aaabbb' it is converted to
+     * set{'a', 'b'} and will return a list of words composed of just those two letters.
+     * @param str <String></String>
+     * @return ArrayList<String></String>
+     */
+
+    public ArrayList<String> getCharacterSetDictionary(String str){
         ArrayList<String> list;
-        list = characterSetDictionary.get(strToSet(s));
+        list = characterSetDictionary.get(strToSet(str));
         list.sort((o1, o2) -> 0);
         return list;
     }
