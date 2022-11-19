@@ -2,11 +2,10 @@ package place_word_refill_user_story;
 
 import CoreEntities.Player.Player;
 import core_entities.game_parts.*;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-public class PlaceWordRefillInteractor implements PlaceWordInputBoundary, RefillInputBoundary{
+public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
 
     final PlaceWordRefillController placeWordRefillController;
     final PlaceWordRefillPresenter placeWordRefillPresenter;
@@ -21,12 +20,67 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary, Refill
     public PlaceWordRefillResponseModel placeWord(Player player, String word, Coordinate c1,
                                                   Coordinate c2, Board board, GameState gameState) {
         // Check if the needed Tiles are in the player's LetterRack or on the Board
-        PlaceWordRefillResponseModel verifiedLetters = verifyLetters(player, word, c1, c2, board);
-        return verifiedLetters;
+        ArrayList<Tile> existingOnBoard = new ArrayList<Tile>();
+        if (!verifyLetters(player, word, c1, c2, board, existingOnBoard)) {
+            return placeWordRefillPresenter.prepareFailView("Letters are not available for this word to be placed.");
+        }
+        // Check if the area on the board is empty, or contains the right characters at the right location
+        if (!boardCheck(word, c1, c2, board))
+            return placeWordRefillPresenter.prepareFailView("Placement of word is not valid.");
+        // Create the list of Tiles to place on the board, removing them from the player's LetterRack
+        Tile[] toPlace = collectTiles(player, word, existingOnBoard);
+        // Place these tiles on the board
+        board.placeTiles(toPlace, c1, c2);
+        // Refill the player's rack
+        player.getRack().refill();
+        return placeWordRefillPresenter.prepareSuccessView(new PlaceWordRefillResponseModel(true));
     }
 
-    @Nullable
-    private static PlaceWordRefillResponseModel verifyLetters(Player player, String word, Coordinate c1, Coordinate c2, Board board) {
+    private static Tile[] collectTiles(Player player, String word, ArrayList<Tile> existingOnBoard) {
+        Tile[] toPlace = new Tile[word.length()];
+        for (int k = 0; k < word.length(); k++){
+            for (Tile t: player.getRack().getLETTERS()){
+                if (t.getLetter() == word.charAt(k)) {
+                    toPlace[k] = (t);
+                }
+                else {
+                    for (Tile t2: existingOnBoard){
+                        if (t2.getLetter() == word.charAt(k)) {
+                            toPlace[k] = (t2);
+                        }
+                    }
+                }
+            }
+        }
+        player.getRack().removeLetters(word);
+        return toPlace;
+    }
+
+    private boolean boardCheck(String word, Coordinate c1, Coordinate c2, Board board) {
+        // Vertical word placement
+        if (c1.getXCoordinate() == c2.getXCoordinate()){
+            for (int i = c1.getYCoordinate(); i <= c2.getYCoordinate(); i++){
+                if (board.getGrid()[c1.getXCoordinate()][i].getTile() != null){
+                    if (word.charAt(i) != board.getGrid()[c1.getXCoordinate()][i].getTile().getLetter()){
+                        return false;
+                    }
+                }
+            }
+        }
+        // Horizontal word placement
+        else {
+            for (int j = c1.getXCoordinate(); j <= c2.getXCoordinate(); j++){
+                if (board.getGrid()[j][c1.getYCoordinate()].getTile() != null){
+                    if (word.charAt(j) != board.getGrid()[j][c1.getYCoordinate()].getTile().getLetter()){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2, Board board, ArrayList<Tile> onBoard) {
         // Create an array of all the letters in the player rack and the board as characters
         ArrayList<Character> existingTileLetters = new ArrayList<Character>();
         for (int i = 0; i < player.getRack().getLETTERS().length; i++) {
@@ -34,44 +88,34 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary, Refill
         }
         // Vertical word placement
         if (c1.getXCoordinate() == c2.getXCoordinate()){
-            for (int i = c1.getYCoordinate(); i < c2.getYCoordinate(); i++){
+            for (int i = c1.getYCoordinate(); i <= c2.getYCoordinate(); i++){
                 if (board.getGrid()[c1.getXCoordinate()][i].getTile() != null){
                     existingTileLetters.add(board.getGrid()[c1.getXCoordinate()][i].getTile().getLetter());
+                    onBoard.add(board.getGrid()[c1.getXCoordinate()][i].getTile());
                 }
             }
         }
         // Horizontal word placement
         else {
-            for (int i = c1.getXCoordinate(); i < c2.getXCoordinate(); i++){
-                if (board.getGrid()[i][c2.getXCoordinate()].getTile() != null){
-                    existingTileLetters.add(board.getGrid()[i][c2.getXCoordinate()].getTile().getLetter());
+            for (int j = c1.getXCoordinate(); j <= c2.getXCoordinate(); j++){
+                if (board.getGrid()[j][c2.getXCoordinate()].getTile() != null){
+                    existingTileLetters.add(board.getGrid()[j][c2.getXCoordinate()].getTile().getLetter());
+                    onBoard.add(board.getGrid()[j][c2.getXCoordinate()].getTile());
                 }
             }
         }
         // Create an array of all the letters in the word as characters
         ArrayList<Character> wordLetters = new ArrayList<Character>();
-        for (int i = 0; i < word.length(); i++){
-            wordLetters.add((char) word.indexOf(i));
+        for (int k = 0; k < word.length(); k++){
+            wordLetters.add((char) word.indexOf(k));
         }
         for (Character wordLetter : wordLetters) {
             try {
                 existingTileLetters.contains(wordLetter);
             } catch (Exception IndexOutOfBoundsException) {
-                return new PlaceWordRefillResponseModel(false);
+                return false;
             }
         }
-        return null;
-    }
-
-    @Override
-    public PlaceWordRefillResponseModel refill(Player player, Bag bag, Board board, GameState gameState) {
-        return null;
+        return true;
     }
 }
-
-
-/* From TurnBuilder: remove getWord, getLocation in exchange for attributes in a RequestModel type class
-*  WordLinkedList with Player attribute, coordinates, word itself, next to be injected into TurnBuilder
-*       - WordLinkedList is updated in Board.placeTiles (new link for these coordinates, this word, these tiles, this player)
-*
-* */
