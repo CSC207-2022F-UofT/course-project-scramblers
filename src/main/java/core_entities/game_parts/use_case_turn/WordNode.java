@@ -1,5 +1,7 @@
 package core_entities.game_parts.use_case_turn;
 
+import java.util.Iterator;
+
 abstract class WordNode {
     String wordNodeValue = null;
     Boolean wordOrientation;

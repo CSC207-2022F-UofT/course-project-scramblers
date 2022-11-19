@@ -80,7 +80,7 @@ public class Dictionary {
     /**
      * This function stakes in a string value and converts it to a set of characters
      * @param str is a String with no spaces or symbols please.
-     * @return
+     * @return a set of characters
      */
     private static Set<Character> strToSet(String str) {
         Set<Character> set;

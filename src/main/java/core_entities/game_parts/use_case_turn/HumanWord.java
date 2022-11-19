@@ -1,6 +1,6 @@
 package core_entities.game_parts.use_case_turn;
 
-public class HumanWord extends WordNode{
+public class HumanWord extends WordNode implements TurnConstructorRecipe{
     @Override
     void setWordNodeValue() {
 
@@ -19,5 +19,40 @@ public class HumanWord extends WordNode{
     @Override
     WordNode nextWord() {
         return null;
+    }
+
+    @Override
+    public void getLocation() {
+
+    }
+
+    @Override
+    public void getWord() {
+
+    }
+
+    @Override
+    public void verifyWord() {
+
+    }
+
+    @Override
+    public void verifyLocation() {
+
+    }
+
+    @Override
+    public void calculateWord() {
+
+    }
+
+    @Override
+    public void updateScore() {
+
+    }
+
+    @Override
+    public void updateTiles() {
+
     }
 }
