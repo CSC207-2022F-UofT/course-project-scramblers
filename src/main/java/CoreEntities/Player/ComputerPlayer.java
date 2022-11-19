@@ -1,6 +1,5 @@
 package CoreEntities.Player;
-
-import CoreEntities.GameParts.LetterRack;
+import core_entities.game_parts.LetterRack;
 
 public class ComputerPlayer extends Player{
     public ComputerPlayer(String name, LetterRack rack, int score) {
@@ -8,7 +7,7 @@ public class ComputerPlayer extends Player{
     }
 
     @Override
-    boolean makeMove(String word) {
+    boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y) {
         return false;
     }
 
