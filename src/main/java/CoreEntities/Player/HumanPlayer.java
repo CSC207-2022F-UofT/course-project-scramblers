@@ -1,6 +1,7 @@
 package CoreEntities.Player;
 
-import CoreEntities.GameParts.LetterRack;
+
+import core_entities.game_parts.LetterRack;
 
 public class HumanPlayer extends Player {
     public HumanPlayer(String name, LetterRack rack, int score) {
@@ -14,10 +15,10 @@ public class HumanPlayer extends Player {
      * placed on board if the move is valid.
      */
     @Override
-    boolean makeMove(String word) {
+    boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y) {
         // If word is verified, place word on board
-            // word is verified if it is a valid word in dictionary
-            // and if there's space for it on the board.
+            // word is verified if it is a valid word in dictionary and
+            // if there's space for it on the board.
             // return true.
         // If not, return false.
         return false;
@@ -25,7 +26,10 @@ public class HumanPlayer extends Player {
 
     @Override
     void replaceLetters(char[] toReplaceValues, char[] newValues) {
-
+        // iterate through Player's letter rack.
+        // If tile in LETTERS is in toReplaceValues, delete that char
+        // after iterating through the letter rack, iterate through
+        // newValues and for each char in newValues, add it to letter rack.
     }
 }
 
