@@ -20,7 +20,7 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
                                                   Coordinate c2, GameState gameState) {
         Board board = gameState.getBoard();
         // Check if the needed Tiles are in the player's LetterRack or on the Board
-        ArrayList<Tile> existingOnBoard = new ArrayList<Tile>();
+        ArrayList<Tile> existingOnBoard = new ArrayList<>();
         if (!verifyLetters(player, word, c1, c2, gameState, existingOnBoard)) {
             return placeWordRefillPresenter.prepareFailView("Letters are not available for this word to be placed.");
         }
@@ -36,7 +36,7 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         return placeWordRefillPresenter.prepareSuccessView(new PlaceWordRefillResponseModel(true));
     }
 
-    private static Tile[] collectTiles(Player player, String word, ArrayList<Tile> existingOnBoard) {
+    private Tile[] collectTiles(Player player, String word, ArrayList<Tile> existingOnBoard) {
         Tile[] toPlace = new Tile[word.length()];
         for (int k = 0; k < word.length(); k++){
             for (Tile t: player.getRack().getLETTERS()){
@@ -85,7 +85,7 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
                                   GameState gameState, ArrayList<Tile> onBoard) {
         // Create an array of all the letters in the player rack and the board as characters
         Board board = gameState.getBoard();
-        ArrayList<Character> existingTileLetters = new ArrayList<Character>();
+        ArrayList<Character> existingTileLetters = new ArrayList<>();
         for (int i = 0; i < player.getRack().getLETTERS().length; i++) {
             existingTileLetters.add(player.getRack().getLETTERS()[i].getLetter());
         }
@@ -108,13 +108,13 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
             }
         }
         // Create an array of all the letters in the word as characters
-        ArrayList<Character> wordLetters = new ArrayList<Character>();
+        ArrayList<Character> wordLetters = new ArrayList<>();
         for (int k = 0; k < word.length(); k++){
             wordLetters.add((char) word.indexOf(k));
         }
         for (Character wordLetter : wordLetters) {
             try {
-                existingTileLetters.contains(wordLetter);
+                Boolean result = existingTileLetters.contains(wordLetter);
             } catch (Exception IndexOutOfBoundsException) {
                 return false;
             }
