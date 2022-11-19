@@ -6,9 +6,15 @@ public class ComputerPlayer extends Player{
     public ComputerPlayer(String name, LetterRack rack, int score) {
         super(name, rack, score);
     }
+
     /**
-     * generate a valid word that can be placed on the board
-     * use the makeMove method to place the word
+     * Place the word that is generated
+     * @param word the word that is generated
+     * @param start_x the starting x-axis of the word
+     * @param end_x the ending x-axis of the word
+     * @param start_y the starting y-axis of the word
+     * @param end_y the ending y-exist of the word
+     * @return return true if the word is placed
      */
     void generateMove(){
 
