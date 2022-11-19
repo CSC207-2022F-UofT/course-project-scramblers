@@ -7,6 +7,6 @@ import core_entities.game_parts.GameState;
 
 public interface PlaceWordInputBoundary {
     PlaceWordRefillResponseModel placeWord(Player player, String word, Coordinate c1,
-                                           Coordinate c2, Board board, GameState gameState);
+                                           Coordinate c2, GameState gameState);
 
 }

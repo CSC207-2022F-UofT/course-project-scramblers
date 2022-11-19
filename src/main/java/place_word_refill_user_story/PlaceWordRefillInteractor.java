@@ -10,22 +10,22 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
     final PlaceWordRefillController placeWordRefillController;
     final PlaceWordRefillPresenter placeWordRefillPresenter;
 
-    public PlaceWordRefillInteractor(PlaceWordRefillController placeWordRefillController,
-                                     PlaceWordRefillPresenter placeWordRefillPresenter) {
-        this.placeWordRefillController = placeWordRefillController;
-        this.placeWordRefillPresenter = placeWordRefillPresenter;
+    public PlaceWordRefillInteractor(PlaceWordRefillRequestModel requestModel) {
+        this.placeWordRefillController = requestModel.placeWordRefillController;
+        this.placeWordRefillPresenter = requestModel.placeWordRefillPresenter;
     }
 
     @Override
     public PlaceWordRefillResponseModel placeWord(Player player, String word, Coordinate c1,
-                                                  Coordinate c2, Board board, GameState gameState) {
+                                                  Coordinate c2, GameState gameState) {
+        Board board = gameState.getBoard();
         // Check if the needed Tiles are in the player's LetterRack or on the Board
         ArrayList<Tile> existingOnBoard = new ArrayList<Tile>();
-        if (!verifyLetters(player, word, c1, c2, board, existingOnBoard)) {
+        if (!verifyLetters(player, word, c1, c2, gameState, existingOnBoard)) {
             return placeWordRefillPresenter.prepareFailView("Letters are not available for this word to be placed.");
         }
         // Check if the area on the board is empty, or contains the right characters at the right location
-        if (!boardCheck(word, c1, c2, board))
+        if (!boardCheck(word, c1, c2, gameState))
             return placeWordRefillPresenter.prepareFailView("Placement of word is not valid.");
         // Create the list of Tiles to place on the board, removing them from the player's LetterRack
         Tile[] toPlace = collectTiles(player, word, existingOnBoard);
@@ -56,7 +56,8 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         return toPlace;
     }
 
-    private boolean boardCheck(String word, Coordinate c1, Coordinate c2, Board board) {
+    private boolean boardCheck(String word, Coordinate c1, Coordinate c2, GameState gameState) {
+        Board board = gameState.getBoard();
         // Vertical word placement
         if (c1.getXCoordinate() == c2.getXCoordinate()){
             for (int i = c1.getYCoordinate(); i <= c2.getYCoordinate(); i++){
@@ -80,8 +81,10 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         return true;
     }
 
-    private boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2, Board board, ArrayList<Tile> onBoard) {
+    private boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2,
+                                  GameState gameState, ArrayList<Tile> onBoard) {
         // Create an array of all the letters in the player rack and the board as characters
+        Board board = gameState.getBoard();
         ArrayList<Character> existingTileLetters = new ArrayList<Character>();
         for (int i = 0; i < player.getRack().getLETTERS().length; i++) {
             existingTileLetters.add(player.getRack().getLETTERS()[i].getLetter());
