@@ -7,5 +7,5 @@ import core_entities.game_parts.GameState;
 
 public interface RefillInputBoundary {
 
-    RefillResponseModel refill(Player player, Bag bag, Board board, GameState gameState);
+    PlaceWordRefillResponseModel refill(Player player, Bag bag, Board board, GameState gameState);
 }
