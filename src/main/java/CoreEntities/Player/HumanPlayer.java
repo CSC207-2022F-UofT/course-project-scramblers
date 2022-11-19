@@ -15,12 +15,9 @@ public class HumanPlayer extends Player {
      */
     @Override
     boolean makeMove(String word) {
-
-        
-
         // If word is verified, place word on board
-            // word is verified if it is a valid word in dictionary and
-            // if there's space for it on the board.
+            // word is verified if it is a valid word in dictionary
+            // and if there's space for it on the board.
             // return true.
         // If not, return false.
         return false;
