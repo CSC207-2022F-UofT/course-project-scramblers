@@ -15,27 +15,41 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         this.placeWordRefillPresenter = requestModel.placeWordRefillPresenter;
     }
 
+    /**
+     * Place the word if valid and possible, and then refill the LetterRack to comply with the rules. The Tiles of the
+     * Board and Player's LetterRack are first verified to see if these Tiles are available. The board is then checked
+     * if the area is empty, and if any existing Tiles on the board are in the correct spot. Then, the tiles are
+     * placed on the board, and the LetterRack is refilled.
+     * @param player The player attempting this move.
+     * @param word The word the player is attempting to place.
+     * @param c1 The starting coordinate of the word being placed.
+     * @param c2 The ending coordinate of the word being placed.
+     * @param gameState The state of the current game prior to the move.
+     * @return A PlaceWordRefillResponseModel object.
+     */
     @Override
     public PlaceWordRefillResponseModel placeWord(Player player, String word, Coordinate c1,
                                                   Coordinate c2, GameState gameState) {
         Board board = gameState.getBoard();
-        // Check if the needed Tiles are in the player's LetterRack or on the Board
         ArrayList<Tile> existingOnBoard = new ArrayList<>();
         if (!verifyLetters(player, word, c1, c2, gameState, existingOnBoard)) {
             return placeWordRefillPresenter.prepareFailView("Letters are not available for this word to be placed.");
         }
-        // Check if the area on the board is empty, or contains the right characters at the right location
         if (!boardCheck(word, c1, c2, gameState))
             return placeWordRefillPresenter.prepareFailView("Placement of word is not valid.");
-        // Create the list of Tiles to place on the board, removing them from the player's LetterRack
         Tile[] toPlace = collectTiles(player, word, existingOnBoard);
-        // Place these tiles on the board
         board.placeTiles(toPlace, c1, c2);
-        // Refill the player's rack
         player.getRack().refill();
-        return placeWordRefillPresenter.prepareSuccessView(new PlaceWordRefillResponseModel(true));
+        return placeWordRefillPresenter.prepareSuccessView(new PlaceWordRefillResponseModel(true, word, player));
     }
 
+    /**
+     * Collect all the Tiles that need to be placed on the board, including those that are already on the board.
+     * @param player The player attempting the move.
+     * @param word The word that is to be placed.
+     * @param existingOnBoard The array of Tiles that need to be placed.
+     * @return All the Tile objects that need to be placed in an array.
+     */
     private Tile[] collectTiles(Player player, String word, ArrayList<Tile> existingOnBoard) {
         Tile[] toPlace = new Tile[word.length()];
         for (int k = 0; k < word.length(); k++){
@@ -56,6 +70,15 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         return toPlace;
     }
 
+    /**
+     * Check the area on the board to see if the move can be made. The existing tiles on the board are also checked
+     * if they are in the correct position.
+     * @param word The word that is being attempted to be placed.
+     * @param c1 The starting coordinate of the word trying to be placed.
+     * @param c2 The ending coordinate of the word trying to be placed.
+     * @param gameState The state of the game prior to the move being made.
+     * @return Whether the board space is valid for this move to be made.
+     */
     private boolean boardCheck(String word, Coordinate c1, Coordinate c2, GameState gameState) {
         Board board = gameState.getBoard();
         // Vertical word placement
@@ -81,6 +104,16 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         return true;
     }
 
+    /**
+     * Verify if the Tiles exist in the player's rack and/or the board for this word to be placed.
+     * @param player The player attempting this move.
+     * @param word The word trying to be placed.
+     * @param c1 The starting coordinate of the word trying to be placed.
+     * @param c2 The ending coordinate of the word trying to be placed.
+     * @param gameState The state of the game prior to the move being made.
+     * @param onBoard The list of Tiles on the board that are involved in the placement of this word.
+     * @return Whether the Tiles for this move exist in the player's rack and/or on the board for this word to be placed.
+     */
     private boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2,
                                   GameState gameState, ArrayList<Tile> onBoard) {
         // Create an array of all the letters in the player rack and the board as characters
