@@ -8,10 +8,10 @@ import java.util.LinkedList;
  * It comprises Word object and Next which is a pointer to the last word in the list. ,
  */
 
-public class TurnLinkWordList  {
-    public TurnLinkWordList(WordNode node) {
-        if(node instanceof HumanWord){
-            WordNode newnode = new ComputerWord(node);
-        }
-    }
-}
+//public class TurnLinkWordList  {
+//    public TurnLinkWordList(WordNode node) {
+//        if(node instanceof HumanWord){
+//            WordNode newnode = new ComputerWord(node);
+//        }
+//    }
+//}

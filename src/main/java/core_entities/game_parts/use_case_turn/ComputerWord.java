@@ -4,15 +4,17 @@ import java.util.ArrayList;
 
 public class ComputerWord extends WordNode{
 
+    WordNode nextWord;
+    ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> data;
     public ComputerWord() {
     }
 
-    public ComputerWord(WordNode node) {
+    public ComputerWord(WordNode node, ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> data) {
 
     }
 
     /**
-     * @param data
+     * @param data This data is constructed  [0,8,[7, [-6,65,6]],[8,[-6,66,6]],
      */
     @Override
     public void setData(ArrayList<Object> data) {
