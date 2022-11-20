@@ -2,17 +2,10 @@ package core_entities.game_parts;
 
 import CoreEntities.Player.Player;
 
-import java.io.Serializable;
-
-public class GameState implements Serializable {
+public class GameState {
     private static Player p1;
     private static Player p2;
     private static Board board;
-    public GameState(Player p1, Player p2, Board b) {
-        GameState.p1 = p1;
-        GameState.p2 = p2;
-        GameState.board = b;
-    }
     public static Player getP1() {
         return GameState.p1;
     }

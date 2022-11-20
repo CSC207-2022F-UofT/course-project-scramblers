@@ -31,7 +31,9 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         else {
             p2 = new ComputerPlayer(inputData.getPlayerTwoName(), p2rack, 0);
         }
-        GameState gameState = new GameState(p1, p2, factory.create());
+        GameState.setP1(p1);
+        GameState.setP2(p2);
+        GameState.setBoard(factory.create());
         presenter.updateViewModel(GameState.getBoard().getMultiplierGrid());
     }
 }
