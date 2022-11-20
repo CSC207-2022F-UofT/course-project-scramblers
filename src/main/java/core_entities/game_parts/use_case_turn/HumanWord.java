@@ -1,58 +1,36 @@
 package core_entities.game_parts.use_case_turn;
 
-public class HumanWord extends WordNode implements TurnConstructorRecipe{
-    @Override
-    void setWordNodeValue() {
+import java.util.ArrayList;
 
+public class HumanWord extends WordNode{
+    public HumanWord() {
     }
 
-    @Override
-    void setWordOrientation() {
-
+    public HumanWord(WordNode nextWord, ArrayList<Object> data) {
+        super(nextWord, data);
     }
 
+    /**
+     * @param data
+     */
     @Override
-    boolean isLast() {
-        return false;
+    public void setData(ArrayList<Object> data) {
+        super.setData(data);
     }
 
+    /**
+     * @return
+     */
     @Override
-    WordNode nextWord() {
-        return null;
+    public ArrayList<Object> getData() {
+        return super.getData();
     }
 
+    /**
+     * @return
+     */
     @Override
-    public void getLocation() {
-
-    }
-
-    @Override
-    public void getWord() {
-
-    }
-
-    @Override
-    public void verifyWord() {
-
-    }
-
-    @Override
-    public void verifyLocation() {
-
-    }
-
-    @Override
-    public void calculateWord() {
-
-    }
-
-    @Override
-    public void updateScore() {
-
-    }
-
-    @Override
-    public void updateTiles() {
-
+    public boolean anyData() {
+        return super.anyData();
     }
 }

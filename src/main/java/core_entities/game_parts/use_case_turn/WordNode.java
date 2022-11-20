@@ -1,17 +1,39 @@
 package core_entities.game_parts.use_case_turn;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+
+/**
+ * This is an abstract class of node for a linked list.
+ */
 
 abstract class WordNode {
-    String wordNodeValue = null;
-    Boolean wordOrientation;
-    WordNode previousWord = null;
-    abstract void setWordNodeValue();
 
-    abstract void setWordOrientation();
+    WordNode nextWord;
+    ArrayList<Object> data;
+    public WordNode() {
+        this.nextWord = null;
+        this.data = null;
+    }
 
-    abstract boolean isLast();
+    public WordNode(WordNode nextWord, ArrayList<Object> data) {
+        this.data = data;
+        this.nextWord = nextWord;
+    }
 
-    abstract WordNode nextWord();
+    public void setData(ArrayList<Object> data) {
+        this.data = data;
+    }
+
+    public ArrayList<Object> getData() {
+        return data;
+    }
+
+
+    public boolean anyData() {
+        return data.isEmpty();
+    }
+
+
+
 
 }
