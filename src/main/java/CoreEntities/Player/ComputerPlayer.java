@@ -39,8 +39,7 @@ public class ComputerPlayer extends Player{
 
         // Error of Non-static method cannot be referenced from a static context
         Board.placeTiles(tileList, c1, c2);
-
-
+        
         return false;
     }
 
