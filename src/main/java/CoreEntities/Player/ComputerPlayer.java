@@ -37,9 +37,9 @@ public class ComputerPlayer extends Player{
         Tile[] tileList = new[flag];
         System.arraycopy(tilelist_1, 0, tileList, 0, flag);
 
-        // Error of Non-static method cannot be referenced from a static context
-        Board.placeTiles(tileList, c1, c2);
-        
+        GameState.getBoard().placeTiles(tileList, c1, c2);
+
+
         return false;
     }
 
