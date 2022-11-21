@@ -47,6 +47,11 @@ public class Dictionary {
         myDictionaryReader();
         charSetDictionary();
         longDictionary = myDictionaryReader();
+
+    }
+
+    public Dictionary(ArrayList<String> longDictionary) {
+        this.longDictionary = longDictionary;
     }
 
     private static ArrayList<String> myDictionaryReader() throws FileNotFoundException {
@@ -82,7 +87,7 @@ public class Dictionary {
      * @param str is a String with no spaces or symbols please.
      * @return a set of characters
      */
-    private static Set<Character> strToSet(String str) {
+    public static Set<Character> strToSet(String str) {
         Set<Character> set;
 
         if (str == null) {
@@ -104,10 +109,11 @@ public class Dictionary {
      * @return ArrayList<String></String>
      */
 
-    public ArrayList<String> getCharacterSetDictionary(String str){
+    public static ArrayList<String> getCharacterSetDictionary(String str){
         ArrayList<String> list;
         list = characterSetDictionary.get(strToSet(str));
         list.sort((o1, o2) -> 0);
         return list;
     }
+
 }

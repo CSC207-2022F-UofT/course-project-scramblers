@@ -8,6 +8,14 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+gradlew.bat
+gradlew
+build.gradle
+/gradle/
+project_plan_dev.md
+README.md
+
+
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -39,6 +47,7 @@
 .idea/modules
 *.iml
 *.ipr
+.idea/
 
 # CMake
 cmake-build-*/

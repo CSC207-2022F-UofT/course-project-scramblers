@@ -5,6 +5,17 @@ public class ComputerWordBuilder implements TurnConstructorRecipe{
     private WordNode other;
     private ComputerWord node;
 
+
+    public ComputerWordBuilder() {
+        this(null);
+        getLocation();
+
+    }
+
+    public ComputerWordBuilder(ComputerWord node) {
+        this.node = node;
+    }
+
     public ComputerWordBuilder(WordNode node) {
         this.other = node;
     }
@@ -14,7 +25,7 @@ public class ComputerWordBuilder implements TurnConstructorRecipe{
      */
     @Override
     public void getLocation() {
-
+        this.other.
     }
 
     /**

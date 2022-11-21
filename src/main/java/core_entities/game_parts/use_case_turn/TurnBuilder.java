@@ -1,8 +1,12 @@
 package core_entities.game_parts.use_case_turn;
 
-public class TurnBuilder {
+import CoreEntities.IO.TurnBuilderBoundary;
+
+public class TurnBuilder implements TurnBuilderBoundary {
 
     /**
+     * This will be the
+     *
      * TurnBuilder is the director of a Builder design pattern than makes either a ComputerWorldBuilder
      * or a HumanWordBuilder.
      * It has one private attribute which is a boolean value for winState, which is set to false on construction.
