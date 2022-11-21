@@ -5,18 +5,19 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Scanner;
 
+/**
+ * This is a gateway that accesses a resource file needed to create the Dictionary.
+ */
 class DictionaryDataReaderGateway {
 
     private static String dictFile = "src/resources/scrabble_dictionary.txt";
-    ArrayList<String> dictionaryfile;
+    ArrayList<String> dictionaryFile;
 
     public DictionaryDataReaderGateway() throws FileNotFoundException {
-        this.dictionaryfile = getFileAsList(dictFile);
-        Dictionary dictionary = new Dictionary(this.dictionaryfile); {
-        }
+        this.dictionaryFile = getFileAsList(dictFile);
+
     }
 
     @NotNull
@@ -36,8 +37,9 @@ class DictionaryDataReaderGateway {
         return list;
     }
 
-    public ArrayList<String> getDictionaryfile() {
-        return this.dictionaryfile;
+    public ArrayList<String> getDictionaryFile() {
+
+        return this.dictionaryFile;
     }
 }
 
