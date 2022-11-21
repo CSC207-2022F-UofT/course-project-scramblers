@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 public class DefaultBoard implements Serializable, Board{
     private final Square[][] grid;
-    public DefaultBoard () {
-        this.grid = generateDefaultGrid();
+    private final int DEFAULT_BOARD_SIZE;
+    public DefaultBoard (String [][] multipliers) {
+        this.grid = generateDefaultGrid(multipliers);
+        this.DEFAULT_BOARD_SIZE = 15;
     }
     public Square [][] getGrid() {
         return this.grid;
@@ -13,13 +15,11 @@ public class DefaultBoard implements Serializable, Board{
     /**
      * @return The default grid of a Scrabble Game, of size DEFUALT_BOARD_SIZE
      */
-    private Square [][] generateDefaultGrid() {
-        //TODO: Add multipliers
-        int DEFAULT_BOARD_SIZE = 15;
+    private Square [][] generateDefaultGrid(String [][] multipliers) {
         Square [][] grid = new Square[DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
         for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
             for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
-                grid[i][j] = new Square("");
+                grid[i][j] = new Square(multipliers[i][j]);
             }
         }
         return grid;
@@ -43,5 +43,23 @@ public class DefaultBoard implements Serializable, Board{
                 this.grid[initialXCoordinate][initialYCoordinate + i].setTile(tileList[i]);
             }
         }
+    }
+    public String [][] getMultiplierGrid() {
+        String [][] multiplierGrid = new String [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
+        for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
+            for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
+                multiplierGrid[i][j] = this.grid[i][j].getMultiplier();
+            }
+        }
+        return multiplierGrid;
+    }
+    public char [][] getLetterGrid() {
+        char [][] letterGrid = new char [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
+        for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
+            for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
+                letterGrid[i][j] = this.grid[i][j].getTile().getLetter();
+            }
+        }
+        return letterGrid;
     }
 }

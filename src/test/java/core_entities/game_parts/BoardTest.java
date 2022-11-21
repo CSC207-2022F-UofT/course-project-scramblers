@@ -8,8 +8,14 @@ class BoardTest {
     BoardFactory factory;
     @BeforeEach
     public void setup() {
+        String [][] multipliers = new String [15][15];
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                multipliers[i][j] = "*";
+            }
+        }
         factory = new DefaultBoardFactory();
-        board = factory.create();
+        board = factory.create(multipliers);
     }
     @Test
     void placeTilesTest() {
