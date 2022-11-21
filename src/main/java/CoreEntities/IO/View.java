@@ -62,12 +62,12 @@ public class View{
 
 
 
-
+    // using the main method to test view for now.
     public static void main(String[] args) {
-        //View v = new View(600,600);
+        View v = new View(600,600);
 
         HomeWindow home = new HomeWindow(frame);
-        home.setUpHomeWindow();
+        //home.setUpHomeWindow();
 
 
     }
