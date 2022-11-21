@@ -28,6 +28,12 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
      * Board and Player's LetterRack are first verified to see if these Tiles are available. The board is then checked
      * if the area is empty, and if any existing Tiles on the board are in the correct spot. Then, the tiles are
      * placed on the board, and the LetterRack is refilled.
+     * @param player The player attempting this move.
+     * @param word The word the player is attempting to place.
+     * @param c1 The starting coordinate of the word being placed.
+     * @param c2 The ending coordinate of the word being placed.
+     * @param gameState The state of the current game prior to the move.
+     * @return A PlaceWordRefillResponseModel object.
      */
     @Override
     public void placeWordRefill(PlaceWordRefillRequestModel requestModel) {
