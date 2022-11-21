@@ -24,12 +24,5 @@ public class HumanPlayer extends Player {
         return false;
     }
 
-    @Override
-    void replaceLetters(char[] toReplaceValues, char[] newValues) {
-        // iterate through Player's letter rack.
-        // If tile in LETTERS is in toReplaceValues, delete that char
-        // after iterating through the letter rack, iterate through
-        // newValues and for each char in newValues, add it to letter rack.
-    }
 }
 

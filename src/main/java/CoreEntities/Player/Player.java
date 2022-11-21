@@ -24,8 +24,6 @@ public abstract class Player implements Serializable{
    
     abstract boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y);
 
-    abstract void replaceLetters(char[] toReplaceValues, char[] newValues);
-
     public int getScore() {
         return this.score;
     }
