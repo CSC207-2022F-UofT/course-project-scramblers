@@ -19,10 +19,10 @@ public class Tile implements Serializable {
      */
     public Tile(char letter){
         this.letter = letter;
-        this.value = getValue(letter);
+        this.value = determineTileValue(letter);
     }
 
-    private int getValue(char letter) {
+    private int determineTileValue(char letter) {
         if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O'
                 || letter == 'U' || letter == 'L' || letter == 'N' || letter == 'S'
                 || letter == 'T'  || letter == 'R'){
