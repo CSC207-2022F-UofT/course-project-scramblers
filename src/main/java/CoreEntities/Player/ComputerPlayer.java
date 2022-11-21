@@ -34,7 +34,7 @@ public class ComputerPlayer extends Player{
         rack.removeLetters(word);
         rack.refill();
 
-        Tile[] tileList = new[flag];
+        Tile[] tileList = new Tile[flag];
         System.arraycopy(tilelist_1, 0, tileList, 0, flag);
 
         GameState.getBoard().placeTiles(tileList, c1, c2);
