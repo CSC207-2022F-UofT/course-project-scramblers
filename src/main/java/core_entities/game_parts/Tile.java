@@ -15,6 +15,41 @@ public class Tile implements Serializable {
     }
 
     /**
+     * Constructor that deteremines the value based on the inputted letter
+     */
+    public Tile(char letter){
+        this.letter = letter;
+        this.value = getValue(letter);
+    }
+
+    private int getValue(char letter) {
+        if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O'
+                || letter == 'U' || letter == 'L' || letter == 'N' || letter == 'S'
+                || letter == 'T'  || letter == 'R'){
+            return 1;
+        }
+        else if (letter == 'D' || letter == 'G'){
+            return 2;
+        }
+        else if (letter == 'B' || letter == 'C' || letter == 'M' || letter == 'P'){
+            return 3;
+        }
+        else if (letter == 'F' || letter == 'H' || letter == 'V' || letter == 'W'
+                || letter == 'Y'){
+            return 4;
+        }
+        else if (letter == 'K'){
+            return 5;
+        }
+        else if (letter == 'J' || letter == 'X'){
+            return 8;
+        }
+        else {
+            return 10;
+        }
+    }
+
+    /**
      * Get the char of the letter of this tile.
       * @return char of the letter of this tile
      */
