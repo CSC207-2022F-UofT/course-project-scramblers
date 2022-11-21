@@ -39,8 +39,8 @@ public class StorageManager implements SaveGameDsGateway, ReloadGameDsGateway {
             FileInputStream f = new FileInputStream(new File("state.txt"));
             ObjectInputStream o = new ObjectInputStream(f);
             SerializableGameState s = (SerializableGameState) o.readObject();
+            o.close();
             return new ReloadGameDsResponseModel(s.getP1(), s.getP2(), s.getBoard());
-
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
