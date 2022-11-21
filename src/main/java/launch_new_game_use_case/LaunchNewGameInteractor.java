@@ -3,13 +3,17 @@ package launch_new_game_use_case;
 import CoreEntities.Player.*;
 import core_entities.game_parts.*;
 
+import java.io.IOException;
+
 public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
     private final LaunchGameRequestModel inputData;
     private final LaunchGameOutputBoundary presenter;
+    private final LaunchGameDataAccessObject dataAccessObject;
     private final BoardFactory factory;
-    public LaunchNewGameInteractor (LaunchGameRequestModel inputData, LaunchGameOutputBoundary presenter, BoardFactory factory) {
+    public LaunchNewGameInteractor (LaunchGameRequestModel inputData, LaunchGameOutputBoundary presenter, LaunchGameDataAccessObject dataAccessObject, BoardFactory factory) {
         this.inputData = inputData;
         this.factory = factory;
+        this.dataAccessObject = dataAccessObject;
         this.presenter = presenter;
     }
     @Override
@@ -33,7 +37,12 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         }
         GameState.setP1(p1);
         GameState.setP2(p2);
-        GameState.setBoard(factory.create());
-        presenter.updateViewModel(GameState.getBoard().getMultiplierGrid());
+        try {
+            GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid()));
+            presenter.updateViewModel(GameState.getBoard().getMultiplierGrid());
+        }
+        catch (IOException e) {
+            presenter.prepareFailView("CSV File not found");
+        }
     }
 }

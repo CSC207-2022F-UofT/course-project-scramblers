@@ -15,4 +15,9 @@ public class Presenter implements Observer, LaunchGameOutputBoundary{
         //The array will contain the information regarding the squares on the board
             //Each String will correspond to a different multiplier (To be discussed later)
     }
+
+    @Override
+    public void prepareFailView(String errorMessage) {
+        //Write the code to deal with a specific error message
+    }
 }
