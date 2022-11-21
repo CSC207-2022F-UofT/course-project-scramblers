@@ -7,22 +7,14 @@ public class ComputerPlayer extends Player{
         super(name, rack, score);
     }
 
-    /**
-     * Place the word that is generated
-     * @param word the word that is generated
-     * @param start_x the starting x-axis of the word
-     * @param end_x the ending x-axis of the word
-     * @param start_y the starting y-axis of the word
-     * @param end_y the ending y-exist of the word
-     * @return return true if the word is placed
-     */
+
     void generateMove(){
 
         String result = new String();
-        char[] my_char = new char[];
+        char[] my_char = new char[rack.getLETTERS().length];
 
         int i = 0;
-        for (Tile letters: rack){
+        for (Tile letters: rack.getLETTERS()){
             my_char[i] = letters.getLetter();
             i ++;
         }
@@ -33,7 +25,7 @@ public class ComputerPlayer extends Player{
         }
         else {
             if (makeMove(result)){
-                rack.remove(result);
+                rack.removeLetters(result);
                 rack.refill();
             }
             else {}
@@ -77,8 +69,4 @@ public class ComputerPlayer extends Player{
         return false;
     }
 
-    @Override
-    void replaceLetters(char[] toReplaceValues, char[] newValues) {
-
-    }
 }
