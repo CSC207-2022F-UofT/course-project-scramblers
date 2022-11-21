@@ -1,7 +1,7 @@
-package exchange_rack_letters;
+package use_cases.exchange_rack_letters;
 import core_entities.game_parts.Tile;
 
 public interface ExchangeLettersInputBoundary {
 
-    boolean exchangeLetters(Tile[] tileInputArray);
+    boolean exchangeLetters(String inputString);
 }

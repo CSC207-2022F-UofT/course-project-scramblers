@@ -1,22 +1,18 @@
-package exchange_rack_letters;
-import core_entities.game_parts.*;
+package use_cases.exchange_rack_letters;
 
 public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
 
-    private GameState gameRef;
-
-    public ExchangeLettersInteractor(GameState gameInputRef){
-        this.gameRef = gameInputRef;
-    }
+    public ExchangeLettersInteractor(){}
 
     /**
      * executes the operation to exchange characters from the bag and player's letter rack
      * the exhcanged letters are the input tiles
-     * @param tileInputArray
      * @return true if method succeeds and fails if not.
      */
     @Override
-    public boolean exchangeLetters(Tile[] tileInputArray){
+    public boolean exchangeLetters(String inputString){
+
+
 
         return true;
     }
