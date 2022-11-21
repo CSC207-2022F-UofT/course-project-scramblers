@@ -1,5 +1,4 @@
 package CoreEntities.Player;
-
 import core_entities.game_parts.LetterRack;
 
 public class ComputerPlayer extends Player{
