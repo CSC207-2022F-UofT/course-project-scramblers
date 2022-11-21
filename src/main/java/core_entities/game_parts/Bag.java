@@ -90,6 +90,9 @@ public class Bag implements Serializable {
      * @return A random Tile.
      */
     public Tile pop(){
+        if (this.supply.size() == 0) {
+            return null;
+        }
         Tile item = getRandomTile();
         this.supply.remove(item);
         return item;
