@@ -19,6 +19,7 @@ public abstract class Player {
         this.rack = rack;
         this.score = score;
     }
+   
     abstract boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y);
 
     abstract void replaceLetters(char[] toReplaceValues, char[] newValues);
