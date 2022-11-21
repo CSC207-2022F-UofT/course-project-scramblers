@@ -50,7 +50,7 @@ public class LetterRack implements Serializable {
      * @param inputChar the desired character tile to be found in the rack
      * @return index of a tile in letters Array
      */
-    private int findTile(char inputChar){
+    public int findTile(char inputChar){
         int outputTileIndex = 0;
         for(Tile tile: this.LETTERS){
             if(tile.getLetter() == inputChar){
