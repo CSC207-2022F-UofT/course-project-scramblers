@@ -15,7 +15,7 @@ public class ComputerWord extends WordNode{
     ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> data;
     public ComputerWord() {
         this.lastWord = null;
-        this.data=
+        this.data= null;
     }
 
     public ComputerWord(WordNode node, ArrayList<ArrayList<ArrayList<ArrayList<Integer>>>> data) {

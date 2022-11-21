@@ -31,41 +31,19 @@ public class Dictionary {
 
     private final ArrayList<String> longDictionary;
 
-    static {
-        try {
-            myDictionaryReader();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    public Dictionary(ArrayList<String> longDictionary) {
 
-    private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();{
+        this.longDictionary = longDictionary;
+        charSetDictionary();
+    }
+    private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();
+    {
         characterSetDictionary = charSetDictionary();
     }
 
-    public Dictionary() throws FileNotFoundException {
-        myDictionaryReader();
-        charSetDictionary();
-        longDictionary = myDictionaryReader();
-
-    }
-
-    public Dictionary(ArrayList<String> longDictionary) {
-        this.longDictionary = longDictionary;
-    }
-
-    private static ArrayList<String> myDictionaryReader() throws FileNotFoundException {
-
-        Scanner s = new Scanner(new File("src/resources/scrabble_dictionary.txt"));
-        ArrayList<String> list = new ArrayList<>();
-        while (s.hasNextLine()){
-            list.add(s.nextLine());
-        }
-        s.close();
-        return list;
 
 
-    }
+
     private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(){
         HashMap<Set<Character>, ArrayList<String>> setDict = new HashMap<>();
         ArrayList<String> list;
@@ -79,6 +57,7 @@ public class Dictionary {
                 list.add(s);
                 setDict.put(strToSet(s), list);}
             }
+
         return setDict;
     }
 
