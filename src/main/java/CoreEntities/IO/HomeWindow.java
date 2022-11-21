@@ -8,7 +8,7 @@ public class HomeWindow {
     private JFrame frame;
     private int height;
     private int width;
-    JLabel title = new JLabel("WELCOME TO SCRABBLE!",((Integer) (width/2)));
+    JLabel title = new JLabel("WELCOME TO SCRABBLE!", Math.round(width/2));
 
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Image img = toolkit.getImage("207Logo");
