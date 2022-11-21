@@ -14,6 +14,10 @@ public class GameState implements Serializable {
         GameState.p2 = p2;
         GameState.board = b;
     }
+
+    public GameState() {
+
+    }
     public Player getP1() {
         return GameState.p1;
     }
