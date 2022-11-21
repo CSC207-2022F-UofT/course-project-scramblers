@@ -12,7 +12,7 @@ class ViewTest {
         homeWindow.setUpHomeWindow();
 
 
-        //v.errorWindow("TEST");
+
     }
 
 }
