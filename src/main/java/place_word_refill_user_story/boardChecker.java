@@ -15,7 +15,7 @@ public class boardChecker {
      * @return Whether the board space is valid for this move to be made.
      */
     public boolean boardCheck(String word, Coordinate c1, Coordinate c2, GameState gameState) {
-        Board board = gameState.getBoard();
+        Board board = GameState.getBoard();
         // Vertical word placement
         if (c1.getXCoordinate() == c2.getXCoordinate()){
             for (int i = c1.getYCoordinate(); i <= c2.getYCoordinate(); i++){

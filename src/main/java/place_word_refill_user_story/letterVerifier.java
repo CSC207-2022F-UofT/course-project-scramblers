@@ -23,7 +23,7 @@ public class letterVerifier {
     public boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2,
                                   GameState gameState, ArrayList<Tile> onBoard) {
         // Create an array of all the letters in the player rack and the board as characters
-        Board board = gameState.getBoard();
+        Board board = GameState.getBoard();
         ArrayList<Character> existingTileLetters = new ArrayList<>();
         for (int i = 0; i < player.getRack().getLETTERS().length; i++) {
             existingTileLetters.add(player.getRack().getLETTERS()[i].getLetter());
