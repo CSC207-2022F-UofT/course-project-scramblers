@@ -38,7 +38,7 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
      */
     @Override
     public void placeWordRefill() {
-        Board board = gameState.getBoard();
+        Board board = GameState.getBoard();
         ArrayList<Tile> existingOnBoard = new ArrayList<>();
         if (!letterVerifier.verifyLetters(player, word, c1, c2, gameState, existingOnBoard)) {
             placeWordRefillOutputBoundary.prepareFailView("Letters are not available for this word to be placed.");
