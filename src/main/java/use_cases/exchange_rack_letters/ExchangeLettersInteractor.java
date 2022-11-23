@@ -19,13 +19,16 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
     @Override
     public boolean exchangeLetters(String inputString){
 
-        if(inputString == null || inputString.length() == 0){ return false; }
-
         //placeholder (Will be modified later)
         Player playerRef = new HumanPlayer("yoot", new LetterRack(new Bag(), 7), 0);
 
-        Tile[] tileArray = convertStringToTileArray(inputString);
-        playerRef.getRack().removeLetters(inputString);
+        String cleanedString = extractFoundLetters(inputString, playerRef.getRack().getLETTERS());
+
+        Tile[] tileArray = convertStringToTileArray(cleanedString);
+        //checks the input
+        if(cleanedString.length() == 0){ return false; }
+
+        playerRef.getRack().removeLetters(cleanedString);
         for (Tile tile: tileArray){
             BAG_REFERENCE.add(tile);
         }
@@ -33,6 +36,11 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
         return true;
     }
 
+    /**
+     * Convert String into a Tile[] with corresponding scores.
+     * @param inputString the inputted string to be converted
+     * @return Tile[] representation of inputString
+     */
     private Tile[] convertStringToTileArray(String inputString){
 
         Tile[] outputArray = new Tile[inputString.length()];
@@ -43,5 +51,33 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
         }
 
         return outputArray;
+    }
+
+    /**
+     * Extract the letters found in the rack that are also present with the given parameter
+     * @param inputString the inputted String
+     * @param inputTileArray the inputted Tile[]
+     * @return String of values found in both the Tile[] and inputString
+     */
+    private String extractFoundLetters(String inputString, Tile[] inputTileArray){
+        StringBuilder outputString = new StringBuilder();
+
+        boolean[] foundLetters = new boolean[inputTileArray.length];
+
+        for(char charInString: inputString.toCharArray()){//for each letter in the string
+            for(int x = 0; x < inputTileArray.length; x++){ //iterate over the input tile array
+
+                //if the character has a match in the tile array AND is not marked
+                if(charInString == inputTileArray[x].getLetter() && !foundLetters[x]){
+                    foundLetters[x] = true;
+                    outputString.append(charInString);
+
+                    //break the loop
+                    x = inputTileArray.length;
+                }
+            }
+        }
+
+        return outputString.toString();
     }
 }
