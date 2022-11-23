@@ -1,4 +1,4 @@
-package exchange_rack_letters;
+package use_cases.exchange_rack_letters;
 import CoreEntities.Player.HumanPlayer;
 import core_entities.game_parts.*;
 import org.junit.jupiter.api.*;
