@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package io.gateways;
 
 import org.jetbrains.annotations.NotNull;
 

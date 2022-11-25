@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package io.windows;
 
 import javax.swing.*;
 import java.awt.*;

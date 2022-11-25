@@ -1,5 +1,5 @@
-package CoreEntities.IO;
-import launch_new_game_use_case.LaunchGameOutputBoundary;
+package io.display_logic;
+import use_cases.launch_new_game_use_case.LaunchGameOutputBoundary;
 
 import java.util.*;
 
