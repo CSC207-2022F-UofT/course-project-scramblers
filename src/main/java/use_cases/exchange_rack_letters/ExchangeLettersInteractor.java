@@ -13,7 +13,7 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
 
     /**
      * executes the operation to exchange characters from the bag and player's letter rack
-     * the exhcanged letters are the input tiles
+     * the exchanged letters are the input tiles
      * @return true if method succeeds and fails if not.
      */
     @Override
