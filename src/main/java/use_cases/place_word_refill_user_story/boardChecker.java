@@ -1,4 +1,4 @@
-package place_word_refill_user_story;
+package use_cases.place_word_refill_user_story;
 
 import core_entities.game_parts.Board;
 import core_entities.game_parts.Coordinate;

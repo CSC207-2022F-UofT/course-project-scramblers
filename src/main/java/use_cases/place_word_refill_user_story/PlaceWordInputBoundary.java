@@ -1,6 +1,6 @@
-package place_word_refill_user_story;
+package use_cases.place_word_refill_user_story;
 
-import CoreEntities.Player.Player;
+import core_entities.player.Player;
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.GameState;
 
