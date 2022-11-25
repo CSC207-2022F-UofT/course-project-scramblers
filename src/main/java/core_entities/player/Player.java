@@ -1,4 +1,4 @@
-package CoreEntities.Player;
+package core_entities.player;
 
 import core_entities.game_parts.LetterRack;
 
