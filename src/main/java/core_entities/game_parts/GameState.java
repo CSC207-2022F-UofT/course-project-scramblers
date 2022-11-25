@@ -6,6 +6,7 @@ public class GameState {
     private static Player p1;
     private static Player p2;
     private static Board board;
+    private static int currentPlayer = 0;
     public static Player getP1() {
         return GameState.p1;
     }
@@ -23,6 +24,26 @@ public class GameState {
     }
     public static void setBoard(Board b) {
         GameState.board = b;
+    }
+    public static void changeTurn() {
+        GameState.currentPlayer = (GameState.currentPlayer + 1) % 2;
+    }
+    public static void setCurrentPlayer(int i) {
+        GameState.currentPlayer = i;
+    }
+    public static void setCurrentPlayer(Player p) {
+        if (GameState.p1.equals(p)) {
+            GameState.currentPlayer = 0;
+        }
+        else if (GameState.p2.equals(p)) {
+            GameState.currentPlayer = 1;
+        }
+    }
+    public static Player getCurrentPlayer() {
+        if (GameState.currentPlayer == 0) {
+            return GameState.p1;
+        }
+        return GameState.p2;
     }
     public static SerializableGameState generateSerializableGameState() {
         return new SerializableGameState(GameState.p1, GameState.p2, GameState.board);
