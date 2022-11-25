@@ -1,7 +1,9 @@
-package launch_new_game_use_case;
+package use_cases.launch_new_game_use_case;
 
-import CoreEntities.Player.*;
 import core_entities.game_parts.*;
+import core_entities.player.ComputerPlayer;
+import core_entities.player.HumanPlayer;
+import core_entities.player.Player;
 
 import java.io.IOException;
 

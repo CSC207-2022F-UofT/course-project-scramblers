@@ -1,4 +1,4 @@
-package launch_new_game_use_case;
+package use_cases.launch_new_game_use_case;
 
 public class LaunchGameResponseModel {
     private final String [][] boardLayout;
