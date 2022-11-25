@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package io.turn_io;
 
 public class TurnController {
     private TurnBuilderBoundary makeword;
