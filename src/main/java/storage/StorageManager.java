@@ -1,6 +1,5 @@
 package storage;
 
-import CoreEntities.Player.Player;
 import core_entities.game_parts.SerializableGameState;
 import use_cases.reload_game_use_case.ReloadGameDsGateway;
 import use_cases.reload_game_use_case.ReloadGameDsResponseModel;

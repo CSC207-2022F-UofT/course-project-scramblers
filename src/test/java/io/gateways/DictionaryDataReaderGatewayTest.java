@@ -1,5 +1,6 @@
-package CoreEntities.IO;
+package io.gateways;
 
+import io.gateways.DictionaryDataReaderGateway;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;

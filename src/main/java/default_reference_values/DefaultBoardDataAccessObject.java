@@ -1,6 +1,6 @@
 package default_reference_values;
 
-import launch_new_game_use_case.LaunchGameDataAccessObject;
+import use_cases.launch_new_game_use_case.LaunchGameDataAccessObject;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
