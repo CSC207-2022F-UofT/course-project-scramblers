@@ -1,7 +1,8 @@
-package CoreEntities.IO;
+package io.display_logic;
+
+import io.windows.HomeWindow;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class View{
 
