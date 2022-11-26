@@ -1,4 +1,8 @@
-package core_entities.game_parts;
+package core_entities.game_parts.board;
+
+import core_entities.game_parts.Coordinate;
+import core_entities.game_parts.Square;
+import core_entities.game_parts.Tile;
 
 import java.io.Serializable;
 

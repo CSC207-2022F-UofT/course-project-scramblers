@@ -1,5 +1,6 @@
 package core_entities.game_parts;
 
+import core_entities.game_parts.dictionary.Dictionary;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -26,9 +27,15 @@ class DictionaryTest {
         this.testDict = list;
     }
     @Before
-    DictionaryTest start = new DictionaryTest();
-    Dictionary toTestDict = new Dictionary(this.testDict);
-
+    public void setTestDict() {
+        try {
+            DictionaryTest start = new DictionaryTest();
+        }
+        catch(FileNotFoundException e){
+            System.out.println(e.getLocalizedMessage());
+        }
+        Dictionary toTestDict = new Dictionary(this.testDict);
+    }
 
 //    @Test
 //    void getLongDictionary() {

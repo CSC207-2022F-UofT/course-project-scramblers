@@ -1,5 +1,8 @@
 package core_entities.game_parts;
 
+import core_entities.game_parts.board.Board;
+import core_entities.game_parts.board.BoardFactory;
+import core_entities.game_parts.board.DefaultBoardFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

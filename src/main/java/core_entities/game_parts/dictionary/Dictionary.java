@@ -1,4 +1,4 @@
-package core_entities.game_parts;
+package core_entities.game_parts.dictionary;
 
 import java.io.File;
 import java.io.FileNotFoundException;
