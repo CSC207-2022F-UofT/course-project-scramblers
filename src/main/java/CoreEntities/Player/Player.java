@@ -2,7 +2,9 @@ package CoreEntities.Player;
 
 import core_entities.game_parts.LetterRack;
 
-public abstract class Player {
+import java.io.Serializable;
+
+public abstract class Player implements Serializable{
 
     protected String name;
     protected LetterRack rack;

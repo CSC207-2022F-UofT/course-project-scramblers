@@ -58,6 +58,6 @@ public class GameState {
         return GameState.p2;
     }
     public static SerializableGameState generateSerializableGameState() {
-        return new SerializableGameState(GameState.p1, GameState.p2, GameState.board);
+        return new SerializableGameState(GameState.p1, GameState.p2, GameState.board, GameState.currentPlayer, GameState.getDictionary());
     }
 }

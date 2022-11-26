@@ -2,6 +2,7 @@ package core_entities.game_parts;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -27,7 +28,7 @@ import java.util.*;
 */
 
 
-public class Dictionary {
+public class Dictionary implements Serializable {
 
     private final ArrayList<String> longDictionary;
 
