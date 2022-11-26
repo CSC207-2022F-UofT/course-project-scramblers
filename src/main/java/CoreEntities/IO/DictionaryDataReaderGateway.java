@@ -1,5 +1,6 @@
 package CoreEntities.IO;
 
+import launch_new_game_use_case.CreateDictionaryDataAccessObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 /**
  * This is a gateway that accesses a resource file needed to create the Dictionary.
  */
-class DictionaryDataReaderGateway {
+class DictionaryDataReaderGateway implements CreateDictionaryDataAccessObject {
 
     private static String dictFile = "src/resources/scrabble_dictionary.txt";
     ArrayList<String> dictionaryFile;

@@ -2,11 +2,14 @@ package core_entities.game_parts;
 
 import CoreEntities.Player.Player;
 
+import java.util.ArrayList;
+
 public class GameState {
     private static Player p1;
     private static Player p2;
     private static Board board;
     private static int currentPlayer = 0;
+    private static Dictionary dict;
     public static Player getP1() {
         return GameState.p1;
     }
@@ -24,6 +27,15 @@ public class GameState {
     }
     public static void setBoard(Board b) {
         GameState.board = b;
+    }
+    public static void setDictionary(Dictionary d) {
+        GameState.dict = d;
+    }
+    public static void setDictionary(ArrayList<String> dictStrings) {
+        GameState.dict = new Dictionary(dictStrings);
+    }
+    public static Dictionary getDictionary() {
+        return GameState.dict;
     }
     public static void changeTurn() {
         GameState.currentPlayer = (GameState.currentPlayer + 1) % 2;

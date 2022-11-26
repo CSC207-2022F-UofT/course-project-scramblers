@@ -9,11 +9,13 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
     private final LaunchGameRequestModel inputData;
     private final LaunchGameOutputBoundary presenter;
     private final LaunchGameDataAccessObject dataAccessObject;
+    private final CreateDictionaryDataAccessObject dictionaryAccessObject;
     private final BoardFactory factory;
-    public LaunchNewGameInteractor (LaunchGameRequestModel inputData, LaunchGameOutputBoundary presenter, LaunchGameDataAccessObject dataAccessObject, BoardFactory factory) {
+    public LaunchNewGameInteractor (LaunchGameRequestModel inputData, LaunchGameOutputBoundary presenter, LaunchGameDataAccessObject dataAccessObject, CreateDictionaryDataAccessObject dictionaryAccessObject, BoardFactory factory) {
         this.inputData = inputData;
         this.factory = factory;
         this.dataAccessObject = dataAccessObject;
+        this.dictionaryAccessObject = dictionaryAccessObject;
         this.presenter = presenter;
     }
     @Override
@@ -38,6 +40,7 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         GameState.setP1(p1);
         GameState.setP2(p2);
         try {
+            GameState.setDictionary(dictionaryAccessObject.getDictionaryFile());
             GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid()));
             presenter.updateViewModel(GameState.getBoard().getMultiplierGrid());
         }
