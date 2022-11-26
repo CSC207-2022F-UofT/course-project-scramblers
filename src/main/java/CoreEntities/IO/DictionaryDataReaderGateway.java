@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * This is a gateway that accesses a resource file needed to create the Dictionary.
  */
-class DictionaryDataReaderGateway implements CreateDictionaryDataAccessObject {
+public class DictionaryDataReaderGateway implements CreateDictionaryDataAccessObject {
 
     private static String dictFile = "src/resources/scrabble_dictionary.txt";
     ArrayList<String> dictionaryFile;
