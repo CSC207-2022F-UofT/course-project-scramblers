@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import core_entities.game_parts.*;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Arrays;
 
 class LaunchNewGameInteractorTest {
@@ -42,7 +41,7 @@ class LaunchNewGameInteractorTest {
             }
         };
         try {
-            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway();
+            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
             BoardFactory factory = new DefaultBoardFactory();
             LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject("src/main/java/default_reference_values/board-data.csv");
             LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human", "Computer", "Billy", "Joe");

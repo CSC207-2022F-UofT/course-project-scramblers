@@ -13,10 +13,11 @@ import java.util.Scanner;
  */
 public class DictionaryDataReaderGateway implements CreateDictionaryDataAccessObject {
 
-    private static String dictFile = "src/resources/scrabble_dictionary.txt";
+    private static String dictFile;
     ArrayList<String> dictionaryFile;
 
-    public DictionaryDataReaderGateway() throws FileNotFoundException {
+    public DictionaryDataReaderGateway(String csvPath) throws FileNotFoundException {
+        DictionaryDataReaderGateway.dictFile = csvPath;
         this.dictionaryFile = getFileAsList(dictFile);
 
     }

@@ -35,7 +35,7 @@ public class Dictionary implements Serializable {
     public Dictionary(ArrayList<String> longDictionary) {
 
         this.longDictionary = longDictionary;
-        charSetDictionary();
+        // charSetDictionary();
     }
     private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();
     {
