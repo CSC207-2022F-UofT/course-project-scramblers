@@ -5,6 +5,7 @@ import CoreEntities.IO.Presenter;
 import default_reference_values.DefaultBoardDataAccessObject;
 import org.junit.jupiter.api.Test;
 import core_entities.game_parts.*;
+import CoreEntities.Player.*;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -34,6 +35,8 @@ class LaunchNewGameInteractorTest {
             @Override
             public void updateViewModel(String [][] boardData) {
                 assert(Arrays.deepEquals(boardData, expectedBoardValues));
+                assert(GameState.getP1() instanceof HumanPlayer);
+                assert(GameState.getP2() instanceof ComputerPlayer);
             }
             @Override
             public void prepareFailView(String message) {
@@ -44,7 +47,7 @@ class LaunchNewGameInteractorTest {
             CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
             BoardFactory factory = new DefaultBoardFactory();
             LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject("src/main/java/default_reference_values/board-data.csv");
-            LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human", "Computer", "Billy", "Joe");
+            LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human Player", "Computer Player", "Billy", "Joe");
             LaunchNewGameInteractor interactor = new LaunchNewGameInteractor(newModel, p, boardDataAccessObject, dictionaryDataAccessObject, factory);
             interactor.createGameState();
         }
