@@ -1,7 +1,7 @@
 package use_cases.place_word_refill_user_story;
 
 import core_entities.player.Player;
-import core_entities.game_parts.Board;
+import core_entities.game_parts.board.Board;
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.GameState;
 import core_entities.game_parts.Tile;

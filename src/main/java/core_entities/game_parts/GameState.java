@@ -1,5 +1,6 @@
 package core_entities.game_parts;
 
+import core_entities.game_parts.board.Board;
 import core_entities.player.Player;
 
 public class GameState {

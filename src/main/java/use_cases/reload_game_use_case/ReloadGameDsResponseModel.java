@@ -1,7 +1,7 @@
 package use_cases.reload_game_use_case;
 
 import core_entities.player.Player;
-import core_entities.game_parts.Board;
+import core_entities.game_parts.board.Board;
 
 public class ReloadGameDsResponseModel {
 
