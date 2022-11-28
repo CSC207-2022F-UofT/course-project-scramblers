@@ -14,7 +14,7 @@ public class ExchangeLettersInteractorTest {
         final Bag BAG_REF = new Bag();
         GameState.setP1(new HumanPlayer("bob", new LetterRack(BAG_REF, 7), 0));
         rand = new Random('1');
-        inputBoundary = new ExchangeLettersInteractor(BAG_REF);
+        inputBoundary = new ExchangeLettersInteractor();
     }
 
     /**

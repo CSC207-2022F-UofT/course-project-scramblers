@@ -40,6 +40,7 @@ public class LetterRack implements Serializable {
         for(char characterInWord: inputWord.toCharArray()){
             int index = findTile(characterInWord);
             if(index != -1 ) {
+                BAG_REFERENCE.add(this.LETTERS[index]);
                 this.LETTERS[index] =null;
             }
         }
