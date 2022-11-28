@@ -1,7 +1,6 @@
 package use_cases.reload_game_use_case;
 
 import core_entities.game_parts.GameState;
-import use_cases.save_game_use_case.SaveGameDsGateway;
 
 public class ReloadGameInteractor implements ReloadGameInputBoundary {
 
@@ -11,14 +10,19 @@ public class ReloadGameInteractor implements ReloadGameInputBoundary {
         this.gateway = gateway;
     }
 
+    /**
+     * Takes in the saved attributes from a previous version of the GameState
+     * and adds them to our current GameState
+     * returns true or false depending on whether the GameState was reloaded properly
+     * @return boolean
+     */
     @Override
-    public boolean reloadGame(ReloadGameDsGateway gateway) {
-        ReloadGameDsResponseModel model = gateway.reload();
+    public boolean reloadGame() {
+        ReloadGameDsResponseModel model = this.gateway.reload();
         if (model != null) {
-            GameState state = new GameState();
-            state.setP1(model.getP1());
-            state.setP2(model.getP2());
-            state.setBoard((model.getBoard()));
+            GameState.setP1(model.getP1());
+            GameState.setP2(model.getP2());
+            GameState.setBoard((model.getBoard()));
             return true;
         } else {
             return false;

@@ -1,6 +1,5 @@
 package storage;
 
-import CoreEntities.Player.Player;
 import core_entities.game_parts.SerializableGameState;
 import use_cases.reload_game_use_case.ReloadGameDsGateway;
 import use_cases.reload_game_use_case.ReloadGameDsResponseModel;
@@ -8,13 +7,22 @@ import use_cases.save_game_use_case.SaveGameDsGateway;
 
 import java.io.*;
 
+/**
+ * Storage Manager is the data store gateway which saves and reloads versions of the game to achieve
+ * persistence
+ */
 public class StorageManager implements SaveGameDsGateway, ReloadGameDsGateway {
 
 
+    /**
+     * Attempts to save the serializable version of GameState into a file for persistence
+     * @param serializableGameState SerializableGameState
+     * @return boolean
+     */
     @Override
     public boolean saveSerializable(SerializableGameState serializableGameState) {
         try {
-            FileOutputStream f = new FileOutputStream(new File("state.txt"));
+            FileOutputStream f = new FileOutputStream("state.txt");
             ObjectOutputStream o = new ObjectOutputStream(f);
 
             o.writeObject(serializableGameState);
@@ -33,10 +41,15 @@ public class StorageManager implements SaveGameDsGateway, ReloadGameDsGateway {
 
     }
 
+    /**
+     * Checks the state.txt file which should have a serializable version of GameState and returns the
+     * relevant information in a response model
+     * @return ReloadGameDsResponseModel
+     */
     @Override
     public ReloadGameDsResponseModel reload() {
         try {
-            FileInputStream f = new FileInputStream(new File("state.txt"));
+            FileInputStream f = new FileInputStream("state.txt");
             ObjectInputStream o = new ObjectInputStream(f);
             SerializableGameState s = (SerializableGameState) o.readObject();
             o.close();

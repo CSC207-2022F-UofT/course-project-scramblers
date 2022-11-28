@@ -5,10 +5,16 @@ import core_entities.game_parts.Board;
 
 public class ReloadGameDsResponseModel {
 
-    private Player p1;
-    private Player p2;
-    private Board board;
+    private final Player p1;
+    private final Player p2;
+    private final Board board;
 
+    /**
+     * Data store object which holds information obtained from a previous version of GameState
+     * @param p1 Player
+     * @param p2 Player
+     * @param board Board
+     */
     public ReloadGameDsResponseModel(Player p1, Player p2, Board board) {
         this.p1 = p1;
         this.p2 = p2;
@@ -19,23 +25,14 @@ public class ReloadGameDsResponseModel {
         return p1;
     }
 
-    public void setP1(Player p1) {
-        this.p1 = p1;
-    }
 
     public Player getP2() {
         return p2;
     }
 
-    public void setP2(Player p2) {
-        this.p2 = p2;
-    }
 
     public Board getBoard() {
         return board;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 }
