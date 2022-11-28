@@ -1,5 +1,6 @@
 package io.ui.logic;
 import launch_new_game_use_case.LaunchGameOutputBoundary;
+import launch_new_game_use_case.LaunchGameResponseModel;
 
 public class Presenter implements LaunchGameOutputBoundary{
 
@@ -13,8 +14,8 @@ public class Presenter implements LaunchGameOutputBoundary{
     }
 
     @Override
-    public void updateViewModel(String[][] boardData) {
-        this.VIEW_MODEL_INTERFACE.setBoard(boardData);
+    public void updateViewModel(LaunchGameResponseModel responseModel) {
+
     }
 
     @Override
