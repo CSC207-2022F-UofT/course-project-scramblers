@@ -4,6 +4,8 @@ package CoreEntities.Player;
 import core_entities.game_parts.LetterRack;
 
 public class HumanPlayer extends Player {
+
+    private static int tries = 0;
     public HumanPlayer(String name, LetterRack rack, int score) {
         super(name, rack, score);
     }
@@ -11,25 +13,32 @@ public class HumanPlayer extends Player {
     /**
      *
      * @param word
-     * @return true iff and only if word was placed on board. Word is
-     * placed on board if the move is valid.
+     * @return true if word is in dictionary. Otherwise, return
+     * a str, telling Player to try again.
      */
+    public chooseWord(String word) {
+        // body here.
+    }
+
+
+    // Option a) Exchange Letters -> Jos
+    //           - Player has to use option a if tries = 3
+    // Option b) Player makes move
+    //
     @Override
-    boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y) {
-        // If word is verified, place word on board
-            // word is verified if it is a valid word in dictionary and
-            // if there's space for it on the board.
-            // return true.
-        // If not, return false.
+    boolean makeMove(String word, int start_x, int end_y) {
+
         return false;
     }
 
+
+    // Remove Replace Letters after updating Player Abstract Class
     @Override
     void replaceLetters(char[] toReplaceValues, char[] newValues) {
-        // iterate through Player's letter rack.
-        // If tile in LETTERS is in toReplaceValues, delete that char
-        // after iterating through the letter rack, iterate through
-        // newValues and for each char in newValues, add it to letter rack.
+
     }
+
+
 }
+
 
