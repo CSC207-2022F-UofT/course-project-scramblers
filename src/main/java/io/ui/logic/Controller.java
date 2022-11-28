@@ -26,9 +26,9 @@ public class Controller {
         RELOAD_GAME_REF.reloadGame();
     }
 
-    //public void placeWordExecute(){
-    //PLACE_WORD_INPUT_REF.placeWordRefill();
-    //}
+    public void placeWordExecute(){
+        //PLACE_WORD_INPUT_REF.placeWordRefill();
+    }
 
     public boolean isOnlyAlphabetString(String inputString){
         if(inputString == null){

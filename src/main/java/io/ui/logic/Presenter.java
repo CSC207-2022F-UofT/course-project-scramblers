@@ -8,6 +8,7 @@ public class Presenter implements LaunchGameOutputBoundary{
 
     /**
      * Default constructor
+     * @param view_model_interface interface reference to be used.
      */
     public Presenter(PresenterViewModelInterface view_model_interface) {
         VIEW_MODEL_INTERFACE = view_model_interface;

@@ -6,6 +6,10 @@ public class ViewModel extends Observable implements PresenterViewModelInterface
     private String outputText;
     private String [][] boardRepresentation;
 
+    /**
+     * Constructor for the view model
+     * @param input2DStringArray the respresentation of the game board
+     */
     public ViewModel(String [][] input2DStringArray){
 
         outputText = "";
