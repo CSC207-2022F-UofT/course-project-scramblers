@@ -15,7 +15,7 @@ public class Presenter implements LaunchGameOutputBoundary{
 
     @Override
     public void updateViewModel(LaunchGameResponseModel responseModel) {
-
+        this.VIEW_MODEL_INTERFACE.setBoard(responseModel.getBoardLayout());
     }
 
     @Override
