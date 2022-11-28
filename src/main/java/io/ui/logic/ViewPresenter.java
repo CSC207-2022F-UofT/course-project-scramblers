@@ -1,7 +1,6 @@
 package io.ui.logic;
 
 import launch_new_game_use_case.LaunchGameOutputBoundary;
-import place_word_refill_user_story.PlaceWordRefillPresenter;
 
 public class ViewPresenter implements LaunchGameOutputBoundary {
 
