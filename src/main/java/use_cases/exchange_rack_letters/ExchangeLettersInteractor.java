@@ -19,16 +19,13 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
     @Override
     public boolean exchangeLetters(String inputString){
 
-        //placeholder (Will be modified later)
-        Player playerRef = new HumanPlayer("yoot", new LetterRack(new Bag(), 7), 0);
-
-        String cleanedString = extractFoundLetters(inputString, playerRef.getRack().getLETTERS());
+        String cleanedString = extractFoundLetters(inputString, GameState.getCurrentPlayer().getRack().getLETTERS());
 
         Tile[] tileArray = convertStringToTileArray(cleanedString);
         //checks the input
         if(cleanedString.length() == 0){ return false; }
 
-        playerRef.getRack().removeLetters(cleanedString);
+        GameState.getCurrentPlayer().getRack().removeLetters(cleanedString);
         for (Tile tile: tileArray){
             BAG_REFERENCE.add(tile);
         }
