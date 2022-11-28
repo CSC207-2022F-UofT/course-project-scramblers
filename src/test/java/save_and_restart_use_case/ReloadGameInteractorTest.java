@@ -22,6 +22,10 @@ import java.util.Objects;
 
 public class ReloadGameInteractorTest {
 
+    /**
+     * Testing whether the information of a previous version of GameState can be re-added to the current version
+     * of GameState
+     */
     @Test
     void reloadGame() {
 

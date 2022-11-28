@@ -15,6 +15,9 @@ import java.io.FileNotFoundException;
 
 public class SaveGameInteractorTest {
 
+    /**
+     * Tested whether the saving feature can be run without any internal errors
+     */
     @Test
     void saveGame() {
 
