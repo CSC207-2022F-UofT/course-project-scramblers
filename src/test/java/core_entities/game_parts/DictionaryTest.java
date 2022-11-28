@@ -1,6 +1,7 @@
 package core_entities.game_parts;
 
 import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -15,7 +16,7 @@ class DictionaryTest {
     private ArrayList<String> testDict;
 
     public DictionaryTest() throws FileNotFoundException {
-        String dictFile = "src/test/java/core_entities/game_parts/TestDictionary.txt";
+        String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
         Scanner s = new Scanner(new File(dictFile));
         ArrayList<String> list = new ArrayList<>();
         while (s.hasNextLine()) {
@@ -25,9 +26,9 @@ class DictionaryTest {
 
         this.testDict = list;
     }
-    @Before
-    DictionaryTest start = new DictionaryTest();
-    Dictionary toTestDict = new Dictionary(this.testDict);
+//    @BeforeAll
+//    DictionaryTest start = new DictionaryTest();
+//    Dictionary toTestDict = new Dictionary(this.testDict);
 
 
 //    @Test

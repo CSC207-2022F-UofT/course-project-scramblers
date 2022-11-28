@@ -12,17 +12,12 @@ import java.util.Scanner;
  */
 class DictionaryDataReaderGateway {
 
-    private static String dictFile = "src/resources/scrabble_dictionary.txt";
+    private static String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
     ArrayList<String> dictionaryFile;
 
     public DictionaryDataReaderGateway() throws FileNotFoundException {
         this.dictionaryFile = getFileAsList(dictFile);
 
-    }
-
-    @NotNull
-    private static ArrayList<String> getFileAsList() throws FileNotFoundException {
-        return getFileAsList(null);
     }
 
     @NotNull
