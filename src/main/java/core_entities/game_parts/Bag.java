@@ -72,7 +72,6 @@ public class Bag implements Serializable {
      * Constructor for the Class representing the bag of letter tiles of the scrabble game.
      */
     public Bag() {
-
         this.supply = generateInitialSupply();
     }
 
