@@ -22,6 +22,11 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         this.dictionaryAccessObject = dictionaryAccessObject;
         this.presenter = presenter;
     }
+
+    /**
+     * Creates the intiial instance of GameState
+     * Uses BoardFactory to generate new instances of Board, relying on abstractions created earlier
+     */
     @Override
     public void createGameState() {
         Bag bag = new Bag();
@@ -46,7 +51,6 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         try {
             //GameState.setDictionary(dictionaryAccessObject.getDictionaryFile());
             GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid()));
-            //presenter.updateViewModel(GameState.getBoard().getMultiplierGrid());
             presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid()));
         }
         catch (IOException e) {
