@@ -33,7 +33,8 @@ class LaunchNewGameInteractorTest {
         };
         Presenter p = new Presenter() {
             @Override
-            public void updateViewModel(String [][] boardData) {
+            public void updateViewModel(LaunchGameResponseModel responseModel) {
+                String [][] boardData = responseModel.getBoardLayout();
                 assert(Arrays.deepEquals(boardData, expectedBoardValues));
                 assert(GameState.getP1() instanceof HumanPlayer);
                 assert(GameState.getP2() instanceof ComputerPlayer);
