@@ -26,6 +26,7 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
         if(cleanedString.length() == 0){ return false; }
 
         GameState.getCurrentPlayer().getRack().removeLetters(cleanedString);
+        GameState.getCurrentPlayer().getRack().refill();
         for (Tile tile: tileArray){
             BAG_REFERENCE.add(tile);
         }

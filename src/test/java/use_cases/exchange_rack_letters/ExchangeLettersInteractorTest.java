@@ -1,5 +1,7 @@
 package use_cases.exchange_rack_letters;
 import CoreEntities.Player.*;
+
+import java.lang.reflect.Array;
 import java.util.*;
 import core_entities.game_parts.*;
 import org.junit.jupiter.api.*;
@@ -37,11 +39,11 @@ public class ExchangeLettersInteractorTest {
     @Test
     void AllLettersSwap() {
         String inputString = tileArrayToString(GameState.getP1().getRack().getLETTERS());
-        Tile[] inputTileArray = GameState.getP1().getRack().getLETTERS();
+        Tile[] inputTileArray = GameState.getP1().getRack().getLETTERS().clone();
         assert inputBoundary.exchangeLetters(inputString);
         Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
         for(int x = 0; x < outputTileArray.length; x++){
-            boolean result = outputTileArray[x].equals(inputTileArray[x]);
+            boolean result = !(outputTileArray[x].equals(inputTileArray[x]));
             assert result;
         }
     }
@@ -51,7 +53,15 @@ public class ExchangeLettersInteractorTest {
      */
     @Test
     void NoLetterSwap() {
-
+        Tile[] inputTileArray = GameState.getP1().getRack().getLETTERS().clone();
+        assert !(inputBoundary.exchangeLetters(
+                generateNonPresentLetters(tileArrayToString(inputTileArray),
+                        7)));
+        Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
+        for(int x = 0; x < outputTileArray.length; x++){
+            boolean result = (outputTileArray[x].equals(inputTileArray[x]));
+            assert result;
+        }
     }
 
     /**
@@ -59,7 +69,48 @@ public class ExchangeLettersInteractorTest {
      */
     @Test
     void LettersNotPresent() {
+        Tile[] inputTileArray = GameState.getP1().getRack().getLETTERS().clone();
+        assert !(inputBoundary.exchangeLetters(
+                generateNonPresentLetters(tileArrayToString(inputTileArray),
+                        7)));
+        Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
+        for(int x = 0; x < outputTileArray.length; x++){
+            boolean result = (outputTileArray[x].equals(inputTileArray[x]));
+            assert result;
+        }
+    }
 
+    /**
+     * Generates a string with letters not present in the string
+     * @param avoidLetters letters to avoid
+     * @param stringLength bounded inclusive max length of the output string
+     * @return a string with each character not in avoidLetters and len <= stringLength
+     */
+    String generateNonPresentLetters(String avoidLetters, int stringLength){
+        StringBuilder output = new StringBuilder();
+        for(int x = 'A'; x <= 'Z' && output.length() < stringLength; x++){
+            if(!(checkIfStringContains((char)x, avoidLetters))){
+                while(output.length() < stringLength){
+                    output.append((char)x);
+                }
+            }
+        }
+        return output.toString();
+    }
+
+    /**
+     * Check if string contains a character
+     * @param inputCharacter character being looked for
+     * @param inputString string being searched through
+     * @return true iff inputCharacter is in inputString
+     */
+    boolean checkIfStringContains(char inputCharacter, String inputString){
+        for(char character: inputString.toCharArray()){
+            if(inputCharacter == character){
+                return true;
+            }
+        }
+        return false;
     }
 
     private String tileArrayToString(Tile[] inputTileArray){
