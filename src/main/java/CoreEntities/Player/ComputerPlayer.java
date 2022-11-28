@@ -8,6 +8,24 @@ public class ComputerPlayer extends Player{
     }
 
     /**
+     * Generate the Move and call makeMove method to make the move
+     * @param currBoard current board
+     * @return return true if a valid word is generated and placed or if no valid word can be placed, exchange tiles with bag
+     */
+    public boolean generateMove(Board currBoard){
+        // need to go through Pete's code
+        String result = new String();
+        int start_x = 0;
+        int end_x = 0;
+        int start_y = 0;
+        int end_y = 0;
+        return makeMove(result, start_x, end_x, start_y, end_y);
+    }
+
+
+
+
+    /**
      * Place the word that is generated
      * @param word the word that is generated
      * @param start_x the starting x-axis of the word
