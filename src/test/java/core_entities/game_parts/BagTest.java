@@ -1,5 +1,6 @@
 package core_entities.game_parts;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -7,7 +8,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class BagTest {
-    private final Bag testBag = new Bag();
+    private Bag testBag;
+
+    @BeforeEach
+    void setup(){
+        testBag = new Bag();
+        System.out.println(testBag.supply);
+    }
 
     @Test
     public void testIsEmpty() {
