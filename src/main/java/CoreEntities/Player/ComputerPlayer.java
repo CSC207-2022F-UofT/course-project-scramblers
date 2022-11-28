@@ -24,7 +24,7 @@ public class ComputerPlayer extends Player{
 
         }
         else {
-            if (makeMove(result)){
+            if (makeMove(result,0,0,0,0)){
                 rack.removeLetters(result);
                 rack.refill();
             }
