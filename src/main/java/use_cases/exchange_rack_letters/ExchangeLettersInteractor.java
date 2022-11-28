@@ -1,19 +1,17 @@
 package use_cases.exchange_rack_letters;
 
-import CoreEntities.Player.HumanPlayer;
-import CoreEntities.Player.Player;
 import core_entities.game_parts.*;
 
 public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
 
-    private final Bag BAG_REFERENCE;
-    public ExchangeLettersInteractor(Bag inputBag){
-        BAG_REFERENCE = inputBag;
+    public ExchangeLettersInteractor(){
+
     }
 
     /**
      * executes the operation to exchange characters from the bag and player's letter rack
      * the exchanged letters are the input tiles
+     * @param inputString string of characters to be removed.
      * @return true if method succeeds and fails if not.
      */
     @Override
@@ -21,34 +19,13 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
 
         String cleanedString = extractFoundLetters(inputString, GameState.getCurrentPlayer().getRack().getLETTERS());
 
-        Tile[] tileArray = convertStringToTileArray(cleanedString);
         //checks the input
         if(cleanedString.length() == 0){ return false; }
 
         GameState.getCurrentPlayer().getRack().removeLetters(cleanedString);
         GameState.getCurrentPlayer().getRack().refill();
-        for (Tile tile: tileArray){
-            BAG_REFERENCE.add(tile);
-        }
 
         return true;
-    }
-
-    /**
-     * Convert String into a Tile[] with corresponding scores.
-     * @param inputString the inputted string to be converted
-     * @return Tile[] representation of inputString
-     */
-    private Tile[] convertStringToTileArray(String inputString){
-
-        Tile[] outputArray = new Tile[inputString.length()];
-        int index = 0;
-
-        for(char character: inputString.toCharArray()){
-            outputArray[index] = new Tile(character);
-        }
-
-        return outputArray;
     }
 
     /**
