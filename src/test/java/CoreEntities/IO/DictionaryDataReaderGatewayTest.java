@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 class DictionaryDataReaderGatewayTest {
 
-    DictionaryDataReaderGateway testDict = new DictionaryDataReaderGateway();
+    DictionaryDataReaderGateway testDict = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
 
     DictionaryDataReaderGatewayTest() throws FileNotFoundException {
     }

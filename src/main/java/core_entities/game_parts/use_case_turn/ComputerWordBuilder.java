@@ -25,7 +25,7 @@ public class ComputerWordBuilder implements TurnConstructorRecipe{
      */
     @Override
     public void getLocation() {
-        this.other.
+        //this.other.
     }
 
     /**

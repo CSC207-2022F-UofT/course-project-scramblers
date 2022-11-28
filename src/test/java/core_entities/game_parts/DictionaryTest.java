@@ -25,7 +25,7 @@ class DictionaryTest {
 
         this.testDict = list;
     }
-    @Before
+    //@Before
     DictionaryTest start = new DictionaryTest();
     Dictionary toTestDict = new Dictionary(this.testDict);
 

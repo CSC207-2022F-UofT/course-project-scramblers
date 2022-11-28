@@ -32,6 +32,7 @@ public class DefaultBoardDataAccessObject implements LaunchGameDataAccessObject 
                 isEmpty = false;
             }
             System.arraycopy(values, 0, returnArray[currentIndex], 0, values.length);
+            currentIndex++;
         }
         return returnArray;
     }
