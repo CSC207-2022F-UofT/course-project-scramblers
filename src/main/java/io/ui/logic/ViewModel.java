@@ -10,16 +10,19 @@ public class ViewModel extends Observable implements PresenterViewModelInterface
 
         outputText = "";
         boardRepresentation = input2DStringArray;
+        notifyAll();
 
     }
 
     @Override
     public void setMessageText(String messageText) {
         this.outputText = messageText;
+        notifyAll();
     }
 
     @Override
     public void setBoard(String[][] newBoard) {
         this.boardRepresentation = newBoard;
+        notifyAll();
     }
 }
