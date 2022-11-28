@@ -1,7 +1,6 @@
 package use_cases.reload_game_use_case;
 
 import core_entities.game_parts.GameState;
-import use_cases.save_game_use_case.SaveGameDsGateway;
 
 public class ReloadGameInteractor implements ReloadGameInputBoundary {
 
@@ -14,7 +13,7 @@ public class ReloadGameInteractor implements ReloadGameInputBoundary {
     /**
      * Takes in the saved attributes from a previous version of the GameState
      * and adds them to our current GameState
-     *
+     * returns true or false depending on whether the GameState was reloaded properly
      * @return boolean
      */
     @Override
