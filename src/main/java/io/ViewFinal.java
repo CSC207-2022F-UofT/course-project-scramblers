@@ -25,9 +25,16 @@ public class ViewFinal extends JFrame implements Observer {
     private JLabel TITLE;
     private ArrayList List_of_Board_Buttons;
     private ArrayList List_of_Letter_Rack_Buttons;
+    private JTextField coordinates;
+    private JLabel coordinates_instructions;
+    private JTextField word;
+    private JLabel word_instructions;
+    private JButton okButton;
+    private JLabel error_message_field;
 
 
     public ViewFinal(){
+
 
 
         //creating the master panel
@@ -54,8 +61,7 @@ public class ViewFinal extends JFrame implements Observer {
         MenuPanel.setLayout(gridLayoutMenu);
 
 
-        List_of_Board_Buttons = ScrabbleBoard();
-        List_of_Letter_Rack_Buttons = RackButtons();
+
 
 
         //adding menu buttons
@@ -68,9 +74,11 @@ public class ViewFinal extends JFrame implements Observer {
         MenuPanel.add(QUIT);
         MenuPanel.add(LOAD);
 
-        //adding a letter rack
+        //creating the board buttons
+        List_of_Board_Buttons = ScrabbleBoard();
 
-
+        //creating the letter rack buttons
+        List_of_Letter_Rack_Buttons = RackButtons();
 
 
 
@@ -120,7 +128,7 @@ public class ViewFinal extends JFrame implements Observer {
 
             int position_j = start_point_y;
             for( int j = 0; j < 15; j++){
-                JButton button = new JButton("X");
+                JButton button = new JButton(" ");
                 button.setSize(5,5);
                 button.setAlignmentX(position_i);
                 button.setAlignmentY(position_j);
@@ -143,7 +151,7 @@ public class ViewFinal extends JFrame implements Observer {
 
 
             for( int j = 0; j < 7; j++){
-                JButton button = new JButton("X");
+                JButton button = new JButton(" ");
                 button.setSize(3,3);
                 RackPanel.add(button);
                 button_list.add(button);
@@ -154,4 +162,13 @@ public class ViewFinal extends JFrame implements Observer {
         return button_list;
     }
 
+
+
+    public ArrayList getList_of_Letter_Rack_Buttons() {
+        return List_of_Letter_Rack_Buttons;
+    }
+
+    public ArrayList getList_of_Board_Buttons() {
+        return List_of_Board_Buttons;
+    }
 }
