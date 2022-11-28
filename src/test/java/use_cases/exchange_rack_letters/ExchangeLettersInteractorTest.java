@@ -1,7 +1,6 @@
 package use_cases.exchange_rack_letters;
 import CoreEntities.Player.*;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import core_entities.game_parts.*;
 import org.junit.jupiter.api.*;
@@ -55,8 +54,7 @@ public class ExchangeLettersInteractorTest {
     void NoLetterSwap() {
         Tile[] inputTileArray = GameState.getP1().getRack().getLETTERS().clone();
         assert !(inputBoundary.exchangeLetters(
-                generateNonPresentLetters(tileArrayToString(inputTileArray),
-                        7)));
+                generateNonPresentLettersForDefaultRack(tileArrayToString(inputTileArray))));
         Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
         for(int x = 0; x < outputTileArray.length; x++){
             boolean result = (outputTileArray[x].equals(inputTileArray[x]));
@@ -71,8 +69,7 @@ public class ExchangeLettersInteractorTest {
     void LettersNotPresent() {
         Tile[] inputTileArray = GameState.getP1().getRack().getLETTERS().clone();
         assert !(inputBoundary.exchangeLetters(
-                generateNonPresentLetters(tileArrayToString(inputTileArray),
-                        7)));
+                generateNonPresentLettersForDefaultRack(tileArrayToString(inputTileArray))));
         Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
         for(int x = 0; x < outputTileArray.length; x++){
             boolean result = (outputTileArray[x].equals(inputTileArray[x]));
@@ -81,16 +78,16 @@ public class ExchangeLettersInteractorTest {
     }
 
     /**
-     * Generates a string with letters not present in the string
+     * Generates a string with letters not present in the string to represent an input filled with non-present
+     * characters
      * @param avoidLetters letters to avoid
-     * @param stringLength bounded inclusive max length of the output string
-     * @return a string with each character not in avoidLetters and len <= stringLength
+     * @return a string with each character not in avoidLetters and len <= 7
      */
-    String generateNonPresentLetters(String avoidLetters, int stringLength){
+    String generateNonPresentLettersForDefaultRack(String avoidLetters){
         StringBuilder output = new StringBuilder();
-        for(int x = 'A'; x <= 'Z' && output.length() < stringLength; x++){
+        for(int x = 'A'; x <= 'Z' && output.length() < 7; x++){
             if(!(checkIfStringContains((char)x, avoidLetters))){
-                while(output.length() < stringLength){
+                while(output.length() < 7){
                     output.append((char)x);
                 }
             }
