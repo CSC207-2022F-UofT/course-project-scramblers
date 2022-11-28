@@ -40,31 +40,9 @@ public class Bag implements Serializable {
                                         'Z',
                                         '*', '*'};
         ArrayList<Tile> initialSupply = new ArrayList<>();
+
         for (char letter : letters) {
-            if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O'
-                    || letter == 'U' || letter == 'L' || letter == 'N' || letter == 'S'
-                    || letter == 'T'  || letter == 'R'){
-                initialSupply.add(new Tile(letter, 1));
-            }
-            else if (letter == 'D' || letter == 'G'){
-                initialSupply.add(new Tile(letter, 2));
-            }
-            else if (letter == 'B' || letter == 'C' || letter == 'M' || letter == 'P'){
-                initialSupply.add(new Tile(letter, 3));
-            }
-            else if (letter == 'F' || letter == 'H' || letter == 'V' || letter == 'W'
-                    || letter == 'Y'){
-                initialSupply.add(new Tile(letter, 4));
-            }
-            else if (letter == 'K'){
-                initialSupply.add(new Tile(letter, 5));
-            }
-            else if (letter == 'J' || letter == 'X'){
-                initialSupply.add(new Tile(letter, 8));
-            }
-            else {
-                initialSupply.add(new Tile(letter, 10));
-            }
+            initialSupply.add(new Tile(letter));
         }
         return initialSupply;
     }
@@ -134,5 +112,14 @@ public class Bag implements Serializable {
      */
     public void add(Tile t){
         this.supply.add(t);
+    }
+
+    /**
+     * Adds a letter tile to the bag.
+     * @param c The letter of the tile to be added.
+     */
+    public void add(char c){
+        char letter = Character.toUpperCase(c);
+        this.supply.add(new Tile(letter));
     }
 }
