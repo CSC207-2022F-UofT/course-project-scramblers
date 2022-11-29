@@ -10,9 +10,18 @@ public class Controller {
     private final ReloadGameInputBoundary RELOAD_GAME_REF;
     private final PlaceWordInputBoundary PLACE_WORD_INPUT_REF;
 
-    Controller( LaunchGameInputBoundary launchGameInput,
-                    ReloadGameInputBoundary reloadGameInputBoundary,
-                    PlaceWordInputBoundary placeWordInputBoundary){
+    //constructor that's ONLY going to be used for testing.
+    Controller(){
+        this.LAUNCH_GAME_REF = null;
+        this.RELOAD_GAME_REF = null;
+        this.PLACE_WORD_INPUT_REF = null;
+    }
+
+
+    //Constructor that's going to be used.
+    Controller(LaunchGameInputBoundary launchGameInput,
+               ReloadGameInputBoundary reloadGameInputBoundary,
+               PlaceWordInputBoundary placeWordInputBoundary){
         LAUNCH_GAME_REF = launchGameInput;
         RELOAD_GAME_REF = reloadGameInputBoundary;
         PLACE_WORD_INPUT_REF = placeWordInputBoundary;
@@ -26,8 +35,12 @@ public class Controller {
         RELOAD_GAME_REF.reloadGame();
     }
 
-    public void placeWordExecute(){
-        //PLACE_WORD_INPUT_REF.placeWordRefill();
+    public void placeWordExecute(String inputWord){
+        if(isOnlyAlphabetString(inputWord)){
+            int x = 0; //place hold
+            //PLACE_WORD_INPUT_REF.placeWordRefill();
+        }
+
     }
 
     public boolean isOnlyAlphabetString(String inputString){
