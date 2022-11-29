@@ -7,24 +7,18 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DefaultBoardDataAccessObject implements LaunchGameDataAccessObject {
-    private String csvPath;
 
-    public DefaultBoardDataAccessObject (String csvPath) {
-        this.csvPath = csvPath;
-    }
-
-    public void setCsvPath(String csvPath) {
-        this.csvPath = csvPath;
+    public DefaultBoardDataAccessObject () {
     }
 
     @Override
-    public String[][] createBoardMultiplierGrid() throws IOException {
+    public String[][] createBoardMultiplierGrid(String csvPath) throws IOException {
         String nextLine;
         String [][] returnArray = new String[0][];
         boolean isEmpty = true;
         int currentIndex = 0;
 
-        BufferedReader br = new BufferedReader(new FileReader(this.csvPath));
+        BufferedReader br = new BufferedReader(new FileReader(csvPath));
         while((nextLine = br.readLine()) != null) {
             String [] values = nextLine.split(",");
             if (isEmpty) {

@@ -48,10 +48,10 @@ class LaunchNewGameInteractorTest {
         try {
             CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
             BoardFactory factory = new DefaultBoardFactory();
-            LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject("src/main/java/default_reference_values/board-data.csv");
+            LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
             LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human Player", "Computer Player", "Billy", "Joe");
-            LaunchNewGameInteractor interactor = new LaunchNewGameInteractor(newModel, p, boardDataAccessObject, dictionaryDataAccessObject, factory);
-            interactor.createGameState();
+            LaunchNewGameInteractor interactor = new LaunchNewGameInteractor(p, boardDataAccessObject, dictionaryDataAccessObject, factory);
+            interactor.createGameState(newModel);
         }
         catch(FileNotFoundException e) {
             p.prepareFailView("Dictionary Creation Failed");
