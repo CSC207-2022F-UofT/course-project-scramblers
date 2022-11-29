@@ -6,7 +6,7 @@ public class DefaultBoard implements Serializable, Board{
     private final Square[][] grid;
     private final int DEFAULT_BOARD_SIZE;
     public DefaultBoard (String [][] multipliers) {
-        this.DEFAULT_BOARD_SIZE = 15;
+        this.DEFAULT_BOARD_SIZE = multipliers.length;
         this.grid = generateDefaultGrid(multipliers);
     }
     public Square [][] getGrid() {

@@ -6,25 +6,18 @@ import core_entities.game_parts.*;
 import java.io.IOException;
 
 public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
-    private final LaunchGameRequestModel inputData;
     private final LaunchGameOutputBoundary presenter;
     private final LaunchGameDataAccessObject dataAccessObject;
     private final CreateDictionaryDataAccessObject dictionaryAccessObject;
     private final BoardFactory factory;
-    public LaunchNewGameInteractor (LaunchGameRequestModel inputData, LaunchGameOutputBoundary presenter, LaunchGameDataAccessObject dataAccessObject, CreateDictionaryDataAccessObject dictionaryAccessObject, BoardFactory factory) {
-        this.inputData = inputData;
+    public LaunchNewGameInteractor (LaunchGameOutputBoundary presenter, LaunchGameDataAccessObject dataAccessObject, CreateDictionaryDataAccessObject dictionaryAccessObject, BoardFactory factory) {
         this.factory = factory;
         this.dataAccessObject = dataAccessObject;
         this.dictionaryAccessObject = dictionaryAccessObject;
         this.presenter = presenter;
     }
-
-    /**
-     * Creates the intiial instance of GameState
-     * Uses BoardFactory to generate new instances of Board, relying on abstractions created earlier
-     */
     @Override
-    public void createGameState() {
+    public void createGameState(LaunchGameRequestModel inputData) {
         Bag bag = new Bag();
         LetterRack p1rack = new LetterRack(bag, 7);
         LetterRack p2rack = new LetterRack(bag, 7);
@@ -46,7 +39,7 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         GameState.setP2(p2);
         try {
             //GameState.setDictionary(dictionaryAccessObject.getDictionaryFile());
-            GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid()));
+            GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid(inputData.getBoardCsvFile())));
             presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid()));
         }
         catch (IOException e) {
