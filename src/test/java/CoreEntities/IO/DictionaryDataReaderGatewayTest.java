@@ -15,5 +15,4 @@ class DictionaryDataReaderGatewayTest {
         assert dictionaryFile.size() == 178691;
     }
 
-
 }

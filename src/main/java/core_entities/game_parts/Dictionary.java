@@ -1,5 +1,7 @@
 package core_entities.game_parts;
 
+import CoreEntities.IO.DictionaryDataReaderGateway;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -26,19 +28,14 @@ import java.util.*;
      This class @Overrides compare in this function alone via a Lambda.
 */
 
-
 public class Dictionary {
 
-    private final ArrayList<String> longDictionary;
 
-    public Dictionary(ArrayList<String> longDictionary) {
 
-        this.longDictionary = longDictionary;
-        charSetDictionary();
-    }
-    private static HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = new HashMap<>();
-    {
-        characterSetDictionary = charSetDictionary();
+    private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = charSetDictionary();
+
+    public Dictionary() {
+
     }
 
 
@@ -46,9 +43,15 @@ public class Dictionary {
 
     private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(){
         HashMap<Set<Character>, ArrayList<String>> setDict = new HashMap<>();
-        ArrayList<String> list;
+        ArrayList<String> dict;
+        try {
+            dict = new DictionaryDataReaderGateway().getDictionaryFile();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-        for (String s: this.longDictionary) {
+        for (String s: dict) {
+            ArrayList<String> list;
             if(setDict.containsKey(strToSet(s))){
                 list = setDict.get(strToSet(s));
                 list.add(s);}
@@ -66,7 +69,7 @@ public class Dictionary {
      * @param str is a String with no spaces or symbols please.
      * @return a set of characters
      */
-    public static Set<Character> strToSet(String str) {
+    public Set<Character> strToSet(String str) {
         Set<Character> set;
 
         if (str == null) {
@@ -82,17 +85,20 @@ public class Dictionary {
     /**
      * This getter function is used to return specific ArrayList of all words in the
      * Scrabble Dictionary that can be made from the String parameter submitted. It does this by converting the
-     * paramater to a set of its characters. Example, if you submit a string of 'aaabbb' it is converted to
+     * parameter to a set of its characters. Example, if you submit a string of 'aaabbb' it is converted to
      * set{'a', 'b'} and will return a list of words composed of just those two letters.
      * @param str <String></String>
      * @return ArrayList<String></String>
      */
 
-    public static ArrayList<String> getCharacterSetDictionary(String str){
+    public ArrayList<String> getCharacterSetDictionary(String str){
         ArrayList<String> list;
         list = characterSetDictionary.get(strToSet(str));
         list.sort((o1, o2) -> 0);
         return list;
     }
 
+    public HashMap<Set<Character>, ArrayList<String>> getDictionary() {
+        return characterSetDictionary;
+    }
 }

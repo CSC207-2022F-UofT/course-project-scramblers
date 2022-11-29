@@ -10,20 +10,20 @@ import java.util.Scanner;
 /**
  * This is a gateway that accesses a resource file needed to create the Dictionary.
  */
-class DictionaryDataReaderGateway {
+public class DictionaryDataReaderGateway {
 
-    private static String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
-    ArrayList<String> dictionaryFile;
+    private String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
+    protected ArrayList<String> dictionaryFile;
 
     public DictionaryDataReaderGateway() throws FileNotFoundException {
-        this.dictionaryFile = getFileAsList(dictFile);
+        this.dictionaryFile = getFileAsList();
 
     }
 
     @NotNull
-    private static ArrayList<String> getFileAsList(String dictFile) throws FileNotFoundException {
-        DictionaryDataReaderGateway.dictFile = dictFile;
-        Scanner s = new Scanner(new File(dictFile));
+    protected ArrayList<String> getFileAsList() throws FileNotFoundException {
+
+        Scanner s = new Scanner(new File(this.dictFile));
         ArrayList<String> list = new ArrayList<>();
         while (s.hasNextLine()) {
             list.add(s.nextLine());
@@ -32,9 +32,10 @@ class DictionaryDataReaderGateway {
         return list;
     }
 
-    public ArrayList<String> getDictionaryFile() {
+    public ArrayList<String> getDictionaryFile() throws FileNotFoundException {
+        return getFileAsList();
 
-        return this.dictionaryFile;
+
     }
 }
 
