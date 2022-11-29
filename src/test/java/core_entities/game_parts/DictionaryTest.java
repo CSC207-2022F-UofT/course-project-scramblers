@@ -1,57 +1,57 @@
 package core_entities.game_parts;
 
-import org.junit.Before;
+import CoreEntities.IO.DictionaryDataReaderGateway;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Set;
 
 class DictionaryTest {
 
+        private  Dictionary dictionary;
 
-    private ArrayList<String> testDict;
-
-    public DictionaryTest() throws FileNotFoundException {
-        String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
-        Scanner s = new Scanner(new File(dictFile));
-        ArrayList<String> list = new ArrayList<>();
-        while (s.hasNextLine()) {
-            list.add(s.nextLine());
+        @BeforeAll
+        void setUp() throws FileNotFoundException {
+            dictionary = new Dictionary();
         }
-        s.close();
-
-        this.testDict = list;
-    }
-//    @BeforeAll
-//    DictionaryTest start = new DictionaryTest();
-//    Dictionary toTestDict = new Dictionary(this.testDict);
 
 
-//    @Test
-//    void getLongDictionary() {
-//        assert testDict.
-//    }
+
+
+
 
     @Test
-    void areFormatsTest(){
-        ArrayList<String> testVal = Dictionary.getCharacterSetDictionary("A");
-        assert testVal.size() == 1;
-        assert Objects.equals(testVal.get(0), "A");
-
+    void strToSetTest() {
+        String str = "hello";
+        Set<Character> test; //this is the method we are testing
+        test = dictionary.strToSet(str);
+        assert test.size() == 4;
+        assert test.contains('h');
+        assert test.contains('e');
+        assert test.contains('l');
+        assert test.contains('o');
     }
 
     @Test
-    void strToSet() {
-
+    void getCharacterSetDictionaryTest() {
+        String str = "hello";
+        ArrayList<String> test;
+        test = dictionary.getCharacterSetDictionary(str);
+        assert test.size() > 5;
+        assert test.contains("hello");
+        assert test.contains("he");
+        assert test.contains("ho");
+        assertFalse(test.contains("zebra"));
     }
 
-    @Test
-    void getCharacterSetDictionary() {
+    private void assertFalse(boolean x) {
+        assert !x;
     }
+
+
 
 
 }
