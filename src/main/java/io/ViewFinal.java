@@ -25,7 +25,9 @@ public class ViewFinal extends JFrame implements Observer {
     private JPanel RackPanel;
     private JPanel subPanel1;
     private JPanel subPanel2;
-    private JLabel TITLE;
+    private JButton QUIT;
+    private JButton LOAD;
+    private JButton NEW;
     private ArrayList List_of_Board_Buttons;
     private ArrayList List_of_Letter_Rack_Buttons;
     private JTextField coordinates;
@@ -35,6 +37,8 @@ public class ViewFinal extends JFrame implements Observer {
     private JButton okButton;
     private JLabel error_message_field;
     private JLabel error_message;
+    private JTextField csvFilePathField;
+    private JLabel csvInstructionLabel;
 
 
     public ViewFinal(){
@@ -60,7 +64,7 @@ public class ViewFinal extends JFrame implements Observer {
 
         //creating the grids
         gridLayoutBoard = new GridLayout(15,15);
-        gridLayoutMenu = new GridLayout(3,1);
+        gridLayoutMenu = new GridLayout(5,1);
         gridLayoutRack = new GridLayout(7,1);
         gridLayoutMaster2 = new GridLayout(5,2);
 
@@ -69,20 +73,28 @@ public class ViewFinal extends JFrame implements Observer {
         BoardPanel.setLayout(gridLayoutBoard);
         RackPanel.setLayout(gridLayoutRack);
         MenuPanel.setLayout(gridLayoutMenu);
+        //masterPanel2.setLayout(gridLayoutMaster2);
 
 
 
 
 
-        //adding menu buttons
-        JButton QUIT = new JButton("QUIT");
-        JButton LOAD = new JButton("LOAD");
-        JButton NEW = new JButton("NEW");
+        //creating menu buttons
+        QUIT = new JButton("QUIT");
+        LOAD = new JButton("LOAD");
+        NEW = new JButton("NEW");
 
+        //creating CSV file path textfield and instruction label
+        csvInstructionLabel = new JLabel("Place csv file path below:");
+        csvFilePathField = new JTextField("Delete this text and place your game's csv file path");
+
+        //adding menu buttons and field to MenuPanel
 
         MenuPanel.add(NEW);
         MenuPanel.add(QUIT);
         MenuPanel.add(LOAD);
+        MenuPanel.add(csvInstructionLabel);
+        MenuPanel.add(csvFilePathField);
 
         //creating the board buttons
         List_of_Board_Buttons = ScrabbleBoard();
