@@ -3,6 +3,10 @@ package io.ui.logic;
 import java.util.Observable;
 
 public class ViewModel extends Observable implements PresenterViewModelInterface {
+    /**
+     * Implements observer and observable design pattern to allow different UIs to be used but the data needed staying,
+     * mostly, unchanged.
+     */
     private String outputText;
     private String [][] boardRepresentation;
 
@@ -14,19 +18,20 @@ public class ViewModel extends Observable implements PresenterViewModelInterface
 
         outputText = "";
         boardRepresentation = input2DStringArray;
-        notifyAll();
 
     }
 
     @Override
     public void setMessageText(String messageText) {
+        setChanged();
         this.outputText = messageText;
-        notifyAll();
+        notifyObservers();
     }
 
     @Override
     public void setBoard(String[][] newBoard) {
+        setChanged();
         this.boardRepresentation = newBoard;
-        notifyAll();
+        notifyObservers();
     }
 }
