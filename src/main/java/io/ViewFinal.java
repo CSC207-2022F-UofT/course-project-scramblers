@@ -14,9 +14,12 @@ public class ViewFinal extends JFrame implements Observer {
 
     private JFrame frame;
     private JPanel masterPanel;
+    private JPanel superMasterPanel;
+    private JPanel masterPanel2;
     private GridLayout gridLayoutBoard;
     private GridLayout gridLayoutMenu;
     private GridLayout gridLayoutRack;
+    private GridLayout gridLayoutMaster2;
     private JPanel BoardPanel;
     private JPanel MenuPanel;
     private JPanel RackPanel;
@@ -31,15 +34,21 @@ public class ViewFinal extends JFrame implements Observer {
     private JLabel word_instructions;
     private JButton okButton;
     private JLabel error_message_field;
+    private JLabel error_message;
 
 
     public ViewFinal(){
 
+        //creating the supermaster panel
+        superMasterPanel = new JPanel();
+        superMasterPanel.setLayout(new BoxLayout(superMasterPanel, BoxLayout.Y_AXIS));
 
-
-        //creating the master panel
+        //creating the master panels
         masterPanel = new JPanel();
         masterPanel.setLayout(new BoxLayout(masterPanel, BoxLayout.X_AXIS));
+
+        masterPanel2 = new JPanel();
+        masterPanel2.setLayout(new BoxLayout(masterPanel2, BoxLayout.Y_AXIS));
 
         //creating the sub panels
         BoardPanel = new JPanel();
@@ -53,6 +62,7 @@ public class ViewFinal extends JFrame implements Observer {
         gridLayoutBoard = new GridLayout(15,15);
         gridLayoutMenu = new GridLayout(3,1);
         gridLayoutRack = new GridLayout(7,1);
+        gridLayoutMaster2 = new GridLayout(5,2);
 
 
 
@@ -81,7 +91,32 @@ public class ViewFinal extends JFrame implements Observer {
         List_of_Letter_Rack_Buttons = RackButtons();
 
 
+        //creating the coordinates instructions label
+        coordinates_instructions = new JLabel("THIS IS WHERE THE INSTRUCTIONS GO:");
+        masterPanel2.add(coordinates_instructions);
 
+        //creating the coordinates textfield
+        coordinates = new JTextField();
+        masterPanel2.add(coordinates);
+
+
+        //creating the word instructions JLabel
+        word_instructions = new JLabel("this is where the word goes:");
+        masterPanel2.add(word_instructions);
+
+        //creating the word textfield
+        word = new JTextField();
+        masterPanel2.add(word);
+
+        //creating the OK button
+        okButton = new JButton("ENTER");
+        masterPanel2.add(okButton);
+
+        //creating error message fields
+        error_message = new JLabel("If there is an error message, it will show up below:");
+        error_message_field = new JLabel("POTENTIAL ERROR MESSAGE");
+        masterPanel2.add(error_message);
+        masterPanel2.add(error_message_field);
 
 
         //Adding all the panels
@@ -94,10 +129,13 @@ public class ViewFinal extends JFrame implements Observer {
         masterPanel.add(subPanel2);
 
 
+        superMasterPanel.add(masterPanel);
+        superMasterPanel.add(masterPanel2);
+
         //adding panel to frame
         frame = new JFrame("Scrabble");
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.getContentPane().add(masterPanel);
+        frame.getContentPane().add(superMasterPanel);
         frame.setVisible(true);
 
 
