@@ -13,4 +13,9 @@ public interface PresenterViewModelInterface {
      * @param newBoard the new board state.
      */
     void setBoard(String[][] newBoard);
+
+    /**
+     * Update the LetterRacks due to a change
+     */
+    void updateLetterRacks();
 }
