@@ -3,6 +3,7 @@ import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import default_reference_values.DefaultBoardDataAccessObject;
 import launch_new_game_use_case.LaunchGameDataAccessObject;
+import launch_new_game_use_case.LaunchGameOutputBoundary;
 import launch_new_game_use_case.LaunchNewGameInteractor;
 
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ public class Main {
 
         //View view = new View();
         //ViewModel viewModel = new ViewModel();
+        //viewModel.addObserver(view)
         //Presenter p = new Presenter(viewModel);
 
         // Delete the line below once the implemented changes have been made to Presenter
@@ -30,6 +32,21 @@ public class Main {
             throw new RuntimeException("Default dictionary file could not be read");
         }
         LaunchGameDataAccessObject boardAccessObject = new DefaultBoardDataAccessObject();
-        LaunchNewGameInteractor newGameInteractor = new LaunchNewGameInteractor(p, boardAccessObject, dictionaryGateway, boardFactory);
+        LaunchGameOutputBoundary newGameOutputBoundary = p;
+        LaunchNewGameInteractor newGameInteractor = new LaunchNewGameInteractor(newGameOutputBoundary, boardAccessObject, dictionaryGateway, boardFactory);
+
+        //Controller Instantiation
+
+        //Change this to Controller once Controller is created
+        ViewController c = new ViewController();
+
+        //Add all the use case interactors to the Controller
+        // c.addInteractor(newGameInteractor);
+
+        //Add the controller to the View
+        //View.addController(c);
+
+        //Set the view to be visible
+        //view.setVisible();
     }
 }
