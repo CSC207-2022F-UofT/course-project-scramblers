@@ -1,6 +1,7 @@
 package io;
 
 import core_entities.game_parts.Board;
+import io.ui.logic.Controller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,9 +41,12 @@ public class ViewFinal extends JFrame implements Observer {
     private JTextField csvFilePathField;
     private JLabel csvInstructionLabel;
     private JButton rerackButton;
+    private Controller controller;
 
 
-    public ViewFinal(){
+    public ViewFinal(Controller ctrlor){
+        //creating a controller instance
+        controller = ctrlor;
 
         //creating the supermaster panel
         superMasterPanel = new JPanel();
@@ -165,7 +169,8 @@ public class ViewFinal extends JFrame implements Observer {
     }
 
     public static void main(String[] args) {
-        ViewFinal view = new ViewFinal();
+
+        ViewFinal view = new ViewFinal(null);
 
     }
 
@@ -198,6 +203,7 @@ public class ViewFinal extends JFrame implements Observer {
 
 
 
+
     public ArrayList RackButtons(){
 
         ArrayList button_list = new ArrayList();
@@ -214,6 +220,9 @@ public class ViewFinal extends JFrame implements Observer {
 
         return button_list;
     }
+
+
+
 
 
 
