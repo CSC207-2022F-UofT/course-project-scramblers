@@ -1,7 +1,7 @@
 package save_and_restart_use_case;
 
 import CoreEntities.IO.DictionaryDataReaderGateway;
-import CoreEntities.IO.Presenter;
+import io.ui.logic.Presenter;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import default_reference_values.DefaultBoardDataAccessObject;
@@ -22,7 +22,7 @@ public class SaveGameInteractorTest {
     void saveGame() {
 
 
-        Presenter p = new Presenter() {
+        Presenter p = new Presenter(null) {
 
             @Override
             public void prepareFailView(String message) {

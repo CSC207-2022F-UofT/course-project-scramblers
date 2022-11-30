@@ -11,7 +11,11 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
     private final LaunchGameDataAccessObject dataAccessObject;
     private final CreateDictionaryDataAccessObject dictionaryAccessObject;
     private final BoardFactory factory;
-    public LaunchNewGameInteractor (LaunchGameRequestModel inputData, LaunchGameOutputBoundary presenter, LaunchGameDataAccessObject dataAccessObject, CreateDictionaryDataAccessObject dictionaryAccessObject, BoardFactory factory) {
+    public LaunchNewGameInteractor (LaunchGameRequestModel inputData,
+                                    LaunchGameOutputBoundary presenter,
+                                    LaunchGameDataAccessObject dataAccessObject,
+                                    CreateDictionaryDataAccessObject dictionaryAccessObject,
+                                    BoardFactory factory) {
         this.inputData = inputData;
         this.factory = factory;
         this.dataAccessObject = dataAccessObject;
