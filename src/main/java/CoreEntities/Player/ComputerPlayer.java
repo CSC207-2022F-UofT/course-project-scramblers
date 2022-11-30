@@ -7,6 +7,32 @@ public class ComputerPlayer extends Player{
         super(name, rack, score);
     }
 
+
+    void generateMove(){
+
+        String result = new String();
+        char[] my_char = new char[rack.getLETTERS().length];
+
+        int i = 0;
+        for (Tile letters: rack.getLETTERS()){
+            my_char[i] = letters.getLetter();
+            i ++;
+        }
+
+
+        if (result.equals("")){
+
+        }
+        else {
+            if (makeMove(result,0,0,0,0)){
+                rack.removeLetters(result);
+                rack.refill();
+            }
+            else {}
+
+        }
+    }
+
     /**
      * Place the word that is generated
      * @param word the word that is generated
@@ -43,8 +69,4 @@ public class ComputerPlayer extends Player{
         return false;
     }
 
-    @Override
-    void replaceLetters(char[] toReplaceValues, char[] newValues) {
-
-    }
 }

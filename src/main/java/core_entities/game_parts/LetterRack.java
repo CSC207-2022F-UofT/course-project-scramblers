@@ -34,12 +34,13 @@ public class LetterRack implements Serializable {
 
     /**
      *  Removes letters based on a given string
-     * @param inputWord is an all alphabetical string and len(inputWord) <= RACK_LEN
+     * @param inputWord is an all alphabetical string and len(inputWord) <= rackLen
      */
     public void removeLetters(@NotNull String inputWord){
         for(char characterInWord: inputWord.toCharArray()){
             int index = findTile(characterInWord);
             if(index != -1 ) {
+                BAG_REFERENCE.add(this.LETTERS[index]);
                 this.LETTERS[index] =null;
             }
         }
@@ -53,7 +54,7 @@ public class LetterRack implements Serializable {
     public int findTile(char inputChar){
         int outputTileIndex = 0;
         for(Tile tile: this.LETTERS){
-            if(tile.getLetter() == inputChar){
+            if(tile != null && tile.getLetter() == inputChar){
                 return outputTileIndex;
             }
             else{
