@@ -1,7 +1,7 @@
 package save_and_restart_use_case;
 
 import CoreEntities.IO.DictionaryDataReaderGateway;
-import CoreEntities.IO.Presenter;
+import io.ui.logic.Presenter;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import core_entities.game_parts.GameState;
@@ -30,7 +30,7 @@ public class ReloadGameInteractorTest {
     void reloadGame() {
 
 
-        Presenter p = new Presenter() {
+        Presenter p = new Presenter(null) {
 
             @Override
             public void prepareFailView(String message) {
