@@ -2,6 +2,7 @@ import CoreEntities.IO.*;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import default_reference_values.DefaultBoardDataAccessObject;
+import io.ui.logic.Presenter;
 import launch_new_game_use_case.LaunchGameDataAccessObject;
 import launch_new_game_use_case.LaunchGameOutputBoundary;
 import launch_new_game_use_case.LaunchNewGameInteractor;
@@ -20,7 +21,7 @@ public class Main {
 
         // Delete the line below once the implemented changes have been made to Presenter
         // This line is just so that Main will compile without error
-        Presenter p = new Presenter();
+        Presenter p = new Presenter(null);
 
         // LaunchNewGameInteractor Instantiation
         BoardFactory boardFactory = new DefaultBoardFactory();
@@ -38,7 +39,7 @@ public class Main {
         //Controller Instantiation
 
         //Change this to Controller once Controller is created
-        ViewController c = new ViewController();
+        //ViewController c = new ViewController();
 
         //Add all the use case interactors to the Controller
         // c.addInteractor(newGameInteractor);
