@@ -10,7 +10,7 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
 
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
-    public Presenter(){
+    Presenter(){
         VIEW_MODEL_INTERFACE = null;
     }
 
