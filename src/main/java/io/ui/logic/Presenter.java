@@ -49,7 +49,7 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
     public void updateViewModel(ReloadGameResponseModel responseModel) {
         assert this.VIEW_MODEL_INTERFACE != null;
     }
-    
+
     public void prepareSuccessView(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
         this.VIEW_MODEL_INTERFACE.setMessageText("Could not place word.");
     }
