@@ -7,6 +7,9 @@ import core_entities.game_parts.Bag;
 import core_entities.game_parts.LetterRack;
 import org.junit.jupiter.api.*;
 
+import java.util.Arrays;
+import java.util.Random;
+
 import java.util.Objects;
 
 public class ViewModelTest {
@@ -50,5 +53,33 @@ public class ViewModelTest {
             }
         };
         testText = "";
+    }
+
+    /**
+     * Updating the letter rack after a change
+     */
+    @Test
+    public void updateLetterRackTest(){
+        changeRack(p1.getRack());
+        changeRack(p2.getRack());
+
+        assert !(Arrays.equals(p1LetterRack, p1.getRack().toCharArray()));
+        assert !(Arrays.equals(p2LetterRack, p2.getRack().toCharArray()));
+
+        vm.updateLetterRacks();
+
+        assert (Arrays.equals(p1LetterRack, p1.getRack().toCharArray()));
+        assert (Arrays.equals(p2LetterRack, p2.getRack().toCharArray()));
+    }
+
+    /**
+     * Changes the rack through aliasing
+     * @param rack the reference to the rack that is to be changed.
+     */
+    void changeRack(LetterRack rack){
+        Random r = new Random();
+        char character = rack.toCharArray()[r.nextInt(rack.getLETTERS().length)];
+        rack.removeLetters("" + character);
+        rack.refill();
     }
 }
