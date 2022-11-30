@@ -36,13 +36,14 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
      * bag in this turn instead. The new rack will be shown to the plauer and move to the next turn
      */
     public void taketurn() {
-        PlaceWordRefillResponseModel a = this.placeword.placeWordRefill(this.inputData.getCurrplayer(),
-                this.inputData.getWord(), this.inputData.getStart(), this.inputData.getEnd(), this.inputData.getGameState());
+        //Need new version of place word refill user sotry
+        PlaceWordRefillResponseModel a = this.placeword.placeWordRefill(GameState.getCurrentPlayer(),
+                this.inputData.getWord(), this.inputData.getStart(), this.inputData.getEnd());
         if (a.isSuccess()){
             //update the view model of the board and change turn
             //update rack thing need to be done later
             TakeTurnOutputData updateinfo = new TakeTurnOutputData(this.inputData.getWord(),
-                    this.inputData.getCurrplayer().getRack(), this.inputData.getStart(), this.inputData.getEnd());
+                    GameState.getCurrentPlayer().getRack(), this.inputData.getStart(), this.inputData.getEnd());
             this.presenter.updateBoard(updateinfo);
             tries = 0;
             GameState.changeTurn();
@@ -56,7 +57,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                 ExchangeLettersInputBoundary b = new ExchangeLettersInteractor();
                 b.exchangeLetters(this.inputData.getWord());
                 TakeTurnOutputData updateinfo1 = new TakeTurnOutputData(this.inputData.getWord(),
-                        this.inputData.getCurrplayer().getRack(), this.inputData.getStart(), this.inputData.getEnd());
+                        GameState.getCurrentPlayer().getRack(), this.inputData.getStart(), this.inputData.getEnd());
                 this.presenter.updateRack(updateinfo1);
                 GameState.changeTurn();
                 saveGame.save();
