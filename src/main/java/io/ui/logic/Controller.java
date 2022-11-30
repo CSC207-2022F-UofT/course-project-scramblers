@@ -1,6 +1,7 @@
 package io.ui.logic;
 
 import launch_new_game_use_case.LaunchGameInputBoundary;
+import launch_new_game_use_case.LaunchGameRequestModel;
 import place_word_refill_user_story.PlaceWordInputBoundary;
 import use_cases.reload_game_use_case.*;
 
@@ -12,14 +13,6 @@ public class Controller {
     private final ReloadGameInputBoundary RELOAD_GAME_REF;
     private final PlaceWordInputBoundary PLACE_WORD_INPUT_REF;
 
-    //constructor that's ONLY going to be used for testing.
-    Controller(){
-        this.LAUNCH_GAME_REF = null;
-        this.RELOAD_GAME_REF = null;
-        this.PLACE_WORD_INPUT_REF = null;
-    }
-
-
     //Constructor that's going to be used.
     Controller(LaunchGameInputBoundary launchGameInput,
                ReloadGameInputBoundary reloadGameInputBoundary,
@@ -30,18 +23,26 @@ public class Controller {
     }
 
     public void launchTheGame(){
-        assert LAUNCH_GAME_REF != null;
-        LAUNCH_GAME_REF.createGameState();
+        LaunchGameRequestModel requestModel = new LaunchGameRequestModel("Human Player", "Human Player", "Player 1", "Player 2");
+        LAUNCH_GAME_REF.createGameState(requestModel);
     }
 
     public void reloadGame(){
-        assert RELOAD_GAME_REF != null;
         RELOAD_GAME_REF.reloadGame();
     }
 
-    public void placeWordExecute(String inputWord) {
+    public void placeWordExecute(String inputWord){
+        if(isOnlyAlphabetString(inputWord)){
+            int x = 0; //place hold
+            //PLACE_WORD_INPUT_REF.placeWordRefill();
+        }
 
-        //PLACE_WORD_INPUT_REF.placeWordRefill();
+    }
 
+    public boolean isOnlyAlphabetString(String inputString){
+        if(inputString == null){
+            return false;
+        }
+        return Pattern.matches("[a-zA-Z]*", inputString);
     }
 }
