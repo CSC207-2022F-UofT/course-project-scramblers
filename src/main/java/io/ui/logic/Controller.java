@@ -13,8 +13,16 @@ public class Controller {
     private final ReloadGameInputBoundary RELOAD_GAME_REF;
     private final PlaceWordInputBoundary PLACE_WORD_INPUT_REF;
 
+    //constructor that's ONLY going to be used for testing.
+    Controller(){
+        this.LAUNCH_GAME_REF = null;
+        this.RELOAD_GAME_REF = null;
+        this.PLACE_WORD_INPUT_REF = null;
+    }
+
+
     //Constructor that's going to be used.
-    Controller(LaunchGameInputBoundary launchGameInput,
+    public Controller(LaunchGameInputBoundary launchGameInput,
                ReloadGameInputBoundary reloadGameInputBoundary,
                PlaceWordInputBoundary placeWordInputBoundary){
         LAUNCH_GAME_REF = launchGameInput;
@@ -23,11 +31,12 @@ public class Controller {
     }
 
     public void launchTheGame(){
-        LaunchGameRequestModel requestModel = new LaunchGameRequestModel("Human Player", "Human Player", "Player 1", "Player 2");
-        LAUNCH_GAME_REF.createGameState(requestModel);
+        assert LAUNCH_GAME_REF != null;
+        LAUNCH_GAME_REF.createGameState();
     }
 
     public void reloadGame(){
+        assert RELOAD_GAME_REF != null;
         RELOAD_GAME_REF.reloadGame();
     }
 
@@ -37,12 +46,5 @@ public class Controller {
             //PLACE_WORD_INPUT_REF.placeWordRefill();
         }
 
-    }
-
-    public boolean isOnlyAlphabetString(String inputString){
-        if(inputString == null){
-            return false;
-        }
-        return Pattern.matches("[a-zA-Z]*", inputString);
     }
 }
