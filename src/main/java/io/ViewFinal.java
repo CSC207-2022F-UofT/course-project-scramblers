@@ -39,6 +39,7 @@ public class ViewFinal extends JFrame implements Observer {
     private JLabel error_message;
     private JTextField csvFilePathField;
     private JLabel csvInstructionLabel;
+    private JButton rerackButton;
 
 
     public ViewFinal(){
@@ -65,7 +66,7 @@ public class ViewFinal extends JFrame implements Observer {
         //creating the grids
         gridLayoutBoard = new GridLayout(15,15);
         gridLayoutMenu = new GridLayout(5,1);
-        gridLayoutRack = new GridLayout(7,1);
+        gridLayoutRack = new GridLayout(8,1);
         gridLayoutMaster2 = new GridLayout(5,2);
 
 
@@ -76,7 +77,9 @@ public class ViewFinal extends JFrame implements Observer {
         //masterPanel2.setLayout(gridLayoutMaster2);
 
 
-
+        //creating the rerack button and adding it to the rack panel
+        rerackButton = new JButton("Rerack");
+        RackPanel.add(rerackButton);
 
 
         //creating menu buttons
