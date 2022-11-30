@@ -30,25 +30,18 @@ public class Controller {
     }
 
     public void launchTheGame(){
+        assert LAUNCH_GAME_REF != null;
         LAUNCH_GAME_REF.createGameState();
     }
 
     public void reloadGame(){
+        assert RELOAD_GAME_REF != null;
         RELOAD_GAME_REF.reloadGame();
     }
 
-    public void placeWordExecute(String inputWord){
-        if(isOnlyAlphabetString(inputWord)){
-            int x = 0; //place hold
-            //PLACE_WORD_INPUT_REF.placeWordRefill();
-        }
+    public void placeWordExecute(String inputWord) {
 
-    }
+        //PLACE_WORD_INPUT_REF.placeWordRefill();
 
-    public boolean isOnlyAlphabetString(String inputString){
-        if(inputString == null){
-            return false;
-        }
-        return Pattern.matches("[a-zA-Z]*", inputString);
     }
 }
