@@ -21,7 +21,6 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                               SaveGameInputBoundary saveGameInputBoundary) {
         this.presenter = presenter;
         this.placeword = placeword;
-        this.saveGame = saveGameInputBoundary;
     }
 
     @Override
