@@ -19,7 +19,7 @@ class PlaceWordRefillInteractorTest {
     private Presenter presenter;
     @BeforeEach
     void init() throws FileNotFoundException {
-        LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject("src/main/java/default_reference_values/board-data.csv");
+        LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
         BoardFactory boardFactory = new DefaultBoardFactory();
         CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
         LaunchGameRequestModel gameRequestModel = new LaunchGameRequestModel("Human Player",
@@ -35,9 +35,9 @@ class PlaceWordRefillInteractorTest {
                 assert(false);
             }
         };
-        LaunchNewGameInteractor gameInteractor = new LaunchNewGameInteractor(gameRequestModel, presenter,
+        LaunchNewGameInteractor gameInteractor = new LaunchNewGameInteractor(presenter,
                 boardDataAccessObject, dictionaryDataAccessObject, boardFactory);
-        gameInteractor.createGameState();
+        gameInteractor.createGameState(gameRequestModel);
     }
 
     /**
