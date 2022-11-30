@@ -14,20 +14,26 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
     final Player player;
     final Coordinate c1;
     final Coordinate c2;
-    final GameState gameState;
 
-
+    /**
+     * Use Case Interactor for placing a word if valid and possible, and refilling the player's LetterRack. Implements
+     * the Facade design pattern by delegating the tasks of collecting the tiles to place, check of the board space,
+     * and the verification of the word and tiles.
+     * @param requestModel Request model object with the needed information.
+     * @param tileCollector Handles the task of collecting the tiles to place.
+     * @param boardChecker Handles the task of checking the board space
+     * @param letterVerifier Handles the task of verifying the word and tiles
+     */
     public PlaceWordRefillInteractor(PlaceWordRefillRequestModel requestModel, tileCollector tileCollector,
                                      boardChecker boardChecker, letterVerifier letterVerifier) {
         this.placeWordRefillOutputBoundary = requestModel.placeWordRefillOutputBoundary;
-        this.tileCollector = tileCollector;
-        this.boardChecker = boardChecker;
-        this.letterVerifier = letterVerifier;
+        this.tileCollector = tileCollector; // Delegating the task of collecting the tiles to place
+        this.boardChecker = boardChecker; // Delegating the task of checking the board space
+        this.letterVerifier = letterVerifier; // Delegating the task of verifying the word and tiles
         this.word = requestModel.word;
-        this.player = requestModel.player;
+        this.player = GameState.getCurrentPlayer();
         this.c1 = requestModel.c1;
         this.c2 = requestModel.c2;
-        this.gameState = requestModel.gameState;
     }
 
     /**
@@ -40,14 +46,14 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
     public void placeWordRefill() {
         Board board = GameState.getBoard();
         ArrayList<Tile> existingOnBoard = new ArrayList<>();
-        if (!letterVerifier.verifyLetters(player, word, c1, c2, gameState, existingOnBoard)) {
+        if (!letterVerifier.verifyLetters(player, word, c1, c2, existingOnBoard)) {
             placeWordRefillOutputBoundary.prepareFailView("Letters are not available for this word to be placed.");
         }
-        if (!boardChecker.boardCheck(word, c1, c2, gameState))
+        if (!boardChecker.boardCheck(word, c1, c2))
             placeWordRefillOutputBoundary.prepareFailView("Placement of word is not valid.");
         Tile[] toPlace = tileCollector.collectTiles(player, word, existingOnBoard);
         board.placeTiles(toPlace, c1, c2);
         player.getRack().refill();
-        placeWordRefillOutputBoundary.prepareSuccessView(new PlaceWordRefillResponseModel(true, word, player));
+        placeWordRefillOutputBoundary.updateViewModel(new PlaceWordRefillResponseModel(true, word, player));
     }
 }

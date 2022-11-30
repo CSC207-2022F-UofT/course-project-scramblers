@@ -11,10 +11,9 @@ public class boardChecker {
      * @param word The word that is being attempted to be placed.
      * @param c1 The starting coordinate of the word trying to be placed.
      * @param c2 The ending coordinate of the word trying to be placed.
-     * @param gameState The state of the game prior to the move being made.
      * @return Whether the board space is valid for this move to be made.
      */
-    public boolean boardCheck(String word, Coordinate c1, Coordinate c2, GameState gameState) {
+    public boolean boardCheck(String word, Coordinate c1, Coordinate c2) {
         Board board = GameState.getBoard();
         // Vertical word placement
         if (c1.getXCoordinate() == c2.getXCoordinate()){
