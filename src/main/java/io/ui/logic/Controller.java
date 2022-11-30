@@ -4,6 +4,8 @@ import launch_new_game_use_case.LaunchGameInputBoundary;
 import place_word_refill_user_story.PlaceWordInputBoundary;
 import use_cases.reload_game_use_case.*;
 
+import java.util.regex.Pattern;
+
 public class Controller {
     //Should reference every input boundary made
     private final LaunchGameInputBoundary LAUNCH_GAME_REF;
@@ -47,6 +49,6 @@ public class Controller {
         if(inputString == null){
             return false;
         }
-        return inputString.contains("[a-zA-Z]*");
+        return Pattern.matches("[a-zA-Z]*", inputString);
     }
 }
