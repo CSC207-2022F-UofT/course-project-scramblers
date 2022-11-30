@@ -10,7 +10,7 @@ class ControllerTest {
     @BeforeEach
     void setUp() {
         result = false;
-        controller_reference = new Controller(){
+        controller_reference = new Controller(null, null, null){
             @Override
             public void launchTheGame(){
                 result = true;

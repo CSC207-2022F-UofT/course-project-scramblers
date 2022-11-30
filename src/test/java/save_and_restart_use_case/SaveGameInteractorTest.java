@@ -35,10 +35,10 @@ public class SaveGameInteractorTest {
             //Creating Game State
             CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
             BoardFactory factory = new DefaultBoardFactory();
-            LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject("src/main/java/default_reference_values/board-data.csv");
+            LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
             LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human Player", "Computer Player", "Billy", "Joe");
-            LaunchNewGameInteractor launchNewGameInteractor = new LaunchNewGameInteractor(newModel, p, boardDataAccessObject, dictionaryDataAccessObject, factory);
-            launchNewGameInteractor.createGameState();
+            LaunchNewGameInteractor launchNewGameInteractor = new LaunchNewGameInteractor(p, boardDataAccessObject, dictionaryDataAccessObject, factory);
+            launchNewGameInteractor.createGameState(newModel);
 
             //Testing Save Game
             SaveGameDsGateway gateway = new StorageManager();
