@@ -14,15 +14,13 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
      * Use Case Interactor for placing a word if valid and possible, and refilling the player's LetterRack. Implements
      * the Facade design pattern by delegating the tasks of collecting the tiles to place, check of the board space,
      * and the verification of the word and tiles.
-     * @param requestModel Request model object with the needed information.
      * @param presenter Presenter that implements PlaceWordRefillOutputBoundary
      */
-    public PlaceWordRefillInteractor(PlaceWordRefillRequestModel requestModel, PlaceWordRefillOutputBoundary presenter) {
+    public PlaceWordRefillInteractor(PlaceWordRefillOutputBoundary presenter) {
         this.placeWordRefillOutputBoundary = presenter;
         this.tileCollector = new tileCollector(); // Delegating the task of collecting the tiles to place
         this.boardChecker = new boardChecker(); // Delegating the task of checking the board space
         this.letterVerifier = new letterVerifier(); // Delegating the task of verifying the word and tiles
-        placeWordRefill(requestModel);
     }
 
     /**

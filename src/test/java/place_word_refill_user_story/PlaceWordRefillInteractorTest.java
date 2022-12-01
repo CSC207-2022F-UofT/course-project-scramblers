@@ -49,7 +49,7 @@ class PlaceWordRefillInteractorTest {
                 Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
         PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, presenter);
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
         interactor.placeWordRefill(requestModel);
     }
 
@@ -66,7 +66,7 @@ class PlaceWordRefillInteractorTest {
         GameState.getBoard().placeTiles(existingTiles, new Coordinate(0,0), new Coordinate(0,0));
         PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, presenter);
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
         interactor.placeWordRefill(requestModel);
     }
 
@@ -93,7 +93,7 @@ class PlaceWordRefillInteractorTest {
         GameState.getBoard().placeTiles(existingTiles, new Coordinate(0,0), new Coordinate(0,0));
         PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, presenter);
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
         interactor.placeWordRefill(requestModel);
     }
 }
