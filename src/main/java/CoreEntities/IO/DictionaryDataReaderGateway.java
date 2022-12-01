@@ -12,7 +12,6 @@ import java.util.Scanner;
  */
 public class DictionaryDataReaderGateway {
 
-    private String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
     protected ArrayList<String> dictionaryFile;
 
     public DictionaryDataReaderGateway() throws FileNotFoundException {
@@ -23,7 +22,8 @@ public class DictionaryDataReaderGateway {
     @NotNull
     protected ArrayList<String> getFileAsList() throws FileNotFoundException {
 
-        Scanner s = new Scanner(new File(this.dictFile));
+        String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
+        Scanner s = new Scanner(new File(dictFile));
         ArrayList<String> list = new ArrayList<>();
         while (s.hasNextLine()) {
             list.add(s.nextLine());
