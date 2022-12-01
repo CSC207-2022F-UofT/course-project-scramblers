@@ -1,6 +1,7 @@
 package core_entities.game_parts;
 
 import CoreEntities.IO.DictionaryDataReaderGateway;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +15,8 @@ import java.util.*;
 
      ArrayList<String> longDictionary = list of all scrabble valid words
 
-     HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = a dictionary that takes in a set of letters and returns an arraylist
+     HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = a
+    dictionary that takes in a set of letters and returns an arraylist
      of all the valid words in scrabble that can be made from them.
 
      To utilize this function, you do not need to enter a set of characters,
@@ -38,7 +40,13 @@ public class Dictionary {
 
     }
 
-
+    /**
+     * This method builds a hashmap of sets of characters as keys and lists of the words
+     * they can make up as their contents. It takes in a string as a parameter and returns
+     * an arraylist of strings.
+     * @param str the string to be converted to a set of characters
+     * @return ArrayList<String>
+     */
 
 
     private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(){
@@ -65,7 +73,7 @@ public class Dictionary {
     }
 
     /**
-     * This function stakes in a string value and converts it to a set of characters
+     * This function stakes in a string value and converts it to a set of characters and returns it.
      * @param str is a String with no spaces or symbols please.
      * @return a set of characters
      */
@@ -83,20 +91,49 @@ public class Dictionary {
     }
 
     /**
-     * This getter function is used to return specific ArrayList of all words in the
+     * This function is used to return specific ArrayList of all words in the
      * Scrabble Dictionary that can be made from the String parameter submitted. It does this by converting the
      * parameter to a set of its characters. Example, if you submit a string of 'aaabbb' it is converted to
      * set{'a', 'b'} and will return a list of words composed of just those two letters.
-     * @param str <String></String>
+     * Precondition: The string must be all uppercase letters and no spaces or symbols.
+     * @param str is an all uppercase String with no spaces or symbols please.
      * @return ArrayList<String></String>
      */
 
-    public ArrayList<String> getCharacterSetDictionary(String str){
+    public ArrayList<String> getSingleCharacterSetDictionary(String str){
         ArrayList<String> list;
         list = characterSetDictionary.get(strToSet(str));
+//        list.sort((o1, o2) -> 0);
+        return list;
+    }
+
+    /**
+     * This function is used to combine different combinations of letters into all possible sets
+     * greater than 2 characters long. It then returns a list of all the words that can be made from
+     * them, and combines the lists into one list.
+
+     * @param str is an all uppercase String with no spaces or symbols please.
+     * @return ArrayList<String></String>
+     */
+    public ArrayList<String> getCharacterSetDictionary(String str) {
+        ArrayList<String> list;
+        list = getSingleCharacterSetDictionary(str);
+
+        int length = str.length();
+        while (length / 2 >= 2) {
+            list.addAll(getSingleCharacterSetDictionary(str.substring(0, length / 2)));
+            list.addAll(getSingleCharacterSetDictionary(str.substring(length / 2, length)));
+            length = length / 2;
+        }
         list.sort((o1, o2) -> 0);
         return list;
     }
+
+    /**
+     * This getter function is used to return an entire HashMap of the
+     * Scrabble Dictionary.  The key is a set of characters and the value is an ArrayList of all the words.
+     * @return HashMap<Set<Character>, ArrayList<String>>
+     */
 
     public HashMap<Set<Character>, ArrayList<String>> getDictionary() {
         return characterSetDictionary;
