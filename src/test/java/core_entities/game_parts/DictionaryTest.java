@@ -1,56 +1,50 @@
 package core_entities.game_parts;
 
-import org.junit.Before;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Scanner;
+
+import java.util.Set;
 
 class DictionaryTest {
-
-
-    private ArrayList<String> testDict;
-
-    public DictionaryTest() throws FileNotFoundException {
-        String dictFile = "src/test/java/core_entities/game_parts/TestDictionary.txt";
-        Scanner s = new Scanner(new File(dictFile));
-        ArrayList<String> list = new ArrayList<>();
-        while (s.hasNextLine()) {
-            list.add(s.nextLine());
-        }
-        s.close();
-
-        this.testDict = list;
+    Dictionary dictionary;
+    @BeforeEach
+    public void setup() {
+        dictionary = new Dictionary();
     }
-    //@Before
-    DictionaryTest start = new DictionaryTest();
-    Dictionary toTestDict = new Dictionary(this.testDict);
 
 
-//    @Test
-//    void getLongDictionary() {
-//        assert testDict.
-//    }
+
+
+
 
     @Test
-    void areFormatsTest(){
-        ArrayList<String> testVal = Dictionary.getCharacterSetDictionary("A");
-        assert testVal.size() == 1;
-        assert Objects.equals(testVal.get(0), "A");
+    void strToSetTest() {
 
+        String str = "HELLO";
+        Set<Character> test; //this is the method we are testing
+        test = dictionary.strToSet(str);
+        assert test.size() == 4;
+        assert test.contains('H');
+        assert test.contains('E');
+        assert test.contains('L');
+        assert test.contains('O');
     }
 
     @Test
-    void strToSet() {
+    void getCharacterSetDictionaryTest() {
+
+        String str = "HELLO";
+        ArrayList<String> test = dictionary.getCharacterSetDictionary(str);
+
+        assert test.contains("HELLO");
+        assert test.contains("HELLHOLE");
 
     }
 
-    @Test
-    void getCharacterSetDictionary() {
-    }
 
 
 }

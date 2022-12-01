@@ -14,8 +14,8 @@ public class DictionarySearch {
     public boolean empty;
 
     public DictionarySearch(String search) {
-
-        this.searchList = Dictionary.getCharacterSetDictionary(search);
+        Dictionary temp_dictionary = new Dictionary();
+        this.searchList = temp_dictionary.getCharacterSetDictionary(search);
         empty= this.searchList.isEmpty();
     }
 

@@ -11,7 +11,7 @@
 gradlew.bat
 gradlew
 build.gradle
-/gradle/
+.gradle/gradle/
 project_plan_dev.md
 README.md
 

@@ -1,24 +1,28 @@
 package CoreEntities.IO;
 
+
+import org.junit.Before;
+
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 class DictionaryDataReaderGatewayTest {
+    DictionaryDataReaderGateway testDict;
+  @Before
+    public void setup() throws FileNotFoundException {
+        testDict = new DictionaryDataReaderGateway();
 
-    DictionaryDataReaderGateway testDict = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
-
-    DictionaryDataReaderGatewayTest() throws FileNotFoundException {
     }
+    
 
 
     @Test
-     void getDictionaryFile() {
-        ArrayList<String> longList = testDict.getDictionaryFile();
-        assertEquals(longList.size()==178691);
+    void checkSizeDictionaryFile() throws FileNotFoundException {
+
+        ArrayList<String> dictionaryFile = testDict.getDictionaryFile();
+        assert dictionaryFile.size() == 178691;
     }
 
-    private void assertEquals(boolean b) {
-    }
 }
