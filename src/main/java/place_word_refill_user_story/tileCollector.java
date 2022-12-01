@@ -18,7 +18,16 @@ public class tileCollector {
         for (int k = 0; k < word.length(); k++){
             for (Tile t: player.getRack().getLETTERS()){
                 if (t.getLetter() == word.charAt(k)) {
-                    toPlace[k] = (t);
+                    boolean onBoard = false;
+                    for (Tile t2: existingOnBoard){
+                        if (t.getLetter() == t2.getLetter()) {
+                            onBoard = true;
+                            break;
+                        }
+                    }
+                    if (!onBoard) {
+                        toPlace[k] = (t);
+                    }
                 }
                 else {
                     for (Tile t2: existingOnBoard){

@@ -1,20 +1,16 @@
 package place_word_refill_user_story;
 
+import core_entities.game_parts.Coordinate;
+
+
 public class PlaceWordRefillRequestModel {
-    final PlaceWordRefillController placeWordRefillController;
-    final PlaceWordRefillPresenter placeWordRefillPresenter;
+    final String word;
+    final Coordinate c1;
+    final Coordinate c2;
 
-    public PlaceWordRefillRequestModel(PlaceWordRefillController placeWordRefillController,
-                                       PlaceWordRefillPresenter placeWordRefillPresenter) {
-        this.placeWordRefillController = placeWordRefillController;
-        this.placeWordRefillPresenter = placeWordRefillPresenter;
-    }
-
-    public PlaceWordRefillController getPlaceWordRefillController() {
-        return placeWordRefillController;
-    }
-
-    public PlaceWordRefillPresenter getPlaceWordRefillPresenter() {
-        return placeWordRefillPresenter;
+    public PlaceWordRefillRequestModel(String word, Coordinate c1, Coordinate c2) {
+        this.word = word;
+        this.c1 = c1;
+        this.c2 = c2;
     }
 }

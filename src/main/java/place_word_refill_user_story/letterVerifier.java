@@ -16,14 +16,12 @@ public class letterVerifier {
      * @param word The word trying to be placed.
      * @param c1 The starting coordinate of the word trying to be placed.
      * @param c2 The ending coordinate of the word trying to be placed.
-     * @param gameState The state of the game prior to the move being made.
      * @param onBoard The list of Tiles on the board that are involved in the placement of this word.
      * @return Whether the Tiles for this move exist in the player's rack and/or on the board for this word to be placed.
      */
-    public boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2,
-                                  GameState gameState, ArrayList<Tile> onBoard) {
+    public boolean verifyLetters(Player player, String word, Coordinate c1, Coordinate c2, ArrayList<Tile> onBoard) {
         // Create an array of all the letters in the player rack and the board as characters
-        Board board = gameState.getBoard();
+        Board board = GameState.getBoard();
         ArrayList<Character> existingTileLetters = new ArrayList<>();
         for (int i = 0; i < player.getRack().getLETTERS().length; i++) {
             existingTileLetters.add(player.getRack().getLETTERS()[i].getLetter());
