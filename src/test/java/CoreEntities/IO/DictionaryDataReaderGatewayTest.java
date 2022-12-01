@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 class DictionaryDataReaderGatewayTest {
     DictionaryDataReaderGateway testDict;
-
-    @Before
+  @Before
     public void setup() throws FileNotFoundException {
         testDict = new DictionaryDataReaderGateway();
+
     }
     
 

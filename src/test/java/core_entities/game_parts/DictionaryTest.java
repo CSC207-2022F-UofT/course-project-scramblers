@@ -24,14 +24,14 @@ class DictionaryTest {
     @Test
     void strToSetTest() {
 
-        String str = "hello";
+        String str = "HELLO";
         Set<Character> test; //this is the method we are testing
         test = dictionary.strToSet(str);
         assert test.size() == 4;
-        assert test.contains('h');
-        assert test.contains('e');
-        assert test.contains('l');
-        assert test.contains('o');
+        assert test.contains('H');
+        assert test.contains('E');
+        assert test.contains('L');
+        assert test.contains('O');
     }
 
     @Test

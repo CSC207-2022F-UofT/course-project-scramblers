@@ -2,7 +2,9 @@ package CoreEntities.Player;
 
 import core_entities.game_parts.LetterRack;
 
-public abstract class Player {
+import java.io.Serializable;
+
+public abstract class Player implements Serializable{
 
     protected String name;
     protected LetterRack rack;
@@ -22,8 +24,6 @@ public abstract class Player {
    
     abstract boolean makeMove(String word, int start_x, int end_x, int start_y, int end_y);
 
-    abstract void replaceLetters(char[] toReplaceValues, char[] newValues);
-
     public int getScore() {
         return this.score;
     }
@@ -40,7 +40,5 @@ public abstract class Player {
         this.name = name;
     }
 
-    public LetterRack getRack() {
-        return rack;
-    }
+    public LetterRack getRack(){ return this.rack; }
 }

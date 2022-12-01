@@ -6,8 +6,8 @@ public class DefaultBoard implements Serializable, Board{
     private final Square[][] grid;
     private final int DEFAULT_BOARD_SIZE;
     public DefaultBoard (String [][] multipliers) {
+        this.DEFAULT_BOARD_SIZE = multipliers.length;
         this.grid = generateDefaultGrid(multipliers);
-        this.DEFAULT_BOARD_SIZE = 15;
     }
     public Square [][] getGrid() {
         return this.grid;
@@ -44,6 +44,11 @@ public class DefaultBoard implements Serializable, Board{
             }
         }
     }
+
+    /**
+     *
+     * @return A 2-d String representation of the multiplier grid for the board
+     */
     public String [][] getMultiplierGrid() {
         String [][] multiplierGrid = new String [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
         for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
@@ -53,6 +58,10 @@ public class DefaultBoard implements Serializable, Board{
         }
         return multiplierGrid;
     }
+    /**
+     *
+     * @return A 2-d char representation of the letter grid for the board
+     */
     public char [][] getLetterGrid() {
         char [][] letterGrid = new char [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
         for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {

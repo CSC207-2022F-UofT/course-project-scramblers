@@ -22,17 +22,33 @@ class LetterRackTest {
     }
 
     @Test
-    public void GeneralCase() {
+    public void removeLetterTest() {
 
         //Testing removeLetters
         int removedIndex = rand.nextInt(tileArray.length);
         //admittedly weird string conversion
         String toRemove = "" + tileArray[removedIndex].getLetter();
+        removedIndex = letterRack.findTile(toRemove.charAt(0));
         letterRack.removeLetters(toRemove);
         Assertions.assertNull(letterRack.getLETTERS()[removedIndex]);
+    }
+    @Test
+    public void rackIsNotFullTest() {
+        int removedIndex = rand.nextInt(tileArray.length);
+        //admittedly weird string conversion
+        String toRemove = "" + tileArray[removedIndex].getLetter();
+        letterRack.removeLetters(toRemove);
 
         //Testing rackIsNotFull
         Assertions.assertTrue(letterRack.rackNotFull());
+    }
+
+    @Test
+    public void refillTest(){
+        int removedIndex = rand.nextInt(tileArray.length);
+        //admittedly weird string conversion
+        String toRemove = "" + tileArray[removedIndex].getLetter();
+        letterRack.removeLetters(toRemove);
 
         //Testing refill
         letterRack.refill();

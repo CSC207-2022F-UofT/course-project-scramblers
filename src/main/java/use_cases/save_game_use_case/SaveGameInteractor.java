@@ -11,11 +11,15 @@ public class SaveGameInteractor implements SaveGameInputBoundary {
         this.gateway = gateway;
     }
 
+    /**
+     * Saves the current GameState into memory so that it can be reloaded at a later time
+     * Returns true or false depending on whether the save was successful
+     * @return boolean
+     */
     @Override
     public boolean save() {
 
-        GameState state = new GameState();
-        SerializableGameState serializableGameState = state.generateSerializableGameState();
+        SerializableGameState serializableGameState = GameState.generateSerializableGameState();
         return gateway.saveSerializable(serializableGameState);
 
     }

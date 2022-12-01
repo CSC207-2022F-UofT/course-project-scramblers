@@ -34,12 +34,13 @@ public class LetterRack implements Serializable {
 
     /**
      *  Removes letters based on a given string
-     * @param inputWord is an all alphabetical string and len(inputWord) <= RACK_LEN
+     * @param inputWord is an all alphabetical string and len(inputWord) <= rackLen
      */
     public void removeLetters(@NotNull String inputWord){
         for(char characterInWord: inputWord.toCharArray()){
             int index = findTile(characterInWord);
             if(index != -1 ) {
+                BAG_REFERENCE.add(this.LETTERS[index]);
                 this.LETTERS[index] =null;
             }
         }
@@ -53,7 +54,7 @@ public class LetterRack implements Serializable {
     public int findTile(char inputChar){
         int outputTileIndex = 0;
         for(Tile tile: this.LETTERS){
-            if(tile.getLetter() == inputChar){
+            if(tile != null && tile.getLetter() == inputChar){
                 return outputTileIndex;
             }
             else{
@@ -68,7 +69,7 @@ public class LetterRack implements Serializable {
      * @return true if the rack is not full, false otherwise.
      */
     public boolean rackNotFull(){
-        for(Tile tile: LETTERS){
+        for(Tile tile: this.LETTERS){
             if(tile == null){
                 return true;
             }
@@ -77,6 +78,23 @@ public class LetterRack implements Serializable {
     }
 
     public Tile[] getLETTERS() {
-        return LETTERS;
+        return this.LETTERS;
+    }
+
+    /**
+     * Converts a LetterRack to its char array representation
+     * @return the char[] representation of the letters in the letter rack.
+     */
+    public char[] toCharArray(){
+        char[] output = new char[rackLen];
+        int index = 0;
+        for(Tile tile: this.LETTERS){
+            if(tile != null){
+                output[index] = tile.getLetter();
+                index++;
+            }
+        }
+
+        return output;
     }
 }

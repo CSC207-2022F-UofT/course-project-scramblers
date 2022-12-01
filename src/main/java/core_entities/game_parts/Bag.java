@@ -5,17 +5,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Bag implements Serializable {
-    /**
-     * Class representing the bag of letter tiles of the scrabble game.
-     */
-    private static final ArrayList<Tile> initialSupply = generateInitialSupply();
     public ArrayList<Tile> supply;
 
     /**
      * Creates the list of tiles that are to be in the bag at the beginning of a game.
      * @return List of tiles to be in the bag at the beginning of a game.
      */
-    private static ArrayList<Tile> generateInitialSupply() {
+    private ArrayList<Tile> generateInitialSupply() {
         char[] letters = new char[]{'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A',
                                         'B', 'B',
                                         'C', 'C',
@@ -44,37 +40,17 @@ public class Bag implements Serializable {
                                         'Z',
                                         '*', '*'};
         ArrayList<Tile> initialSupply = new ArrayList<>();
+
         for (char letter : letters) {
-            if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O'
-                    || letter == 'U' || letter == 'L' || letter == 'N' || letter == 'S'
-                    || letter == 'T'  || letter == 'R'){
-                initialSupply.add(new Tile(letter, 1));
-            }
-            else if (letter == 'D' || letter == 'G'){
-                initialSupply.add(new Tile(letter, 2));
-            }
-            else if (letter == 'B' || letter == 'C' || letter == 'M' || letter == 'P'){
-                initialSupply.add(new Tile(letter, 3));
-            }
-            else if (letter == 'F' || letter == 'H' || letter == 'V' || letter == 'W'
-                    || letter == 'Y'){
-                initialSupply.add(new Tile(letter, 4));
-            }
-            else if (letter == 'K'){
-                initialSupply.add(new Tile(letter, 5));
-            }
-            else if (letter == 'J' || letter == 'X'){
-                initialSupply.add(new Tile(letter, 8));
-            }
-            else {
-                initialSupply.add(new Tile(letter, 10));
-            }
+            initialSupply.add(new Tile(letter));
         }
         return initialSupply;
     }
-
+    /**
+     * Constructor for the Class representing the bag of letter tiles of the scrabble game.
+     */
     public Bag() {
-        this.supply = initialSupply;
+        this.supply = generateInitialSupply();
     }
 
     /**
@@ -105,8 +81,7 @@ public class Bag implements Serializable {
     private Tile getRandomTile() {
         Random random = new Random();
         int index = random.nextInt(supply.size());
-        Tile item = this.supply.get(index);
-        return item;
+        return this.supply.get(index);
     }
 
     /**
@@ -137,5 +112,14 @@ public class Bag implements Serializable {
      */
     public void add(Tile t){
         this.supply.add(t);
+    }
+
+    /**
+     * Adds a letter tile to the bag.
+     * @param c The letter of the tile to be added.
+     */
+    public void add(char c){
+        char letter = Character.toUpperCase(c);
+        this.supply.add(new Tile(letter));
     }
 }

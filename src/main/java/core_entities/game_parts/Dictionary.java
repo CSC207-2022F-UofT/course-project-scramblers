@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -30,11 +31,10 @@ import java.util.*;
      This class @Overrides compare in this function alone via a Lambda.
 */
 
+
+
 public class Dictionary {
-
-
-
-    private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = charSetDictionary();
+ private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = charSetDictionary();
 
     public Dictionary() {
 
