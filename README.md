@@ -13,6 +13,10 @@ Factory
 - Complies with the Open/Closed Principle of SOLID
 - This design pattern could easily be extended to the other entities (i.e. Player, Bag, etc.)
 
+Facade
+- Used in PlaceWordRefillInteractor, further explained in detail in its JavaDoc
+- Complies with Open/Closed and Single Responsibility principle's of SOLID
+
 Overall Structure - What is in each layer and how the flow of control works
 
 How to run the code

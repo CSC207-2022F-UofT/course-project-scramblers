@@ -1,6 +1,5 @@
 package place_word_refill_user_story;
 
-import CoreEntities.Player.Player;
 import core_entities.game_parts.*;
 import java.util.ArrayList;
 
@@ -10,30 +9,20 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
     final tileCollector tileCollector;
     final boardChecker boardChecker;
     final letterVerifier letterVerifier;
-    final String word;
-    final Player player;
-    final Coordinate c1;
-    final Coordinate c2;
 
     /**
      * Use Case Interactor for placing a word if valid and possible, and refilling the player's LetterRack. Implements
      * the Facade design pattern by delegating the tasks of collecting the tiles to place, check of the board space,
      * and the verification of the word and tiles.
      * @param requestModel Request model object with the needed information.
-     * @param tileCollector Handles the task of collecting the tiles to place.
-     * @param boardChecker Handles the task of checking the board space
-     * @param letterVerifier Handles the task of verifying the word and tiles
+     * @param presenter Presenter that implements PlaceWordRefillOutputBoundary
      */
-    public PlaceWordRefillInteractor(PlaceWordRefillRequestModel requestModel, tileCollector tileCollector,
-                                     boardChecker boardChecker, letterVerifier letterVerifier) {
-        this.placeWordRefillOutputBoundary = requestModel.placeWordRefillOutputBoundary;
-        this.tileCollector = tileCollector; // Delegating the task of collecting the tiles to place
-        this.boardChecker = boardChecker; // Delegating the task of checking the board space
-        this.letterVerifier = letterVerifier; // Delegating the task of verifying the word and tiles
-        this.word = requestModel.word;
-        this.player = GameState.getCurrentPlayer();
-        this.c1 = requestModel.c1;
-        this.c2 = requestModel.c2;
+    public PlaceWordRefillInteractor(PlaceWordRefillRequestModel requestModel, PlaceWordRefillOutputBoundary presenter) {
+        this.placeWordRefillOutputBoundary = presenter;
+        this.tileCollector = new tileCollector(); // Delegating the task of collecting the tiles to place
+        this.boardChecker = new boardChecker(); // Delegating the task of checking the board space
+        this.letterVerifier = new letterVerifier(); // Delegating the task of verifying the word and tiles
+        placeWordRefill(requestModel);
     }
 
     /**
@@ -43,17 +32,19 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
      * placed on the board, and the LetterRack is refilled.
      */
     @Override
-    public void placeWordRefill() {
+    public void placeWordRefill(PlaceWordRefillRequestModel requestModel) {
         Board board = GameState.getBoard();
         ArrayList<Tile> existingOnBoard = new ArrayList<>();
-        if (!letterVerifier.verifyLetters(player, word, c1, c2, existingOnBoard)) {
+        if (!letterVerifier.verifyLetters(GameState.getCurrentPlayer(), requestModel.word, requestModel.c1,
+                requestModel.c2, existingOnBoard)) {
             placeWordRefillOutputBoundary.prepareFailView("Letters are not available for this word to be placed.");
         }
-        if (!boardChecker.boardCheck(word, c1, c2))
+        if (!boardChecker.boardCheck(requestModel.word, requestModel.c1, requestModel.c2))
             placeWordRefillOutputBoundary.prepareFailView("Placement of word is not valid.");
-        Tile[] toPlace = tileCollector.collectTiles(player, word, existingOnBoard);
-        board.placeTiles(toPlace, c1, c2);
-        player.getRack().refill();
-        placeWordRefillOutputBoundary.updateViewModel(new PlaceWordRefillResponseModel(true, word, player));
+        Tile[] toPlace = tileCollector.collectTiles(GameState.getCurrentPlayer(), requestModel.word, existingOnBoard);
+        board.placeTiles(toPlace, requestModel.c1, requestModel.c2);
+        GameState.getCurrentPlayer().getRack().refill();
+        placeWordRefillOutputBoundary.updateViewModel(new PlaceWordRefillResponseModel(true, requestModel.word,
+                GameState.getCurrentPlayer()));
     }
 }

@@ -47,11 +47,10 @@ class PlaceWordRefillInteractorTest {
     void placeWordEmptyBoard() {
         ArrayList<String> possibleWords = Dictionary.getCharacterSetDictionary(
                 Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
-        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(presenter, possibleWords.get(0),
+        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, new tileCollector(),
-                new boardChecker(), new letterVerifier());
-        interactor.placeWordRefill();
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, presenter);
+        interactor.placeWordRefill(requestModel);
     }
 
     /**
@@ -65,11 +64,10 @@ class PlaceWordRefillInteractorTest {
         Tile existingTile = new Tile(possibleWords.get(0).charAt(0), 10);
         Tile[] existingTiles = {existingTile};
         GameState.getBoard().placeTiles(existingTiles, new Coordinate(0,0), new Coordinate(0,0));
-        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(presenter, possibleWords.get(0),
+        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, new tileCollector(),
-                new boardChecker(), new letterVerifier());
-        interactor.placeWordRefill();
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, presenter);
+        interactor.placeWordRefill(requestModel);
     }
 
     /**
@@ -93,10 +91,9 @@ class PlaceWordRefillInteractorTest {
         Tile existingTile = new Tile(possibleWords.get(0).charAt(1), 10);
         Tile[] existingTiles = {existingTile};
         GameState.getBoard().placeTiles(existingTiles, new Coordinate(0,0), new Coordinate(0,0));
-        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(presenter, possibleWords.get(0),
+        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, new tileCollector(),
-                new boardChecker(), new letterVerifier());
-        interactor.placeWordRefill();
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(requestModel, presenter);
+        interactor.placeWordRefill(requestModel);
     }
 }
