@@ -10,8 +10,11 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
 
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
+    /**
+     * Use only for testing
+     */
     public Presenter(){
-        VIEW_MODEL_INTERFACE = null;
+        this.VIEW_MODEL_INTERFACE = null;
     }
 
     /**
@@ -33,13 +36,13 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
     }
 
     @Override
-    public void updateRack(TakeTurnOutputData updateinfo) {
-        // update the rack only
+    public void prepareSuccessView(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
+        this.VIEW_MODEL_INTERFACE.setMessageText("Could not place word.");
     }
 
     @Override
-    public void updateViewModel(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
-        // TODO
+    public void updateRack(TakeTurnOutputData updateinfo) {
+        // update the rack only
     }
 
     @Override
