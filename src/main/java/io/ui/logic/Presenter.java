@@ -28,13 +28,13 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
     }
 
     @Override
-    public void updateBoard(TakeTurnOutputData updateinfo) {
-        // update the board and the rack based on the given info
+    public void updateViewModel(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
+        // TODO
     }
 
     @Override
     public void updateRack(TakeTurnOutputData updateinfo) {
-        // update the rack based on the given info
+        // update the rack based on the given data
     }
 
     @Override
