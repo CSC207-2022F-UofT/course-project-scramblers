@@ -13,7 +13,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
 
     private final TakeTurnOutputBoundary presenter;
     private final PlaceWordInputBoundary placeword;
-    private final SaveGameInputBoundary saveGame;
+    private SaveGameInputBoundary saveGame;
 
 
     public TakeTurnInteractor(TakeTurnOutputBoundary presenter,
