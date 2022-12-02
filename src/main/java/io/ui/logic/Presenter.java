@@ -10,7 +10,7 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
 
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
-    Presenter(){
+    public Presenter(){
         VIEW_MODEL_INTERFACE = null;
     }
 
@@ -34,7 +34,7 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
 
     @Override
     public void updateRack(TakeTurnOutputData updateinfo) {
-        // update the rack based on the given data
+        // update the rack only
     }
 
     @Override
