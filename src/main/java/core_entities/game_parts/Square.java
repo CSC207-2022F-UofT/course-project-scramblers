@@ -12,7 +12,7 @@ public class Square implements Serializable {
     }
     public Square (String multiplier) {
         this.multiplier = multiplier;
-        this.tile = null;
+        this.tile = new Tile(' ');
     }
     public void setTile(Tile newTile) {
         this.tile = newTile;

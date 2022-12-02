@@ -6,9 +6,11 @@ import core_entities.game_parts.SerializableGameState;
 public class SaveGameInteractor implements SaveGameInputBoundary {
 
     final SaveGameDsGateway gateway;
+    final SaveGameOutputBoundary presenter;
 
-    public SaveGameInteractor(SaveGameDsGateway gateway) {
+    public SaveGameInteractor(SaveGameDsGateway gateway, SaveGameOutputBoundary presenter) {
         this.gateway = gateway;
+        this.presenter = presenter;
     }
 
     /**
@@ -20,7 +22,14 @@ public class SaveGameInteractor implements SaveGameInputBoundary {
     public boolean save() {
 
         SerializableGameState serializableGameState = GameState.generateSerializableGameState();
-        return gateway.saveSerializable(serializableGameState);
+
+        if (gateway.saveSerializable(serializableGameState)) {
+            this.presenter.updateViewModel("Game saved successfully");
+            return true;
+        } else {
+            this.presenter.prepareFailView("Could not save");
+            return false;
+        }
 
     }
 }
