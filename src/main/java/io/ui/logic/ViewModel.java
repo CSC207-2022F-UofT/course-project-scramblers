@@ -29,14 +29,6 @@ public class ViewModel extends Observable implements PresenterViewModelInterface
 
     }
 
-    /**
-     * add an observer to the observer list.
-     * @param observer   an observer to be added.
-     */
-    public void addObserverToViewModel(Observer observer){
-        super.addObserver(observer);
-    }
-
     @Override
     public void setMessageText(String messageText) {
         this.outputText = messageText;
