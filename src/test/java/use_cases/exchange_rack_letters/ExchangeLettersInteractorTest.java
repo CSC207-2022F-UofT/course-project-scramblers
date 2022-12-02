@@ -3,18 +3,27 @@ import CoreEntities.Player.*;
 
 import java.util.*;
 import core_entities.game_parts.*;
+import io.ui.logic.Presenter;
 import org.junit.jupiter.api.*;
 
 public class ExchangeLettersInteractorTest {
 
     Random rand;
     ExchangeLettersInputBoundary inputBoundary;
+    boolean result;
     @BeforeEach
     void setup() {
+        result = false;
         final Bag BAG_REF = new Bag();
         GameState.setP1(new HumanPlayer("bob", new LetterRack(BAG_REF, 7), 0));
         rand = new Random('1');
-        inputBoundary = new ExchangeLettersInteractor();
+        ExchangeLettersOutputBoundary inputInterface = new Presenter() {
+            @Override
+            public void updateViewModelAfterExchange() {
+                result = true;
+            }
+        };
+        inputBoundary = new ExchangeLettersInteractor(inputInterface);
     }
 
     /**
@@ -27,7 +36,10 @@ public class ExchangeLettersInteractorTest {
                 GameState.getP1().getRack().getLETTERS()[index].getLetter());
         Tile originalTile = GameState.getP1().getRack().getLETTERS()[index];
         assert inputBoundary.exchangeLetters(inputString);
-        boolean result = !(originalTile.equals(GameState.getP1().getRack().getLETTERS()[index]));
+        boolean output_result = !(originalTile.equals(GameState.getP1().getRack().getLETTERS()[index]));
+        assert output_result;
+
+        //Testing that the viewModel update works
         assert result;
     }
 
@@ -42,9 +54,12 @@ public class ExchangeLettersInteractorTest {
         assert inputBoundary.exchangeLetters(inputString);
         Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
         for(int x = 0; x < outputTileArray.length; x++){
-            boolean result = !(outputTileArray[x].equals(inputTileArray[x]));
-            assert result;
+            boolean output_result = !(outputTileArray[x].equals(inputTileArray[x]));
+            assert output_result;
         }
+
+        //Testing that the viewModel update works
+        assert result;
     }
 
     /**
@@ -57,9 +72,12 @@ public class ExchangeLettersInteractorTest {
                 generateNonPresentLettersForDefaultRack(tileArrayToString(inputTileArray))));
         Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
         for(int x = 0; x < outputTileArray.length; x++){
-            boolean result = (outputTileArray[x].equals(inputTileArray[x]));
-            assert result;
+            boolean output_result = (outputTileArray[x].equals(inputTileArray[x]));
+            assert output_result;
         }
+
+        //Testing that the viewModel update works
+        assert !result;
     }
 
     /**
@@ -72,9 +90,12 @@ public class ExchangeLettersInteractorTest {
                 generateNonPresentLettersForDefaultRack(tileArrayToString(inputTileArray))));
         Tile[] outputTileArray = GameState.getP1().getRack().getLETTERS();
         for(int x = 0; x < outputTileArray.length; x++){
-            boolean result = (outputTileArray[x].equals(inputTileArray[x]));
-            assert result;
+            boolean output_result = (outputTileArray[x].equals(inputTileArray[x]));
+            assert output_result;
         }
+
+        //Testing that the viewModel update works
+        assert !result;
     }
 
     /**
@@ -110,6 +131,11 @@ public class ExchangeLettersInteractorTest {
         return false;
     }
 
+    /**
+     * Converts a tile array into a string representation
+     * @param inputTileArray the tile array to be represented
+     * @return the string representation of inputTileArray
+     */
     private String tileArrayToString(Tile[] inputTileArray){
         StringBuilder output = new StringBuilder();
         for(Tile tile: inputTileArray){

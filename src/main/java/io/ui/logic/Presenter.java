@@ -1,10 +1,9 @@
 package io.ui.logic;
-import launch_new_game_use_case.LaunchGameOutputBoundary;
-import launch_new_game_use_case.LaunchGameResponseModel;
-import place_word_refill_user_story.PlaceWordRefillOutputBoundary;
-import place_word_refill_user_story.PlaceWordRefillResponseModel;
+import launch_new_game_use_case.*;
+import place_word_refill_user_story.*;
+import use_cases.exchange_rack_letters.ExchangeLettersOutputBoundary;
 
-public class Presenter implements LaunchGameOutputBoundary, PlaceWordRefillOutputBoundary {
+public class Presenter implements LaunchGameOutputBoundary, PlaceWordRefillOutputBoundary, ExchangeLettersOutputBoundary {
 
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
@@ -33,5 +32,10 @@ public class Presenter implements LaunchGameOutputBoundary, PlaceWordRefillOutpu
     @Override
     public void prepareFailView(String csv_file_not_found) {
         this.VIEW_MODEL_INTERFACE.setMessageText(csv_file_not_found);
+    }
+
+    @Override
+    public void updateViewModelAfterExchange() {
+        this.VIEW_MODEL_INTERFACE.updateLetterRacks();
     }
 }
