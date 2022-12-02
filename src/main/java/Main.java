@@ -11,17 +11,19 @@ import storage.StorageManager;
 import use_cases.reload_game_use_case.ReloadGameDsGateway;
 import use_cases.reload_game_use_case.ReloadGameInputBoundary;
 import use_cases.reload_game_use_case.ReloadGameInteractor;
+import use_cases.save_game_use_case.SaveGameDsGateway;
+import use_cases.save_game_use_case.SaveGameInputBoundary;
+import use_cases.save_game_use_case.SaveGameInteractor;
 
 import java.io.FileNotFoundException;
 
 
 public class Main {
     public static void main (String [] args) {
-        // Instantiation of the View, ViewModel and Presenter Objects
-
         View view = new View();
         PresenterViewModelInterface viewModel = new ViewModel(null, null, null);
         // viewModel.addObserver(view);
+        // Resolve issue with p1 and p2
 
         Presenter p = new Presenter(viewModel);
 
@@ -41,11 +43,14 @@ public class Main {
         ReloadGameInputBoundary reloadGameInteractor = new ReloadGameInteractor(reloadGameGateway);
         // Add presenter to reloadGameInteractor
 
+        SaveGameDsGateway saveGameGateway = new StorageManager();
+        SaveGameInputBoundary saveGameInteractor = new SaveGameInteractor(saveGameGateway);
+        // Add presenter to saveGameInteractor
+
         PlaceWordInputBoundary placeWordInteractor = new PlaceWordRefillInteractor(p);
 
-        //Controller Instantiation
-
         Controller c = new Controller(launchGameInteractor, reloadGameInteractor, placeWordInteractor);
+        // Add saveGameInteractor to Controller
 
         //Add the controller to the View
         //View.addController(c);
