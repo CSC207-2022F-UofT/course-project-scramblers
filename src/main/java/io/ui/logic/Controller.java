@@ -14,7 +14,7 @@ public class Controller {
     private final PlaceWordInputBoundary PLACE_WORD_INPUT_REF;
 
     //Constructor that's going to be used.
-    Controller(LaunchGameInputBoundary launchGameInput,
+    public Controller(LaunchGameInputBoundary launchGameInput,
                ReloadGameInputBoundary reloadGameInputBoundary,
                PlaceWordInputBoundary placeWordInputBoundary){
         LAUNCH_GAME_REF = launchGameInput;
