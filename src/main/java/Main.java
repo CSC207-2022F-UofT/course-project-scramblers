@@ -21,8 +21,8 @@ import java.io.FileNotFoundException;
 public class Main {
     public static void main (String [] args) {
         View view = new View();
-        PresenterViewModelInterface viewModel = new ViewModel(null, null, null);
-        // viewModel.addObserver(view);
+        ViewModel viewModel = new ViewModel(null, null, null);
+        viewModel.addObserver(view);
         // Resolve issue with p1 and p2
 
         Presenter p = new Presenter(viewModel);
