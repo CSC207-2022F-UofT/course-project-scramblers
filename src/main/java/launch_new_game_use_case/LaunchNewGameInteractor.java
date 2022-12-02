@@ -40,7 +40,7 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         try {
             //GameState.setDictionary(dictionaryAccessObject.getDictionaryFile());
             GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid(inputData.getBoardCsvFile())));
-            presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid()));
+            presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid(), GameState.getCurrentPlayer().getRack().toCharArray()));
         }
         catch (IOException e) {
             presenter.prepareFailView("CSV File not found");
