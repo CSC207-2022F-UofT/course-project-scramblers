@@ -53,7 +53,7 @@ public class Main {
         // Add saveGameInteractor to Controller
 
         //Add the controller to the View
-        //View.addController(c);
+        view.setController(c);
 
         //Set the view to be visible
         view.setVisible(true);
