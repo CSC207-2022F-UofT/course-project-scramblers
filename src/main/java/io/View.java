@@ -1,5 +1,7 @@
 package io;
 
+import io.ui.logic.Controller;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.Observable;
@@ -13,8 +15,10 @@ public class View extends JDialog implements Observer {
     private JButton LoadButton;
     private JTextField FilePathField;
     private JPanel HomeScreenPanel;
+    private Controller c;
 
     public View() {
+        c = null;
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(NewButton);
@@ -33,7 +37,6 @@ public class View extends JDialog implements Observer {
         });
 
 
-
         // call onQuit() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -48,6 +51,9 @@ public class View extends JDialog implements Observer {
                 onQuit();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+    }
+    public void setController(Controller c) {
+        this.c = c;
     }
 
     @Override
