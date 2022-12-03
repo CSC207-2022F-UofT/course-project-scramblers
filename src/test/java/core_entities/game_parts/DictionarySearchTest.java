@@ -12,6 +12,7 @@ class DictionarySearchTest {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @AfterEach
