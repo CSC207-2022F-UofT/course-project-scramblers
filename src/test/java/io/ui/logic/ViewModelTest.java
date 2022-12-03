@@ -35,7 +35,7 @@ public class ViewModelTest {
         result = false;
         testText = "";
 
-        vm = new ViewModel(boardArray, p1, p2){
+        vm = new ViewModel(boardArray){
             @Override
             public void setMessageText(String messageText){
                 testText = messageText;

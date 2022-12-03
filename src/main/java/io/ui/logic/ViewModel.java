@@ -4,6 +4,7 @@ import CoreEntities.Player.Player;
 import core_entities.game_parts.GameState;
 
 import java.util.Observable;
+import java.util.Observer;
 
 public class ViewModel extends Observable implements PresenterViewModelInterface {
     /**
@@ -19,34 +20,34 @@ public class ViewModel extends Observable implements PresenterViewModelInterface
      * Constructor for the view model
      * @param input2DStringArray the respresentation of the game board
      */
-    public ViewModel(String [][] input2DStringArray, Player p1, Player p2){
+    public ViewModel(String [][] input2DStringArray){
 
         this.outputText = "";
         this.boardRepresentation = input2DStringArray;
-        this.p1LetterRack = p1.getRack().toCharArray();
-        this.p2LetterRack = p2.getRack().toCharArray();
+        this.p1LetterRack = GameState.getP1().getRack().toCharArray();
+        this.p2LetterRack = GameState.getP1().getRack().toCharArray();
 
     }
 
     @Override
     public void setMessageText(String messageText) {
-        setChanged();
         this.outputText = messageText;
+        setChanged();
         notifyObservers();
     }
 
     @Override
     public void setBoard(String[][] newBoard) {
-        setChanged();
         this.boardRepresentation = newBoard;
+        setChanged();
         notifyObservers();
     }
 
     @Override
     public void updateLetterRacks(){
-        setChanged();
         this.p1LetterRack = GameState.getP1().getRack().toCharArray();
         this.p2LetterRack = GameState.getP2().getRack().toCharArray();
+        setChanged();
         notifyObservers();
     }
 }
