@@ -4,10 +4,7 @@ import CoreEntities.IO.DictionaryDataReaderGateway;
 import core_entities.game_parts.*;
 import default_reference_values.DefaultBoardDataAccessObject;
 import io.ui.logic.Presenter;
-import launch_new_game_use_case.CreateDictionaryDataAccessObject;
-import launch_new_game_use_case.LaunchGameDataAccessObject;
-import launch_new_game_use_case.LaunchGameRequestModel;
-import launch_new_game_use_case.LaunchNewGameInteractor;
+import launch_new_game_use_case.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +25,10 @@ class PlaceWordRefillInteractorTest {
             @Override
             public void updateViewModel(PlaceWordRefillResponseModel responseModel){
                 assert responseModel.isSuccess();
+            }
+            @Override
+            public void updateViewModel(LaunchGameResponseModel responseModel) {
+                assert(true);
             }
 
             @Override
