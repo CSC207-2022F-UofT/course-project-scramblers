@@ -3,6 +3,7 @@ package io.ui.logic;
 import launch_new_game_use_case.LaunchGameInputBoundary;
 import launch_new_game_use_case.LaunchGameRequestModel;
 import place_word_refill_user_story.PlaceWordInputBoundary;
+import place_word_refill_user_story.PlaceWordRefillRequestModel;
 import use_cases.reload_game_use_case.*;
 
 import java.util.regex.Pattern;
@@ -34,7 +35,7 @@ public class Controller {
     public void placeWordExecute(String inputWord){
         if(isOnlyAlphabetString(inputWord)){
             int x = 0; //place hold
-            //PLACE_WORD_INPUT_REF.placeWordRefill();
+            //PLACE_WORD_INPUT_REF.placeWordRefill(new PlaceWordRefillRequestModel());
         }
 
     }
