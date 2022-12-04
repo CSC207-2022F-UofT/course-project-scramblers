@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import storage.StorageManager;
 import use_cases.save_game_use_case.SaveGameDsGateway;
 import use_cases.save_game_use_case.SaveGameInteractor;
+import use_cases.save_game_use_case.SaveGameOutputBoundary;
 
 import java.io.FileNotFoundException;
 
@@ -23,6 +24,9 @@ public class SaveGameInteractorTest {
 
 
         Presenter p = new Presenter(null) {
+
+            @Override
+            public void updateViewModel(LaunchGameResponseModel responseModel) {assert(true);}
 
             @Override
             public void prepareFailView(String message) {
@@ -41,8 +45,20 @@ public class SaveGameInteractorTest {
             launchNewGameInteractor.createGameState(newModel);
 
             //Testing Save Game
+            Presenter saveGamePresenter = new Presenter(null) {
+
+                @Override
+                public void updateViewModel(String save_message) {
+                    assert(save_message.equals("Game saved successfully"));
+                }
+                @Override
+                public void prepareFailView(String message) {
+                    assert(false);
+                }
+            };
+
             SaveGameDsGateway gateway = new StorageManager();
-            SaveGameInteractor interactor = new SaveGameInteractor(gateway);
+            SaveGameInteractor interactor = new SaveGameInteractor(gateway, (SaveGameOutputBoundary) saveGamePresenter);
             assert(interactor.save());
 
         } catch(FileNotFoundException e) {
