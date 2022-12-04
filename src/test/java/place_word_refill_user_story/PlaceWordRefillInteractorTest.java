@@ -21,7 +21,7 @@ class PlaceWordRefillInteractorTest {
     void init() throws FileNotFoundException {
         LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
         BoardFactory boardFactory = new DefaultBoardFactory();
-        CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
+        CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway();
         LaunchGameRequestModel gameRequestModel = new LaunchGameRequestModel("Human Player",
                 "Human Player", "Human 1", "Human 2");
         presenter = new Presenter() {
@@ -45,7 +45,7 @@ class PlaceWordRefillInteractorTest {
      */
     @Test
     void placeWordEmptyBoard() {
-        ArrayList<String> possibleWords = Dictionary.getCharacterSetDictionary(
+        ArrayList<String> possibleWords = GameState.getDictionary().getCharacterSetDictionary(
                 Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
         PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
                 new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
@@ -59,7 +59,7 @@ class PlaceWordRefillInteractorTest {
      */
     @Test
     void placeWordWithExistingTile() {
-        ArrayList<String> possibleWords = Dictionary.getCharacterSetDictionary(
+        ArrayList<String> possibleWords = GameState.getDictionary().getCharacterSetDictionary(
                 Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
         Tile existingTile = new Tile(possibleWords.get(0).charAt(0), 10);
         Tile[] existingTiles = {existingTile};
@@ -86,7 +86,7 @@ class PlaceWordRefillInteractorTest {
                 assert true;
             }
         };
-        ArrayList<String> possibleWords = Dictionary.getCharacterSetDictionary(
+        ArrayList<String> possibleWords = GameState.getDictionary().getCharacterSetDictionary(
                 Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
         Tile existingTile = new Tile(possibleWords.get(0).charAt(1), 10);
         Tile[] existingTiles = {existingTile};

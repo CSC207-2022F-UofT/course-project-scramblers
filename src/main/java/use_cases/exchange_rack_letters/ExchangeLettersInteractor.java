@@ -4,7 +4,7 @@ import core_entities.game_parts.*;
 
 public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
 
-    private ExchangeLettersOutputBoundary outputInterface;
+    private final ExchangeLettersOutputBoundary outputInterface;
     public ExchangeLettersInteractor(ExchangeLettersOutputBoundary exchangeLettersOutputBoundary){
         this.outputInterface = exchangeLettersOutputBoundary;
     }

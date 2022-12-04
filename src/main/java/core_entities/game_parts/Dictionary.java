@@ -1,11 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.IO.DictionaryDataReaderGateway;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.Serializable;
 import java.util.*;
 
 
@@ -34,29 +28,25 @@ import java.util.*;
 
 
 public class Dictionary {
- private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary = charSetDictionary();
+    private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary;
 
-    public Dictionary() {
-
+    public Dictionary(ArrayList<String> words) {
+        characterSetDictionary = charSetDictionary(words);
     }
 
     /**
      * This method builds a hashmap of sets of characters as keys and lists of the words
      * they can make up as their contents. It takes in a string as a parameter and returns
      * an arraylist of strings.
-     * @param str the string to be converted to a set of characters
      * @return ArrayList<String>
      */
 
 
-    private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(){
+    private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(ArrayList<String> fileDict){
         HashMap<Set<Character>, ArrayList<String>> setDict = new HashMap<>();
         ArrayList<String> dict;
-        try {
-            dict = new DictionaryDataReaderGateway().getDictionaryFile();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+
+        dict = fileDict;
 
         for (String s: dict) {
             ArrayList<String> list;

@@ -12,7 +12,7 @@ import java.util.Scanner;
  * This is a gateway that accesses a resource file needed to create the Dictionary.
  */
 
-public class DictionaryDataReaderGateway {
+public class DictionaryDataReaderGateway implements CreateDictionaryDataAccessObject{
 
     protected ArrayList<String> dictionaryFile;
 
@@ -33,8 +33,8 @@ public class DictionaryDataReaderGateway {
         return list;
     }
 
-    public ArrayList<String> getDictionaryFile() throws FileNotFoundException {
-        return getFileAsList();
+    public ArrayList<String> getDictionaryFile() {
+        return this.dictionaryFile;
 
 
     }
