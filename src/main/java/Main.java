@@ -21,7 +21,7 @@ import java.io.FileNotFoundException;
 public class Main {
     public static void main (String [] args) {
         View view = new View();
-        ViewModel viewModel = new ViewModel(null, null, null);
+        ViewModel viewModel = new ViewModel(null);
         viewModel.addObserver(view);
         // Resolve issue with p1 and p2
 
@@ -31,7 +31,7 @@ public class Main {
         BoardFactory boardFactory = new DefaultBoardFactory();
         DictionaryDataReaderGateway dictionaryGateway;
         try {
-            dictionaryGateway = new DictionaryDataReaderGateway("src/main/java/default_reference_values/scrabble_dictionary.txt");
+            dictionaryGateway = new DictionaryDataReaderGateway();
         }
         catch (FileNotFoundException e) {
             throw new RuntimeException("Default dictionary file could not be read");
@@ -40,12 +40,10 @@ public class Main {
         LaunchNewGameInteractor launchGameInteractor = new LaunchNewGameInteractor(p, boardAccessObject, dictionaryGateway, boardFactory);
 
         ReloadGameDsGateway reloadGameGateway = new StorageManager();
-        ReloadGameInputBoundary reloadGameInteractor = new ReloadGameInteractor(reloadGameGateway);
-        // Add presenter to reloadGameInteractor
+        ReloadGameInputBoundary reloadGameInteractor = new ReloadGameInteractor(reloadGameGateway, p);
 
         SaveGameDsGateway saveGameGateway = new StorageManager();
-        SaveGameInputBoundary saveGameInteractor = new SaveGameInteractor(saveGameGateway);
-        // Add presenter to saveGameInteractor
+        SaveGameInputBoundary saveGameInteractor = new SaveGameInteractor(saveGameGateway, p);
 
         PlaceWordInputBoundary placeWordInteractor = new PlaceWordRefillInteractor(p);
 

@@ -2,6 +2,7 @@ package core_entities.game_parts;
 
 
 import CoreEntities.IO.DictionaryDataReaderGateway;
+import launch_new_game_use_case.CreateDictionaryDataAccessObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +15,14 @@ import java.util.Set;
 class DictionaryTest {
     Dictionary dictionary;
     @BeforeEach
-    public void setup() throws FileNotFoundException {
-        DictionaryDataReaderGateway dictGate = new DictionaryDataReaderGateway();
-        dictionary = new Dictionary(dictGate.getDictionaryFile());
+    public void setup() {
+        try {
+            CreateDictionaryDataAccessObject dataAccessObject = new DictionaryDataReaderGateway();
+            dictionary = new Dictionary(dataAccessObject.getDictionaryFile());
+        }
+        catch (FileNotFoundException e) {
+            assert (false);
+        }
     }
 
 

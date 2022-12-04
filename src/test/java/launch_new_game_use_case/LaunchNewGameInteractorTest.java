@@ -45,7 +45,7 @@ class LaunchNewGameInteractorTest {
             }
         };
         try {
-            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
+            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway();
             BoardFactory factory = new DefaultBoardFactory();
             LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
             LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human Player", "Computer Player", "Billy", "Joe");

@@ -1,8 +1,5 @@
 package core_entities.game_parts;
 
-import CoreEntities.IO.DictionaryDataReaderGateway;
-
-import java.io.FileNotFoundException;
 import java.util.*;
 
 
@@ -30,33 +27,28 @@ import java.util.*;
 
 
 
-public class Dictionary implements DictionaryFunctions {
+public class Dictionary {
+    private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary;
 
-        private ArrayList<String> longDictionary;
-        private HashMap<Set<Character>, ArrayList<String>> characterSetDictionary;
-
-        public Dictionary(ArrayList<String> readerList) throws FileNotFoundException {
-            this.longDictionary = readerList;
-            this.characterSetDictionary = charSetDictionary();
-        }
-
-
-
+    public Dictionary(ArrayList<String> words) {
+        characterSetDictionary = charSetDictionary(words);
+    }
 
     /**
      * This method builds a hashmap of sets of characters as keys and lists of the words
      * they can make up as their contents. It takes in a string as a parameter and returns
      * an arraylist of strings.
-     * @param str the string to be converted to a set of characters
      * @return ArrayList<String>
      */
 
 
-    private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(){
+    private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(ArrayList<String> fileDict){
         HashMap<Set<Character>, ArrayList<String>> setDict = new HashMap<>();
+        ArrayList<String> dict;
 
+        dict = fileDict;
 
-        for (String s: longDictionary) {
+        for (String s: dict) {
             ArrayList<String> list;
             if(setDict.containsKey(strToSet(s))){
                 list = setDict.get(strToSet(s));
@@ -133,29 +125,7 @@ public class Dictionary implements DictionaryFunctions {
      * @return HashMap<Set<Character>, ArrayList<String>>
      */
 
-    public HashMap<Set<Character>, ArrayList<String>> getDictionaryMap() {
+    public HashMap<Set<Character>, ArrayList<String>> getDictionary() {
         return characterSetDictionary;
     }
-
-    /**
-     * This getter function is used to return an entire ArrayList of the dictionary.
-     * @return ArrayList<String> of all words in the dictionary.
-     */
-
-    public ArrayList<String> getDictionaryFile() {
-        return longDictionary;
-    }
-
-    /**
-     * This function is used to verify that a word is in the dictionary.
-     * @param word is a String with no spaces or Symbols please. in UpperCase.
-     * @return boolean true if the word is in the dictionary, false if not.
-     */
-    public boolean verifyWord(String word) {
-        return longDictionary.contains(word);
-
-    }
-
-
-
 }

@@ -17,90 +17,83 @@ import java.util.Arrays;
 
 class PlaceWordRefillInteractorTest {
     private Presenter presenter;
-
     @BeforeEach
     void init() throws FileNotFoundException {
         LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
         BoardFactory boardFactory = new DefaultBoardFactory();
-        CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
-        Dictionary dictionary = new Dictionary(dictionaryDataAccessObject.getDictionaryFile());
+        CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway();
         LaunchGameRequestModel gameRequestModel = new LaunchGameRequestModel("Human Player",
                 "Human Player", "Human 1", "Human 2");
-        {
-            presenter = new Presenter() {
-                @Override
-                public void updateViewModel(PlaceWordRefillResponseModel responseModel) {
-                    assert responseModel.isSuccess();
-                }
+        presenter = new Presenter() {
+            @Override
+            public void updateViewModel(PlaceWordRefillResponseModel responseModel){
+                assert responseModel.isSuccess();
+            }
 
-                @Override
-                public void prepareFailView(String message) {
-                    assert (false);
-                }
-            };
-            LaunchNewGameInteractor gameInteractor = new LaunchNewGameInteractor(presenter,
-                    boardDataAccessObject, dictionaryDataAccessObject, boardFactory);
-            gameInteractor.createGameState(gameRequestModel);
-        }
+            @Override
+            public void prepareFailView(String message) {
+                assert(false);
+            }
+        };
+        LaunchNewGameInteractor gameInteractor = new LaunchNewGameInteractor(presenter,
+                boardDataAccessObject, dictionaryDataAccessObject, boardFactory);
+        gameInteractor.createGameState(gameRequestModel);
+    }
 
-        /**
-         * Tests if a word can be placed on an empty board using valid tiles to make a word from the dictionary.
-         */
+    /**
+     * Tests if a word can be placed on an empty board using valid tiles to make a word from the dictionary.
+     */
+    @Test
+    void placeWordEmptyBoard() {
+        ArrayList<String> possibleWords = GameState.getDictionary().getCharacterSetDictionary(
+                Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
+        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
+                new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
+        interactor.placeWordRefill(requestModel);
+    }
 
+    /**
+     * Tests if a word can be placed on a board using valid tiles and an existing tile on the board
+     * to make a word from the dictionary.
+     */
+    @Test
+    void placeWordWithExistingTile() {
+        ArrayList<String> possibleWords = GameState.getDictionary().getCharacterSetDictionary(
+                Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
+        Tile existingTile = new Tile(possibleWords.get(0).charAt(0), 10);
+        Tile[] existingTiles = {existingTile};
+        GameState.getBoard().placeTiles(existingTiles, new Coordinate(0,0), new Coordinate(0,0));
+        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
+                new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
+        interactor.placeWordRefill(requestModel);
+    }
 
-        @Test
-        void placeWordEmptyBoard() {
+    /**
+     * Tests if a word can be placed on the board in an invalid space.
+     */
+    @Test
+    void placeWordInvalidPlacement() {
+        presenter = new Presenter() {
+            @Override
+            public void updateViewModel(PlaceWordRefillResponseModel responseModel){
+                assert (false);
+            }
 
-            ArrayList<String> possibleWords = dictionary.getCharacterSetDictionary(
-                    Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
-            PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
-                    new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-            PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
-            interactor.placeWordRefill(requestModel);
-        }
-
-        /**
-         * Tests if a word can be placed on a board using valid tiles and an existing tile on the board
-         * to make a word from the dictionary.
-         */
-        @Test
-        void placeWordWithExistingTile() {
-            ArrayList<String> possibleWords = dictionary.getCharacterSetDictionary(
-                    Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
-            Tile existingTile = new Tile(possibleWords.get(0).charAt(0), 10);
-            Tile[] existingTiles = {existingTile};
-            GameState.getBoard().placeTiles(existingTiles, new Coordinate(0, 0), new Coordinate(0, 0));
-            PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
-                    new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-            PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
-            interactor.placeWordRefill(requestModel);
-        }
-
-        /**
-         * Tests if a word can be placed on the board in an invalid space.
-         */
-        @Test
-        void placeWordInvalidPlacement() {
-            presenter = new Presenter() {
-                @Override
-                public void updateViewModel(PlaceWordRefillResponseModel responseModel) {
-                    assert (false);
-                }
-
-                @Override
-                public void prepareFailView(String message) {
-                    assert true;
-                }
-            };
-            ArrayList<String> possibleWords = dictionary.getCharacterSetDictionary(
-                    Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
-            Tile existingTile = new Tile(possibleWords.get(0).charAt(1), 10);
-            Tile[] existingTiles = {existingTile};
-            GameState.getBoard().placeTiles(existingTiles, new Coordinate(0, 0), new Coordinate(0, 0));
-            PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
-                    new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
-            PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
-            interactor.placeWordRefill(requestModel);
-        }
+            @Override
+            public void prepareFailView(String message) {
+                assert true;
+            }
+        };
+        ArrayList<String> possibleWords = GameState.getDictionary().getCharacterSetDictionary(
+                Arrays.toString(GameState.getCurrentPlayer().getRack().getLETTERS()));
+        Tile existingTile = new Tile(possibleWords.get(0).charAt(1), 10);
+        Tile[] existingTiles = {existingTile};
+        GameState.getBoard().placeTiles(existingTiles, new Coordinate(0,0), new Coordinate(0,0));
+        PlaceWordRefillRequestModel requestModel = new PlaceWordRefillRequestModel(possibleWords.get(0),
+                new Coordinate(0, 0), new Coordinate(0, possibleWords.get(0).length()));
+        PlaceWordRefillInteractor interactor = new PlaceWordRefillInteractor(presenter);
+        interactor.placeWordRefill(requestModel);
     }
 }

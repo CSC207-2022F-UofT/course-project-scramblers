@@ -38,7 +38,7 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         GameState.setP1(p1);
         GameState.setP2(p2);
         try {
-            //GameState.setDictionary(dictionaryAccessObject.getDictionaryFile());
+            GameState.setDictionary(dictionaryAccessObject.getDictionaryFile());
             GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid(inputData.getBoardCsvFile())));
             presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid(), GameState.getCurrentPlayer().getRack().toCharArray()));
         }
