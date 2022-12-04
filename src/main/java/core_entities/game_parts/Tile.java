@@ -22,6 +22,7 @@ public class Tile implements Serializable {
         this.value = determineTileValue(letter);
     }
 
+
     private int determineTileValue(char letter) {
         if (letter == 'A' || letter == 'E' || letter == 'I' || letter == 'O'
                 || letter == 'U' || letter == 'L' || letter == 'N' || letter == 'S'

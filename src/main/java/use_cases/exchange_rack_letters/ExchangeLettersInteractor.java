@@ -4,8 +4,9 @@ import core_entities.game_parts.*;
 
 public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
 
-    public ExchangeLettersInteractor(){
-
+    private ExchangeLettersOutputBoundary outputInterface;
+    public ExchangeLettersInteractor(ExchangeLettersOutputBoundary exchangeLettersOutputBoundary){
+        this.outputInterface = exchangeLettersOutputBoundary;
     }
 
     /**
@@ -22,8 +23,12 @@ public class ExchangeLettersInteractor implements ExchangeLettersInputBoundary{
         //checks the input
         if(cleanedString.length() == 0){ return false; }
 
+        //the exchange
         GameState.getCurrentPlayer().getRack().removeLetters(cleanedString);
         GameState.getCurrentPlayer().getRack().refill();
+
+        //outputting the information
+        this.outputInterface.updateViewModelAfterExchange();
 
         return true;
     }

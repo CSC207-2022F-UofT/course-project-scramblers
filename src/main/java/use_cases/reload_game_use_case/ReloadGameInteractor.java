@@ -5,9 +5,11 @@ import core_entities.game_parts.GameState;
 public class ReloadGameInteractor implements ReloadGameInputBoundary {
 
     final ReloadGameDsGateway gateway;
+    final ReloadGameOutputBoundary presenter;
 
-    public ReloadGameInteractor(ReloadGameDsGateway gateway) {
+    public ReloadGameInteractor(ReloadGameDsGateway gateway, ReloadGameOutputBoundary presenter) {
         this.gateway = gateway;
+        this.presenter = presenter;
     }
 
     /**
@@ -23,8 +25,11 @@ public class ReloadGameInteractor implements ReloadGameInputBoundary {
             GameState.setP1(model.getP1());
             GameState.setP2(model.getP2());
             GameState.setBoard((model.getBoard()));
+            this.presenter.updateViewModel(new ReloadGameResponseModel(GameState.getBoard().getMultiplierGrid(),
+                    GameState.getBoard().getLetterGrid(), GameState.getCurrentPlayer().getRack().toCharArray()));
             return true;
         } else {
+            this.presenter.prepareFailView("Could not reload game");
             return false;
         }
     }
