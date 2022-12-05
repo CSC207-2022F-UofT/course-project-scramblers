@@ -3,6 +3,7 @@ package io.ui.logic;
 import CoreEntities.Player.Player;
 import Take_Turn.TakeTurnOutputBoundary;
 import Take_Turn.TakeTurnOutputData;
+import core_entities.game_parts.GameState;
 import launch_new_game_use_case.*;
 import place_word_refill_user_story.*;
 import use_cases.exchange_rack_letters.ExchangeLettersOutputBoundary;
@@ -10,7 +11,12 @@ import use_cases.reload_game_use_case.ReloadGameOutputBoundary;
 import use_cases.reload_game_use_case.ReloadGameResponseModel;
 import use_cases.save_game_use_case.SaveGameOutputBoundary;
 
-public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBoundary, PlaceWordRefillOutputBoundary, SaveGameOutputBoundary, ReloadGameOutputBoundary, ExchangeLettersOutputBoundary{
+public class Presenter implements LaunchGameOutputBoundary,
+        TakeTurnOutputBoundary,
+        PlaceWordRefillOutputBoundary,
+        SaveGameOutputBoundary,
+        ReloadGameOutputBoundary,
+        ExchangeLettersOutputBoundary{
 
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
@@ -37,12 +43,13 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
 
     @Override
     public void updateViewModel(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
-        // TODO
+        assert this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.setBoard(GameState.getBoard().getLetterGrid());
     }
 
     @Override
     public void updateViewModel(String save_message) {
-        // TODO
+
     }
 
     @Override
