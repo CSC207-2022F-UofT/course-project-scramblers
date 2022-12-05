@@ -1,7 +1,9 @@
 package io;
 
 import core_entities.game_parts.Board;
+import core_entities.game_parts.LetterRack;
 import io.ui.logic.Controller;
+import io.ui.logic.ViewModel;
 
 import javax.swing.*;
 import javax.tools.Tool;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public class ViewFinal extends JFrame implements Observer {
+public class ViewFinal extends JFrame{
 
     private JFrame frame;
     private JPanel masterPanel;
@@ -33,7 +35,7 @@ public class ViewFinal extends JFrame implements Observer {
     private JButton QUIT;
     private JButton LOAD;
     private JButton NEW;
-    private ArrayList List_of_Board_Buttons;
+    private ArrayList<JButton> List_of_Board_Buttons;
     private ArrayList List_of_Letter_Rack_Buttons;
     private JTextField coordinates_x;
     private JTextField coordinates_y;
@@ -48,6 +50,7 @@ public class ViewFinal extends JFrame implements Observer {
     private JLabel csvInstructionLabel;
     private JButton rerackButton;
     private Controller controller;
+    private JLabel score_1;
 
 
     public ViewFinal(Controller ctrlor){
@@ -76,7 +79,7 @@ public class ViewFinal extends JFrame implements Observer {
         //creating the grids
         gridLayoutBoard = new GridLayout(15,15);
         gridLayoutMenu = new GridLayout(5,1);
-        gridLayoutRack = new GridLayout(8,1);
+        gridLayoutRack = new GridLayout(10,1);
         gridLayoutMaster2 = new GridLayout(5,2);
 
 
@@ -90,6 +93,8 @@ public class ViewFinal extends JFrame implements Observer {
         //creating the rerack button and adding it to the rack panel
         rerackButton = new JButton("Rerack");
         RackPanel.add(rerackButton);
+        score_1 = new JLabel("Current Player's Score:");
+        RackPanel.add(score_1);
 
 
         //creating menu buttons
@@ -98,8 +103,8 @@ public class ViewFinal extends JFrame implements Observer {
         NEW = new JButton("NEW");
 
         //creating CSV file path textfield and instruction label
-        csvInstructionLabel = new JLabel("Place csv file path below:");
-        csvFilePathField = new JTextField("Delete this text and place your game's csv file path");
+        csvInstructionLabel = new JLabel("Place csv file path below for custom board (optional):");
+        csvFilePathField = new JTextField();
 
         //adding menu buttons and field to MenuPanel
 
@@ -112,8 +117,12 @@ public class ViewFinal extends JFrame implements Observer {
         //creating the board buttons
         List_of_Board_Buttons = ScrabbleBoard();
 
+
+
         //creating the letter rack buttons
         List_of_Letter_Rack_Buttons = RackButtons();
+
+        //creating score buttons
 
 
         //creating the coordinates_x instructions label
@@ -203,7 +212,7 @@ public class ViewFinal extends JFrame implements Observer {
                 text = text.toLowerCase().strip();
                 String x = getCoordinates_x();
                 String y = getCoordinates_y();
-                controller.placeWordExecute(text, x, y);
+                //controller.placeWordExecute(text, x, y);
             }
         });
 
@@ -218,11 +227,38 @@ public class ViewFinal extends JFrame implements Observer {
     }
 
 
-    @Override
-    public void update(Observable o, Object arg) {
+    public void updateScore1(String score) {
+        setScore_1(score);
+    }
 
+    public void updateRack(LetterRack rack){
+        for (int i = 0; i<7; i++){
+            JButton temp = (JButton) List_of_Letter_Rack_Buttons.get(i);
+            char temp_letter = rack.getLETTERS()[i].getLetter();
+            temp.setText(String.valueOf(temp_letter));
+        }
 
     }
+
+    public void updateErrorMsg(String err){
+        setError_message_field(err);
+    }
+
+
+    public void updateBoard(char [][] b){
+        ArrayList<JButton> lst = List_of_Board_Buttons;
+        int pos = 0;
+        for (int i = 0; i< 15; i++){
+            for (int j = 0; j<15; j++){
+                lst.get(pos).setText(String.valueOf(b[j][i]));
+                pos += 1;
+            }
+        }
+    }
+
+
+
+
 
     public static void main(String[] args) {
 
@@ -289,4 +325,24 @@ public class ViewFinal extends JFrame implements Observer {
     public String getCoordinates_y() {
         return coordinates_y.getText();
     }
+
+    public String getScore_1(){
+        return score_1.getText();
+    }
+
+    public void setScore_1(String score) {
+        score_1.setText("Current Player's Score: " + score);
+    }
+
+    public void setError_message_field(String err){
+        error_message_field.setText(err);
+    }
+
+    public void setColors(){
+        ArrayList<JButton> lst = List_of_Board_Buttons;
+        for (int i=0; i<225; i++){
+
+        }
+    }
+
 }
