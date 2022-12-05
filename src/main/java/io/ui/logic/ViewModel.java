@@ -10,9 +10,9 @@ public class ViewModel implements PresenterViewModelInterface {
      */
     private String outputText;
     private String [][] boardRepresentation;
-    private char[] p1LetterRack;
-    private char[] p2LetterRack;
+    private char[] displayRack;
     private final ViewFinal VIEW_FINAL_REF;
+    private String errorText;
 
     /**
      * Constructor for the view model
@@ -21,11 +21,16 @@ public class ViewModel implements PresenterViewModelInterface {
     public ViewModel(String [][] input2DStringArray, ViewFinal inputView){
 
         this.outputText = "";
+        this.errorText = "";
         this.boardRepresentation = input2DStringArray;
-        this.p1LetterRack = GameState.getP1().getRack().toCharArray();
-        this.p2LetterRack = GameState.getP1().getRack().toCharArray();
+        this.displayRack = null;
         this.VIEW_FINAL_REF = inputView;
 
+    }
+
+    @Override
+    public void setErrorText(String inputErrorString){
+        this.errorText = inputErrorString;
     }
 
     @Override
@@ -44,9 +49,8 @@ public class ViewModel implements PresenterViewModelInterface {
     }
 
     @Override
-    public void updateLetterRacks(){
-        this.p1LetterRack = GameState.getP1().getRack().toCharArray();
-        this.p2LetterRack = GameState.getP2().getRack().toCharArray();
+    public void updateDisplayLetterRack(){
+        this.displayRack = GameState.getCurrentPlayer().getRack().toCharArray();
     }
 
     /**

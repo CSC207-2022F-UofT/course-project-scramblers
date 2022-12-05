@@ -17,7 +17,9 @@ public interface PresenterViewModelInterface {
     void setBoard(char[][] newBoard);
 
     /**
-     * Update the LetterRacks due to a change
+     * Update the LetterRack due to a change
      */
-    void updateLetterRacks();
+    void updateDisplayLetterRack();
+
+    void setErrorText(String inputErrorString);
 }

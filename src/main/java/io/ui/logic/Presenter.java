@@ -49,7 +49,8 @@ public class Presenter implements LaunchGameOutputBoundary,
 
     @Override
     public void updateViewModel(String save_message) {
-
+        assert this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.setMessageText(save_message);
     }
 
     @Override
@@ -58,12 +59,16 @@ public class Presenter implements LaunchGameOutputBoundary,
     }
 
     public void prepareSuccessView(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
+        assert this.VIEW_MODEL_INTERFACE != null;
         this.VIEW_MODEL_INTERFACE.setMessageText("Could not place word.");
     }
 
     @Override
     public void updateRack(TakeTurnOutputData updateinfo) {
-        // update the rack only
+        assert this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack();
+        this.VIEW_MODEL_INTERFACE.setMessageText(updateinfo.getWordplaced()+" has been placed start on square ("
+                +updateinfo.getStart().getXCoordinate()+", "+updateinfo.getStart().getYCoordinate()+").");
     }
 
     @Override
@@ -79,6 +84,6 @@ public class Presenter implements LaunchGameOutputBoundary,
 
     @Override
     public void updateViewModelAfterExchange() {
-        this.VIEW_MODEL_INTERFACE.updateLetterRacks();
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack();
     }
 }
