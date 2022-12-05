@@ -2,8 +2,11 @@ package io;
 
 import core_entities.game_parts.Board;
 import core_entities.game_parts.LetterRack;
+import core_entities.game_parts.Square;
 import io.ui.logic.Controller;
+import io.ui.logic.Presenter;
 import io.ui.logic.ViewModel;
+import launch_new_game_use_case.LaunchGameResponseModel;
 
 import javax.swing.*;
 import javax.tools.Tool;
@@ -340,6 +343,7 @@ public class ViewFinal extends JFrame{
 
     public void setColors(){
         ArrayList<JButton> lst = List_of_Board_Buttons;
+        Square [][] multi =
         for (int i=0; i<225; i++){
 
         }
