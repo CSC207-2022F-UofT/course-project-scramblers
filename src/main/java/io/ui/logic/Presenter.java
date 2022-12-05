@@ -1,5 +1,6 @@
 package io.ui.logic;
 
+import CoreEntities.Player.Player;
 import Take_Turn.TakeTurnOutputBoundary;
 import Take_Turn.TakeTurnOutputData;
 import launch_new_game_use_case.*;
@@ -62,6 +63,11 @@ public class Presenter implements LaunchGameOutputBoundary, TakeTurnOutputBounda
     public void prepareFailView(String csv_file_not_found) {
         assert this.VIEW_MODEL_INTERFACE != null;
         this.VIEW_MODEL_INTERFACE.setMessageText(csv_file_not_found);
+    }
+
+    @Override
+    public void winning(String winningPlayer) {
+        // show that a certain player win the game either for run out of tiles (in bag) or reach a certain score
     }
 
     @Override
