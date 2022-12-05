@@ -23,7 +23,8 @@ public class Main {
         View view = new View();
         ViewModel viewModel = new ViewModel(null);
         viewModel.addObserver(view);
-        // Resolve issue with p1 and p2
+        // Pass in an instance of view to view model for observer
+        // viewModel = new ViewModel(null, view);
 
         Presenter p = new Presenter(viewModel);
 
