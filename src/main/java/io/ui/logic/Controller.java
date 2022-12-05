@@ -29,6 +29,7 @@ public class Controller {
     }
 
     public void reloadGame(){
+        //We definelty need the file path as a string passed on as an argument in this method.
         RELOAD_GAME_REF.reloadGame();
     }
 
