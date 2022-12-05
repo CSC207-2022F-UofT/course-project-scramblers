@@ -18,11 +18,11 @@ class DictionaryDataReaderGatewayTest {
     
 
 
-    @Test
-    void checkSizeDictionaryFile() throws FileNotFoundException {
-
-        ArrayList<String> dictionaryFile = testDict.getDictionaryFile();
-        assert dictionaryFile.size() == 178691;
-    }
+//    @Test
+//    void checkSizeDictionaryFile() throws FileNotFoundException {
+//
+//        ArrayList<String> dictionaryFile = testDict.getDictionaryFile();
+//        assert dictionaryFile.size() == 178691;
+//    }
 
 }

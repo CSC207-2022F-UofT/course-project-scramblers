@@ -1,5 +1,6 @@
 package core_entities.game_parts;
 
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -27,7 +28,7 @@ import java.util.*;
 
 
 
-public class Dictionary {
+public class Dictionary implements Serializable {
     private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary;
 
     public Dictionary(ArrayList<String> words) {

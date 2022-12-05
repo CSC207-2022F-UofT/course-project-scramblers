@@ -18,7 +18,7 @@ public class boardChecker {
         // Vertical word placement
         if (c1.getXCoordinate() == c2.getXCoordinate()){
             for (int i = c1.getYCoordinate(); i <= c2.getYCoordinate(); i++){
-                if (board.getGrid()[c1.getXCoordinate()][i].getTile() != null){
+                if (board.getGrid()[c1.getXCoordinate()][i].getTile().getLetter() != ' '){
                     if (word.charAt(i) != board.getGrid()[c1.getXCoordinate()][i].getTile().getLetter()){
                         return false;
                     }
@@ -28,7 +28,7 @@ public class boardChecker {
         // Horizontal word placement
         else {
             for (int j = c1.getXCoordinate(); j <= c2.getXCoordinate(); j++){
-                if (board.getGrid()[j][c1.getYCoordinate()].getTile() != null){
+                if (board.getGrid()[j][c1.getYCoordinate()].getTile().getLetter() != ' '){
                     if (word.charAt(j) != board.getGrid()[j][c1.getYCoordinate()].getTile().getLetter()){
                         return false;
                     }
