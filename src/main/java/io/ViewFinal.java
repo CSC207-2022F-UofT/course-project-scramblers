@@ -4,7 +4,11 @@ import core_entities.game_parts.Board;
 import io.ui.logic.Controller;
 
 import javax.swing.*;
+import javax.tools.Tool;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +35,10 @@ public class ViewFinal extends JFrame implements Observer {
     private JButton NEW;
     private ArrayList List_of_Board_Buttons;
     private ArrayList List_of_Letter_Rack_Buttons;
-    private JTextField coordinates;
-    private JLabel coordinates_instructions;
+    private JTextField coordinates_x;
+    private JTextField coordinates_y;
+    private JLabel coordinates_instructions_x;
+    private JLabel coordinates_instructions_y;
     private JTextField word;
     private JLabel word_instructions;
     private JButton okButton;
@@ -110,17 +116,29 @@ public class ViewFinal extends JFrame implements Observer {
         List_of_Letter_Rack_Buttons = RackButtons();
 
 
-        //creating the coordinates instructions label
-        coordinates_instructions = new JLabel("THIS IS WHERE THE INSTRUCTIONS GO:");
-        masterPanel2.add(coordinates_instructions);
+        //creating the coordinates_x instructions label
+        coordinates_instructions_x = new JLabel("The board is a 15x15 grid starting with an origin of 0,0 in the top left corner box. Please type in the x coordinate of where you wish to place the word in the textbox below:");
+        masterPanel2.add(coordinates_instructions_x);
 
-        //creating the coordinates textfield
-        coordinates = new JTextField();
-        masterPanel2.add(coordinates);
+
+        //creating the coordinates_x textfield
+        coordinates_x = new JTextField();
+        masterPanel2.add(coordinates_x);
+
+
+        //creating the coordinates_y instructions label
+        coordinates_instructions_y = new JLabel("Please type in the y coordinate of where you wish to place the word in the textbox below:");
+        masterPanel2.add(coordinates_instructions_y);
+
+
+        //creating the coordinates_y textfield
+        coordinates_y = new JTextField();
+        masterPanel2.add(coordinates_y);
+
 
 
         //creating the word instructions JLabel
-        word_instructions = new JLabel("this is where the word goes:");
+        word_instructions = new JLabel("Please type in word using the letters from the letter rack in the top right corner. Do not use any letters more than once unless you have more than one tile of that specific letter (DO NOT TYPE IN NUMBERS OR ANY SPECIAL CHARACTERS):");
         masterPanel2.add(word_instructions);
 
         //creating the word textfield
@@ -133,7 +151,7 @@ public class ViewFinal extends JFrame implements Observer {
 
         //creating error message fields
         error_message = new JLabel("If there is an error message, it will show up below:");
-        error_message_field = new JLabel("POTENTIAL ERROR MESSAGE");
+        error_message_field = new JLabel("");
         masterPanel2.add(error_message);
         masterPanel2.add(error_message_field);
 
@@ -150,6 +168,44 @@ public class ViewFinal extends JFrame implements Observer {
 
         superMasterPanel.add(masterPanel);
         superMasterPanel.add(masterPanel2);
+
+        //setting up the buttons' actionListeners
+        QUIT.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+
+            }
+        });
+
+
+        LOAD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String path = csvFilePathField.getText();
+
+                controller.reloadGame(/*String path*/);
+            }
+        });
+
+
+        NEW.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.launchTheGame(/*String ""*/);
+            }
+        });
+
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String text = word.getText();
+                text = text.toLowerCase().strip();
+                String x = getCoordinates_x();
+                String y = getCoordinates_y();
+                controller.placeWordExecute(text, x, y);
+            }
+        });
 
         //adding panel to frame
         frame = new JFrame("Scrabble");
@@ -226,11 +282,11 @@ public class ViewFinal extends JFrame implements Observer {
 
 
 
-    public ArrayList getList_of_Letter_Rack_Buttons() {
-        return List_of_Letter_Rack_Buttons;
+    public String getCoordinates_x() {
+        return coordinates_x.getText();
     }
 
-    public ArrayList getList_of_Board_Buttons() {
-        return List_of_Board_Buttons;
+    public String getCoordinates_y() {
+        return coordinates_y.getText();
     }
 }
