@@ -32,11 +32,9 @@ public class Controller {
         RELOAD_GAME_REF.reloadGame();
     }
 
-    public void placeWordExecute(String inputWord){
-        if(isOnlyAlphabetString(inputWord)){
-            int x = 0; //place hold
-            //PLACE_WORD_INPUT_REF.placeWordRefill();
-        }
+    public void placeWordExecute(String inputWord, String x_coordinate, String y_coordinate) {
+
+        //PLACE_WORD_INPUT_REF.placeWordRefill();
 
     }
 }
