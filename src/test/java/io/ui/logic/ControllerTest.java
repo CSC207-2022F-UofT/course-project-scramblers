@@ -12,7 +12,7 @@ class ControllerTest {
         result = false;
         controller_reference = new Controller(null, null, null){
             @Override
-            public void launchTheGame(){
+            public void launchTheGame(String player1Name, String player2Name){
                 result = true;
             }
 
@@ -22,7 +22,7 @@ class ControllerTest {
             }
 
             @Override
-            public void placeWordExecute(String inputWord, String x_coordinate, String y_coordinate){
+            public void executeTurn(String inputWord, String startX, String startY){
                 result = true;
             }
         };
@@ -30,7 +30,7 @@ class ControllerTest {
 
     @Test
     public void launchGameMethod(){
-        controller_reference.launchTheGame();
+        controller_reference.launchTheGame("", "");
         assert result;
     }
 
@@ -41,8 +41,8 @@ class ControllerTest {
     }
 
     @Test
-    public void placeWordExecute(){
-        controller_reference.placeWordExecute("abc", "1", "0");
+    public void executeTurn(){
+        controller_reference.executeTurn("abc", "1", "0");
         assert result;
     }
 
