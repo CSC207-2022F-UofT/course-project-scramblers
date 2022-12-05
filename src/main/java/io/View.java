@@ -4,8 +4,7 @@ import io.ui.logic.Controller;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 public class View extends JDialog implements Observer {
     private JPanel contentPane = new JPanel();
@@ -73,9 +72,17 @@ public class View extends JDialog implements Observer {
     }
 
     public static void main(String[] args) {
-        View dialog = new View();
-        dialog.pack();
-        dialog.setVisible(true);
+        //View dialog = new View();
+        //dialog.pack();
+        //dialog.setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new View().setVisible(true);
+            }
+        });
         System.exit(0);
+
+
+
     }
 }
