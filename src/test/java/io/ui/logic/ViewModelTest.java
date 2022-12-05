@@ -11,8 +11,6 @@ import org.junit.jupiter.api.*;
 import java.util.Arrays;
 import java.util.Random;
 
-import java.util.Objects;
-
 public class ViewModelTest {
 
     char[] p1LetterRack;
@@ -50,7 +48,7 @@ public class ViewModelTest {
             }
 
             @Override
-            public void updateLetterRacks() {
+            public void updateDisplayLetterRack() {
                 p1LetterRack = p1.getRack().toCharArray();
                 p2LetterRack = p2.getRack().toCharArray();
             }

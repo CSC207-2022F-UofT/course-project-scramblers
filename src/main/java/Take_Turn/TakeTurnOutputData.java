@@ -8,6 +8,23 @@ public class TakeTurnOutputData {
     String wordplaced;
     LetterRack rack;
     Coordinate start;
+
+    public String getWordplaced() {
+        return wordplaced;
+    }
+
+    public LetterRack getRack() {
+        return rack;
+    }
+
+    public Coordinate getStart() {
+        return start;
+    }
+
+    public Coordinate getEnd() {
+        return end;
+    }
+
     Coordinate end;
 
     public TakeTurnOutputData(String wordplaced, LetterRack rack, Coordinate start, Coordinate end){
