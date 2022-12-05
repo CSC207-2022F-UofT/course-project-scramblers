@@ -12,19 +12,29 @@ import java.util.Scanner;
  * This is a gateway that accesses a resource file needed to create the Dictionary.
  */
 
-public class DictionaryDataReaderGateway {
+public class DictionaryDataReaderGateway implements CreateDictionaryDataAccessObject {
 
     protected ArrayList<String> dictionaryFile;
 
     public DictionaryDataReaderGateway() throws FileNotFoundException {
-        this.dictionaryFile = getFileAsList();
+        this.dictionaryFile = getFileAsList("src/main/java/default_reference_values/scrabble_dictionary.txt");
+    }
+
+    public DictionaryDataReaderGateway(String fileLocation) throws FileNotFoundException {
+        this.dictionaryFile = getFileAsList(fileLocation);
+    }
+
+
+
+    protected ArrayList<String> getFileAsList(String fileLocation) throws FileNotFoundException {
+
+
+        return getStrings(fileLocation);
     }
 
     @NotNull
-    protected ArrayList<String> getFileAsList() throws FileNotFoundException {
-
-        String dictFile = "src/main/java/default_reference_values/scrabble_dictionary.txt";
-        Scanner s = new Scanner(new File(dictFile));
+    private ArrayList<String> getStrings(String fileLocation) throws FileNotFoundException {
+        Scanner s = new Scanner(new File(fileLocation));
         ArrayList<String> list = new ArrayList<>();
         while (s.hasNextLine()) {
             list.add(s.nextLine());
@@ -33,8 +43,8 @@ public class DictionaryDataReaderGateway {
         return list;
     }
 
-    public ArrayList<String> getDictionaryFile() throws FileNotFoundException {
-        return getFileAsList();
+    public ArrayList<String> getDictionaryFile() {
+        return dictionaryFile;
 
 
     }
