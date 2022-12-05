@@ -341,12 +341,11 @@ public class ViewFinal extends JFrame{
         error_message_field.setText(err);
     }
 
-    public void setColors(){
-        ArrayList<JButton> lst = List_of_Board_Buttons;
-        Square [][] multi =
-        for (int i=0; i<225; i++){
-
-        }
-    }
+//    public void setColors(){
+//        ArrayList<JButton> lst = List_of_Board_Buttons;
+//        for (int i=0; i<225; i++){
+//
+//        }
+//    }
 
 }
