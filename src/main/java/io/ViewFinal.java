@@ -30,7 +30,7 @@ public class ViewFinal extends JFrame {
     private JButton LOAD;
     private JButton NEW;
     private ArrayList<JButton> List_of_Board_Buttons;
-    private ArrayList List_of_Letter_Rack_Buttons;
+    private ArrayList<Object> List_of_Letter_Rack_Buttons;
     private JTextField coordinates_x;
     private JTextField coordinates_y;
     private JLabel coordinates_instructions_x;
@@ -274,10 +274,44 @@ public class ViewFinal extends JFrame {
             }
         }
     }
+    public void updateColors(String [][] b) {
+        int pos = 0;
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                setColor(List_of_Board_Buttons.get(pos), b[i][j]);
+                pos += 1;
+            }
+        }
+    }
+
+    private void setColor(JButton button, String s) {
+        switch (s) {
+            case "W3":
+                button.setBackground(Color.red);
+                button.setOpaque(true);
+                break;
+            case "W2":
+                button.setBackground(Color.pink);
+                button.setOpaque(true);
+                break;
+            case "L2":
+                button.setBackground(Color.cyan);
+                button.setOpaque(true);
+                break;
+            case "L3":
+                button.setBackground(Color.blue);
+                button.setOpaque(true);
+                break;
+            default:
+                button.setBackground(Color.gray);
+                button.setOpaque(true);
+                break;
+        }
+    }
 
     public ArrayList ScrabbleBoard() {
 
-        ArrayList button_list = new ArrayList();
+        ArrayList<JButton> button_list = new ArrayList<>();
 
         int start_point_x = 450;
         int start_point_y = 100;
@@ -289,8 +323,6 @@ public class ViewFinal extends JFrame {
             for (int j = 0; j < 15; j++) {
                 JButton button = new JButton(" ");
                 button.setSize(5, 5);
-                button.setAlignmentX(position_i);
-                button.setAlignmentY(position_j);
                 BoardPanel.add(button);
                 button_list.add(button);
 
