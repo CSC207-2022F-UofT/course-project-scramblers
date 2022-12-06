@@ -20,6 +20,4 @@ public interface PresenterViewModelInterface {
      * Update the LetterRack due to a change
      */
     void updateDisplayLetterRack();
-
-    void setErrorText(String inputErrorString);
 }
