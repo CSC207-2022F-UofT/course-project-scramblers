@@ -1,9 +1,9 @@
 package io.ui.logic;
 
 import core_entities.game_parts.GameState;
-import io.*;
+import io.ViewFinal;
 
-public class ViewModel implements PresenterViewModelInterface {
+public class ViewModel {
     /**
      * Implements observer and observable design pattern to allow different UIs to be used but the data needed staying,
      * mostly, unchanged.
@@ -12,45 +12,40 @@ public class ViewModel implements PresenterViewModelInterface {
     private String [][] boardRepresentation;
     private char[] displayRack;
     private final ViewFinal VIEW_FINAL_REF;
-    private String errorText;
 
     /**
      * Constructor for the view model
      * @param input2DStringArray the respresentation of the game board
      */
-    public ViewModel(String [][] input2DStringArray, ViewFinal inputView){
+    public ViewModel(String [][] input2DStringArray, ViewFinal inputViewFinal){
 
         this.outputText = "";
-        this.errorText = "";
         this.boardRepresentation = input2DStringArray;
         this.displayRack = null;
-        this.VIEW_FINAL_REF = inputView;
+        this.VIEW_FINAL_REF = inputViewFinal;
 
     }
 
-    @Override
-    public void setErrorText(String inputErrorString){
-        this.errorText = inputErrorString;
-    }
-
-    @Override
     public void setMessageText(String messageText) {
         this.outputText = messageText;
+        VIEW_FINAL_REF.setError_message_field(this.outputText);
     }
 
-    @Override
+
     public void setBoard(String[][] newBoard) {
         this.boardRepresentation = newBoard;
+        VIEW_FINAL_REF.updateBoard(this.boardRepresentation);
     }
 
-    @Override
     public void setBoard(char[][] newBoard){
         this.boardRepresentation = convertCharToStringArrays(newBoard);
+        VIEW_FINAL_REF.updateBoard(this.boardRepresentation);
     }
 
-    @Override
     public void updateDisplayLetterRack(){
+        assert GameState.getCurrentPlayer() != null;
         this.displayRack = GameState.getCurrentPlayer().getRack().toCharArray();
+        VIEW_FINAL_REF.updateRack(this.displayRack);
     }
 
     /**

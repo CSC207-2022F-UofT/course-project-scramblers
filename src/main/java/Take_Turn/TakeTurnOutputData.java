@@ -9,7 +9,7 @@ public class TakeTurnOutputData {
     LetterRack rack;
     Coordinate start;
 
-    public String getWordplaced() {
+    public String getWordPlaced() {
         return wordplaced;
     }
 
