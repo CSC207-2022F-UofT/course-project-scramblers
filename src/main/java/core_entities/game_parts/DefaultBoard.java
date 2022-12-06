@@ -37,10 +37,10 @@ public class DefaultBoard implements Serializable, Board{
         int initialYCoordinate = c1.getYCoordinate();
         for (int i = 0; i < tileList.length; i++) {
             if (horizontal) {
-                this.grid[initialXCoordinate + i][initialYCoordinate].setTile(tileList[i]);
+                this.grid[initialXCoordinate][initialYCoordinate + i].setTile(tileList[i]);
             }
             else {
-                this.grid[initialXCoordinate][initialYCoordinate + i].setTile(tileList[i]);
+                this.grid[initialXCoordinate + i][initialYCoordinate].setTile(tileList[i]);
             }
         }
     }
@@ -66,7 +66,7 @@ public class DefaultBoard implements Serializable, Board{
         char [][] letterGrid = new char [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
         for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
             for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
-                letterGrid[i][j] = this.grid[i][j].getTile().getLetter();
+                letterGrid[i][j] = this.grid[j][i].getTile().getLetter();
             }
         }
         return letterGrid;
