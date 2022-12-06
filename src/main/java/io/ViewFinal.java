@@ -259,16 +259,6 @@ public class ViewFinal extends JFrame{
         }
     }
 
-
-
-
-
-    public static void main(String[] args) {
-
-        ViewFinal view = new ViewFinal(null);
-
-    }
-
     public ArrayList ScrabbleBoard(){
 
         ArrayList button_list = new ArrayList();
@@ -339,6 +329,10 @@ public class ViewFinal extends JFrame{
 
     public void setError_message_field(String err){
         error_message_field.setText(err);
+    }
+
+    public void setController(Controller c) {
+        this.controller = c;
     }
 
 //    public void setColors(){

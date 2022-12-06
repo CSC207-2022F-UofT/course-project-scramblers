@@ -1,51 +1,58 @@
 package io.ui.logic;
 
-import launch_new_game_use_case.LaunchGameInputBoundary;
-import launch_new_game_use_case.LaunchGameRequestModel;
-import place_word_refill_user_story.PlaceWordInputBoundary;
-import place_word_refill_user_story.PlaceWordRefillRequestModel;
+import core_entities.game_parts.Coordinate;
+import core_entities.game_parts.GameState;
+import launch_new_game_use_case.*;
+import Take_Turn.*;
 import use_cases.reload_game_use_case.*;
-
-import java.util.regex.Pattern;
 
 public class Controller {
     //Should reference every input boundary made
     private final LaunchGameInputBoundary LAUNCH_GAME_REF;
     private final ReloadGameInputBoundary RELOAD_GAME_REF;
-    private final PlaceWordInputBoundary PLACE_WORD_INPUT_REF;
-
-    //constructor that's ONLY going to be used for testing.
-    Controller(){
-        this.LAUNCH_GAME_REF = null;
-        this.RELOAD_GAME_REF = null;
-        this.PLACE_WORD_INPUT_REF = null;
-    }
+    private final TakeTrunInputBoundary TAKE_TURN_INPUT_REF;
 
 
     //Constructor that's going to be used.
     public Controller(LaunchGameInputBoundary launchGameInput,
-               ReloadGameInputBoundary reloadGameInputBoundary,
-               PlaceWordInputBoundary placeWordInputBoundary){
-        LAUNCH_GAME_REF = launchGameInput;
-        RELOAD_GAME_REF = reloadGameInputBoundary;
-        PLACE_WORD_INPUT_REF = placeWordInputBoundary;
+                      ReloadGameInputBoundary reloadGameInputBoundary,
+                      TakeTrunInputBoundary takeTrunInputBoundary){
+        this.LAUNCH_GAME_REF = launchGameInput;
+        this.RELOAD_GAME_REF = reloadGameInputBoundary;
+        this.TAKE_TURN_INPUT_REF = takeTrunInputBoundary;
     }
-
     public void launchTheGame(){
-        assert LAUNCH_GAME_REF != null;
-        LAUNCH_GAME_REF.createGameState();
+        LAUNCH_GAME_REF.createGameState(new LaunchGameRequestModel("Human Player",
+                "Human Player",
+                "Player 1",
+                "Player 2"));
     }
 
     public void reloadGame(){
-        assert RELOAD_GAME_REF != null;
         RELOAD_GAME_REF.reloadGame();
     }
 
-    public void placeWordExecute(String inputWord){
-        if(isOnlyAlphabetString(inputWord)){
-            int x = 0; //place hold
-            //PLACE_WORD_INPUT_REF.placeWordRefill(new PlaceWordRefillRequestModel());
-        }
+    /**
+     * Take an action given in an input (-1,-1) for exchanging letters and place a word otherwise.
+     * @param inputWord the input word
+     * @param startX the start coordinate
+     * @param startY the end coordinate
+     */
+    public void executeTurn(String inputWord, String startX, String startY) {
+        if(!(startX.contains("[a-zA-Z]") || startY.contains("[a-zA-Z]"))){
+            int startXInt = Integer.parseInt(startX);
+            int startYInt = Integer.parseInt(startY);
+            if(startXInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
+                TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
+                        new Coordinate(startXInt, startYInt),
+                        new Coordinate(startXInt + inputWord.length(), startYInt)));
+            }
+            if(startYInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
+                TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
+                        new Coordinate(startXInt, startYInt),
+                        new Coordinate(startXInt, startYInt + inputWord.length())));
+            }
 
+        }
     }
 }
