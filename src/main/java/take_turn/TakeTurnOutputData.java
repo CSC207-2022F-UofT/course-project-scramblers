@@ -8,6 +8,7 @@ public class TakeTurnOutputData {
     String wordplaced;
     LetterRack rack;
     Coordinate start;
+    int playerScore;
 
     public String getWordPlaced() {
         return wordplaced;
@@ -24,13 +25,17 @@ public class TakeTurnOutputData {
     public Coordinate getEnd() {
         return end;
     }
+    public int getPlayerScore() {
+        return this.playerScore;
+    }
 
     Coordinate end;
 
-    public TakeTurnOutputData(String wordplaced, LetterRack rack, Coordinate start, Coordinate end){
+    public TakeTurnOutputData(String wordplaced, LetterRack rack, Coordinate start, Coordinate end, int score){
         this.wordplaced = wordplaced;
         this.rack = rack;
         this.start = start;
         this.end = end;
+        this.playerScore = score;
     }
 }

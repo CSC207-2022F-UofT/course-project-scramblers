@@ -47,6 +47,11 @@ public class ViewModel implements PresenterViewModelInterface{
         VIEW_FINAL_REF.updateColors(newBoard);
     }
 
+    @Override
+    public void setScore(int score) {
+        this.VIEW_FINAL_REF.setScore_1(Integer.toString(score));
+    }
+
 
     public void updateDisplayLetterRack(char[] inputChar){
         VIEW_FINAL_REF.updateRack(inputChar);

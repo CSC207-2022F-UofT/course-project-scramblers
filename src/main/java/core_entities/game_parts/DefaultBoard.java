@@ -1,6 +1,8 @@
 package core_entities.game_parts;
 
+import javax.sound.midi.Soundbank;
 import java.io.Serializable;
+import java.sql.SQLOutput;
 
 public class DefaultBoard implements Serializable, Board{
     private final Square[][] grid;
@@ -66,7 +68,7 @@ public class DefaultBoard implements Serializable, Board{
         char [][] letterGrid = new char [DEFAULT_BOARD_SIZE][DEFAULT_BOARD_SIZE];
         for (int i = 0; i < DEFAULT_BOARD_SIZE; i++) {
             for (int j = 0; j < DEFAULT_BOARD_SIZE; j++) {
-                letterGrid[i][j] = this.grid[j][i].getTile().getLetter();
+                letterGrid[i][j] = this.grid[i][j].getTile().getLetter();
             }
         }
         return letterGrid;

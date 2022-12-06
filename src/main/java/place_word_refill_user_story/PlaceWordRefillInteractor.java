@@ -48,7 +48,7 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         board.placeTiles(toPlace, requestModel.c1, requestModel.c2);
         GameState.getCurrentPlayer().getRack().refill();
         placeWordRefillOutputBoundary.updateViewModel(new PlaceWordRefillResponseModel(true, requestModel.word,
-                GameState.getCurrentPlayer()));
+                GameState.getCurrentPlayer(), GameState.getCurrentPlayer().getScore()));
         return true;
     }
 }
