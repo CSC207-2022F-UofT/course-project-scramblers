@@ -1,7 +1,6 @@
-package Take_Turn;
+package take_turn;
 
 import CoreEntities.Player.Player;
-import core_entities.game_parts.Bag;
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.GameState;
 import place_word_refill_user_story.PlaceWordInputBoundary;
@@ -15,9 +14,6 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
     private final PlaceWordInputBoundary placeword;
     private final ExchangeLettersInputBoundary exchangeLettersInteractor;
     private final SaveGameInputBoundary saveGame;
-
-    private ExchangeLettersInputBoundary exchangeLettersInteractor;
-
 
     public TakeTurnInteractor(TakeTurnOutputBoundary presenter,
                               PlaceWordInputBoundary placeword,
@@ -55,7 +51,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                 }
 
             } else{
-                presenter.prepareFailView("Letter cannot be exchange, please try again");
+                presenter.prepareFailViewAfterExchangingLetters("Letter cannot be exchange, please try again");
             }
         }
 
@@ -73,7 +69,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
             }
         }
         else {
-            presenter.prepareFailView("The word could not be placed. Please try another word");
+            presenter.prepareFailViewAfterExchangingLetters("The word could not be placed. Please try another word");
         }
     }
 

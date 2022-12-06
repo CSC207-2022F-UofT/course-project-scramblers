@@ -1,8 +1,6 @@
 package io.ui.logic;
 
-import CoreEntities.Player.Player;
-import Take_Turn.TakeTurnOutputBoundary;
-import Take_Turn.TakeTurnOutputData;
+import take_turn.*;
 import core_entities.game_parts.GameState;
 import launch_new_game_use_case.*;
 import place_word_refill_user_story.*;
@@ -16,7 +14,6 @@ public class Presenter implements LaunchGameOutputBoundary,
         PlaceWordRefillOutputBoundary,
         SaveGameOutputBoundary,
         ReloadGameOutputBoundary{
-
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
     /**
@@ -65,7 +62,7 @@ public class Presenter implements LaunchGameOutputBoundary,
     @Override
     public void updateRack(TakeTurnOutputData updateinfo) {
         assert this.VIEW_MODEL_INTERFACE != null;
-        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack();
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(updateinfo.getRack().toCharArray());
         this.VIEW_MODEL_INTERFACE.setMessageText(updateinfo.getWordPlaced()+" has been placed start on square ("
                 +updateinfo.getStart().getXCoordinate()+", "+updateinfo.getStart().getYCoordinate()+").");
     }
@@ -77,12 +74,13 @@ public class Presenter implements LaunchGameOutputBoundary,
     }
 
     @Override
-    public void winning(String winningPlayer) {
-        // show that a certain player win the game either for run out of tiles (in bag) or reach a certain score
+    public void prepareFailViewAfterExchangingLetters(String cannot_exchange){
+        assert  this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.setMessageText(cannot_exchange);
     }
 
     @Override
-    public void updateViewModelAfterExchange() {
-        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack();
+    public void winning(String winningPlayer) {
+        this.VIEW_MODEL_INTERFACE.setMessageText(winningPlayer);
     }
 }

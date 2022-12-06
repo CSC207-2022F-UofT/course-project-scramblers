@@ -1,12 +1,10 @@
-package Take_Turn;
-
-import CoreEntities.Player.Player;
+package take_turn;
 
 public interface TakeTurnOutputBoundary {
 
     void updateRack(TakeTurnOutputData updateinfo);
 
-    void prepareFailView(String cannot_exchange);
+    void prepareFailViewAfterExchangingLetters(String cannot_exchange);
 
     void winning(String winningPlayer);
 }

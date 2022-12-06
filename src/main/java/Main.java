@@ -1,6 +1,6 @@
 import CoreEntities.IO.DictionaryDataReaderGateway;
-import Take_Turn.TakeTrunInputBoundary;
-import Take_Turn.TakeTurnInteractor;
+import take_turn.TakeTrunInputBoundary;
+import take_turn.TakeTurnInteractor;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import default_reference_values.DefaultBoardDataAccessObject;
@@ -24,8 +24,8 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main (String [] args) {
-        ViewFinal view = new ViewFinal(null);
-        ViewModel viewModel = new ViewModel(null);
+        ViewFinal view = new ViewFinal();
+        ViewModel viewModel = new ViewModel(null, view);
         // Pass in an instance of view to view model for observer
 
         Presenter p = new Presenter(viewModel);
@@ -50,7 +50,7 @@ public class Main {
 
         PlaceWordInputBoundary placeWordInteractor = new PlaceWordRefillInteractor(p);
 
-        ExchangeLettersInputBoundary exchangeLettersInteractor = new ExchangeLettersInteractor(p);
+        ExchangeLettersInputBoundary exchangeLettersInteractor = new ExchangeLettersInteractor();
 
         TakeTrunInputBoundary takeTurnInteractor = new TakeTurnInteractor(p, placeWordInteractor, exchangeLettersInteractor, saveGameInteractor);
 
@@ -59,8 +59,5 @@ public class Main {
 
         //Add the controller to the View
         view.setController(c);
-
-        //Set the view to be visible
-        view.setVisible(true);
     }
 }
