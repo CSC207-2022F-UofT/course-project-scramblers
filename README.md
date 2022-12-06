@@ -7,13 +7,18 @@
 ## Explanation of Design Patterns
 
 ### Dependency Injection
-- Heavily used in various entities such as LetterRack and GameState
+- Heavily used in various entities such as:
+  - LetterRack
+  - GameState
+  - Various Use Case Interactors
+  - Controller
 - Main reason for use is to:
   - ensure the same objects are being referenced from different entities
+    - Using aliasing to simulate real such tiles out of a bag that everyone shares
   - If dependent on an interface, then ensure the interfaces can always be used regardless of impletmentation
-- Easily extended and sometimes required depending on entity
-  - Presenters and controllers and often rely on dependency injection
-  - Entities requiring dependency injection are case-by-case
+  - Easily extended and sometimes required depending on entity
+    - Follows Open-Close principle
+    - Off loads work mostly to main which is responsible for instantiation anyways (follows single responsibility principle)
 
 ### Factory 
 - Used in BoardFactory, explained in the BoardFactory Interface
