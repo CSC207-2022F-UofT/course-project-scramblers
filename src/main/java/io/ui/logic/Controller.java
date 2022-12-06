@@ -43,12 +43,17 @@ public class Controller {
         if(!(startX.contains("[a-zA-Z]") || startY.contains("[a-zA-Z]"))){
             int startXInt = Integer.parseInt(startX);
             int startYInt = Integer.parseInt(startY);
-            if(startXInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
+            if(startXInt == -1 && startYInt == -1){
+                TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
+                        new Coordinate(startXInt, startXInt),
+                        new Coordinate(0, 0)));
+            }
+            else if(startXInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
                 TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
                         new Coordinate(startXInt, startYInt),
                         new Coordinate(startXInt + inputWord.length(), startYInt)));
             }
-            if(startYInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
+            else if(startYInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
                 TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
                         new Coordinate(startXInt, startYInt),
                         new Coordinate(startXInt, startYInt + inputWord.length())));
