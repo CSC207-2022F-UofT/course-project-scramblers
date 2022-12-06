@@ -1,5 +1,7 @@
 package Take_Turn;
 
+import CoreEntities.Player.Player;
+import core_entities.game_parts.Bag;
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.GameState;
 import place_word_refill_user_story.PlaceWordInputBoundary;
@@ -15,12 +17,17 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
     private final PlaceWordInputBoundary placeword;
     private SaveGameInputBoundary saveGame;
 
+    private ExchangeLettersInputBoundary exchangeLettersInteractor;
+
 
     public TakeTurnInteractor(TakeTurnOutputBoundary presenter,
                               PlaceWordInputBoundary placeword,
+                              ExchangeLettersInputBoundary exchangeLettersInteractor,
                               SaveGameInputBoundary saveGameInputBoundary) {
         this.presenter = presenter;
         this.placeword = placeword;
+        this.exchangeLettersInteractor = exchangeLettersInteractor;
+        this.saveGame = saveGameInputBoundary;
     }
 
     @Override
@@ -35,26 +42,58 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
         Coordinate exchange = new Coordinate(-1, -1);
         if (inputData.getStart().equals(exchange)){
             // if the start coordinate is (-1, -1) exchange tiles with bag
-            ExchangeLettersInputBoundary b = new ExchangeLettersInteractor();
-            if (b.exchangeLetters(inputData.getWord())) {
+            if (this.exchangeLettersInteractor.exchangeLetters(inputData.getWord())) {
                 TakeTurnOutputData updateinfo1 = new TakeTurnOutputData(inputData.getWord(),
                         GameState.getCurrentPlayer().getRack(), inputData.getStart(), inputData.getEnd());
-                this.presenter.updateRack(updateinfo1);
-                GameState.changeTurn();
-                saveGame.save();
-            }
-            else{
+
+                //check if player win the game if not save the game and change turn
+                if (checkwin()){
+                    return;
+                } else{
+                    this.presenter.updateRack(updateinfo1);
+                    GameState.changeTurn();
+                    saveGame.save();
+                }
+
+            } else{
                 presenter.prepareFailView("Letter cannot be exchange, please try again");
             }
         }
-        // try to place thr word, return true if the word is placed
+
+        // try to place the word, return true if the word is placed
         PlaceWordRefillRequestModel data = new PlaceWordRefillRequestModel(inputData.getWord(),
                 inputData.getStart(), inputData.getEnd());
         boolean a = this.placeword.placeWordRefill(data);
         if (a){
-            //the word is placed, change turn and save the current game state
-            GameState.changeTurn();
-            saveGame.save();
+            // check if player win the game if not save the game and change turn
+            if(checkwin()){
+                return;
+            } else{
+                GameState.changeTurn();;
+                saveGame.save();
+            }
         }
+    }
+
+    private boolean checkwin() {
+        // check if current player reach the target score or the bag is run out of tiles
+        if (GameState.getCurrentPlayer().getScore() >= GameState.getWin()) {
+            this.presenter.winning(GameState.getCurrentPlayer().getName());
+            return true;
+        } else if (GameState.getBag().isEmpty()) {
+            Player p1 = GameState.getP1();
+            Player p2 = GameState.getP2();
+            // check whose score is higher
+            if (p1.getScore() > p2.getScore()) {
+                presenter.winning(p1.getName());
+                return true;
+            } else if (p1.getScore() < p2.getScore()) {
+                presenter.winning(p2.getName());
+                return true;
+            } else {
+                presenter.winning("Even");
+                return true;
+            }
+        } else{return false;}
     }
 }

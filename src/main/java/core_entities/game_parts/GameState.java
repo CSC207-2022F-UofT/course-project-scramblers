@@ -10,6 +10,10 @@ public class GameState {
     private static Board board;
     private static int currentPlayer = 0;
     private static Dictionary dict;
+
+    private static  int win;
+
+    private static Bag bag;
     public static Player getP1() {
         return GameState.p1;
     }
@@ -34,6 +38,13 @@ public class GameState {
     public static void setDictionary(ArrayList<String> dictStrings) {
         GameState.dict = new Dictionary(dictStrings);
     }
+    public static void setWin(int win){
+        GameState.win = win;
+    }
+
+    public static void setBag(Bag bag){
+        GameState.bag = bag;
+    }
     public static Dictionary getDictionary() {
         return GameState.dict;
     }
@@ -56,6 +67,13 @@ public class GameState {
             return GameState.p1;
         }
         return GameState.p2;
+    }
+    public static int getWin(){
+        return GameState.win;
+    }
+
+    public static Bag getBag(){
+        return GameState.bag;
     }
     /**
      *
