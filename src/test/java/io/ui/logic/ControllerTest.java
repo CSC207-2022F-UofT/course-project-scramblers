@@ -22,7 +22,7 @@ class ControllerTest {
             }
 
             @Override
-            public void placeWordExecute(String inputWord){
+            public void placeWordExecute(String inputWord, String x_coordinate, String y_coordinate){
                 result = true;
             }
         };
@@ -42,7 +42,7 @@ class ControllerTest {
 
     @Test
     public void placeWordExecute(){
-        controller_reference.placeWordExecute("abc");
+        controller_reference.placeWordExecute("abc", "1", "0");
         assert result;
     }
 
