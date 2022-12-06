@@ -44,7 +44,18 @@
   - ...
 
 ### Application Business Rules (Use Cases)
-- ...
+- Take Turn
+  - ...
+- Launch New Game
+  - ...
+- Place Word Refill
+  - Checks
+- Exchange Letters
+  - ...
+- Reload Game
+  - ...
+- Save Game
+  - ...
 
 ### Interface Adapters
 - ...
@@ -52,6 +63,30 @@
 ### Frameworks and Drivers
 - ...
 
+# Addressed Feedback
+## Functionality
+  - Start working on the Main to make something happen
+  - Add the turn process
+## Pull Requests
+  - More detail in describing what the pull requests do
+  - More significant pull requests from those who haven’t 
+## Code Organization
+  - Organize into better packages (unanimous convention)
+## Testing
+  - __% Coverage
+  - Coverage Breakdown:
+    - ...
+## Code Style
+  - Added significant JavaDoc documentation
+## GitHub Features
+  - Keep up to date on GitHub Issues (create when working on a new feature)
+  - Add current tasks to the projects feature
+## Design Patterns
+  - Utilized Factory, Facade, Dependency Injection, ...
+## Clean Architecture
+  - Generally well done, connect view and data persistence with use case layer to complete the flow of control 
+## SOLID
+  - Also well done, continue following SOLID
 
 ## How to run the code:
 - ...
