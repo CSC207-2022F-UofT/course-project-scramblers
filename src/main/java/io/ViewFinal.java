@@ -47,6 +47,7 @@ public class ViewFinal extends JFrame {
     private JLabel score_1;
     private JLabel end_coordinates_instructions_x;
     private JLabel end_coordinates_instructions_y;
+
     private JTextField end_coordinates_x;
     private JTextField end_coordinates_y;
 
@@ -243,9 +244,17 @@ public class ViewFinal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String text = word.getText();
                 text = text.toLowerCase().strip();
-                String x = getCoordinates_x();
-                String y = getCoordinates_y();
-                //controller.placeWordExecute(text, x, y);
+                String startX = getCoordinates_x();
+                String startY = getCoordinates_y();
+                String endX = getEnd_coordinates_x();
+                String endY = getEnd_coordinates_y();
+                controller.executeTurn(text, startX, startY, endX, endY);
+            }
+        });
+        rerackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.executeTurn("", "-1","-1", "0", "0");
             }
         });
     }
@@ -330,6 +339,14 @@ public class ViewFinal extends JFrame {
 
     public void setError_message_field(String err) {
         error_message_field.setText(err);
+    }
+
+    public String getEnd_coordinates_x() {
+        return end_coordinates_x.getText();
+    }
+
+    public String getEnd_coordinates_y() {
+        return end_coordinates_y.getText();
     }
 }
 
