@@ -68,6 +68,11 @@ public class Presenter implements LaunchGameOutputBoundary,
                 +updateinfo.getStart().getXCoordinate()+", "+updateinfo.getStart().getYCoordinate()+").");
     }
 
+    public void updateOnlyRack(TakeTurnOutputData updateInfo) {
+        assert this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(updateInfo.getRack().toCharArray());
+    }
+
     @Override
     public void prepareFailView(String csv_file_not_found) {
         assert this.VIEW_MODEL_INTERFACE != null;
