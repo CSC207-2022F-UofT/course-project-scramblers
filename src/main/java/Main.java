@@ -1,13 +1,17 @@
 import CoreEntities.IO.DictionaryDataReaderGateway;
+import Take_Turn.TakeTrunInputBoundary;
+import Take_Turn.TakeTurnInteractor;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import default_reference_values.DefaultBoardDataAccessObject;
-import io.View;
+import io.ViewFinal;
 import io.ui.logic.*;
 import launch_new_game_use_case.*;
 import place_word_refill_user_story.PlaceWordInputBoundary;
 import place_word_refill_user_story.PlaceWordRefillInteractor;
 import storage.StorageManager;
+import use_cases.exchange_rack_letters.ExchangeLettersInputBoundary;
+import use_cases.exchange_rack_letters.ExchangeLettersInteractor;
 import use_cases.reload_game_use_case.ReloadGameDsGateway;
 import use_cases.reload_game_use_case.ReloadGameInputBoundary;
 import use_cases.reload_game_use_case.ReloadGameInteractor;
@@ -20,11 +24,9 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main (String [] args) {
-        View view = new View();
+        ViewFinal view = new ViewFinal(null);
         ViewModel viewModel = new ViewModel(null);
-        viewModel.addObserver(view);
         // Pass in an instance of view to view model for observer
-        // viewModel = new ViewModel(null, view);
 
         Presenter p = new Presenter(viewModel);
 
@@ -48,7 +50,11 @@ public class Main {
 
         PlaceWordInputBoundary placeWordInteractor = new PlaceWordRefillInteractor(p);
 
-        Controller c = new Controller(launchGameInteractor, reloadGameInteractor, placeWordInteractor);
+        ExchangeLettersInputBoundary exchangeLettersInteractor = new ExchangeLettersInteractor(p);
+
+        TakeTrunInputBoundary takeTurnInteractor = new TakeTurnInteractor(p, placeWordInteractor, exchangeLettersInteractor, saveGameInteractor);
+
+        Controller c = new Controller(launchGameInteractor, reloadGameInteractor, takeTurnInteractor);
         // Add saveGameInteractor to Controller
 
         //Add the controller to the View
