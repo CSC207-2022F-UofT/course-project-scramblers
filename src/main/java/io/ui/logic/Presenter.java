@@ -6,17 +6,16 @@ import Take_Turn.TakeTurnOutputData;
 import core_entities.game_parts.GameState;
 import launch_new_game_use_case.*;
 import place_word_refill_user_story.*;
-import use_cases.exchange_rack_letters.ExchangeLettersOutputBoundary;
 import use_cases.reload_game_use_case.ReloadGameOutputBoundary;
 import use_cases.reload_game_use_case.ReloadGameResponseModel;
 import use_cases.save_game_use_case.SaveGameOutputBoundary;
 
+//basis for most the dependency injections as this allows us to consolidate similar tasks and functions
 public class Presenter implements LaunchGameOutputBoundary,
         TakeTurnOutputBoundary,
         PlaceWordRefillOutputBoundary,
         SaveGameOutputBoundary,
-        ReloadGameOutputBoundary,
-        ExchangeLettersOutputBoundary{
+        ReloadGameOutputBoundary{
 
     private final PresenterViewModelInterface VIEW_MODEL_INTERFACE;
 
@@ -67,7 +66,7 @@ public class Presenter implements LaunchGameOutputBoundary,
     public void updateRack(TakeTurnOutputData updateinfo) {
         assert this.VIEW_MODEL_INTERFACE != null;
         this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack();
-        this.VIEW_MODEL_INTERFACE.setMessageText(updateinfo.getWordplaced()+" has been placed start on square ("
+        this.VIEW_MODEL_INTERFACE.setMessageText(updateinfo.getWordPlaced()+" has been placed start on square ("
                 +updateinfo.getStart().getXCoordinate()+", "+updateinfo.getStart().getYCoordinate()+").");
     }
 
