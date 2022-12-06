@@ -39,26 +39,20 @@ public class Controller {
      * @param startX the start coordinate
      * @param startY the end coordinate
      */
-    public void executeTurn(String inputWord, String startX, String startY) {
+    public void executeTurn(String inputWord, String startX, String startY, String endX, String endY) {
         if(!(startX.contains("[a-zA-Z]") || startY.contains("[a-zA-Z]"))){
             int startXInt = Integer.parseInt(startX);
             int startYInt = Integer.parseInt(startY);
+            int endXInt = Integer.parseInt(endX);
+            int endYInt = Integer.parseInt(endY);
             if(startXInt == -1 && startYInt == -1){
                 TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
-                        new Coordinate(startXInt, startXInt),
-                        new Coordinate(0, 0)));
-            }
-            else if(startXInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
-                TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
                         new Coordinate(startXInt, startYInt),
-                        new Coordinate(startXInt + inputWord.length(), startYInt)));
+                        new Coordinate(endXInt, endYInt)));
             }
-            else if(startYInt + inputWord.length() < GameState.getBoard().getLetterGrid().length){
-                TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
-                        new Coordinate(startXInt, startYInt),
-                        new Coordinate(startXInt, startYInt + inputWord.length())));
-            }
-
+            TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
+                    new Coordinate(startXInt, startYInt),
+                    new Coordinate(startXInt + inputWord.length(), startYInt)));
         }
     }
 }
