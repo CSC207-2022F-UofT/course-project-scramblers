@@ -1,4 +1,4 @@
-package Take_Turn;
+package take_turn;
 
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.LetterRack;

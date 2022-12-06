@@ -1,4 +1,4 @@
-package Take_Turn;
+package take_turn;
 
 public interface TakeTrunInputBoundary {
 

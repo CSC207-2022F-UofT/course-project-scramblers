@@ -3,7 +3,7 @@ package io.ui.logic;
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.GameState;
 import launch_new_game_use_case.*;
-import Take_Turn.*;
+import take_turn.*;
 import use_cases.reload_game_use_case.*;
 
 public class Controller {

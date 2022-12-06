@@ -1,9 +1,8 @@
 package io.ui.logic;
 
-import core_entities.game_parts.GameState;
 import io.ViewFinal;
 
-public class ViewModel {
+public class ViewModel implements PresenterViewModelInterface{
     /**
      * Implements observer and observable design pattern to allow different UIs to be used but the data needed staying,
      * mostly, unchanged.
@@ -42,10 +41,9 @@ public class ViewModel {
         VIEW_FINAL_REF.updateBoard(this.boardRepresentation);
     }
 
-    public void updateDisplayLetterRack(){
-        assert GameState.getCurrentPlayer() != null;
-        this.displayRack = GameState.getCurrentPlayer().getRack().toCharArray();
-        VIEW_FINAL_REF.updateRack(this.displayRack);
+
+    public void updateDisplayLetterRack(char[] inputChar){
+        VIEW_FINAL_REF.updateRack(inputChar);
     }
 
     /**

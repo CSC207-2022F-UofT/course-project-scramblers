@@ -48,9 +48,8 @@ public class ViewModelTest {
             }
 
             @Override
-            public void updateDisplayLetterRack() {
-                p1LetterRack = p1.getRack().toCharArray();
-                p2LetterRack = p2.getRack().toCharArray();
+            public void updateDisplayLetterRack(char[] inputLetterRack) {
+
             }
         };
         testText = "";

@@ -51,9 +51,7 @@ public class ViewFinal extends JFrame {
     private JTextField end_coordinates_y;
 
 
-    public ViewFinal(Controller ctrlor) {
-        //creating a controller instance
-        controller = ctrlor;
+    public ViewFinal() {
 
         //creating the supermaster panel
         superMasterPanel = new JPanel();
@@ -189,6 +187,30 @@ public class ViewFinal extends JFrame {
         superMasterPanel.add(masterPanel);
         superMasterPanel.add(masterPanel2);
 
+        //adding panel to frame
+        frame = new JFrame("Scrabble");
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.getContentPane().add(superMasterPanel);
+
+        frame.setVisible(true);
+    }
+
+
+    public void updateScore1(String score) {
+        setScore_1(score);
+    }
+
+    public void updateRack(char[] inputRack) {
+        for (int i = 0; i < inputRack.length; i++) {
+            JButton temp = (JButton) List_of_Letter_Rack_Buttons.get(i);
+            temp.setText(String.valueOf(inputRack));
+        }
+
+    }
+
+    public void setController(Controller c){
+        this.controller = c;
+
         //setting up the buttons' actionListeners
         QUIT.addActionListener(new ActionListener() {
             @Override
@@ -226,28 +248,6 @@ public class ViewFinal extends JFrame {
                 //controller.placeWordExecute(text, x, y);
             }
         });
-
-        //adding panel to frame
-        frame = new JFrame("Scrabble");
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.getContentPane().add(superMasterPanel);
-        frame.setVisible(true);
-
-
-    }
-
-
-    public void updateScore1(String score) {
-        setScore_1(score);
-    }
-
-    public void updateRack(LetterRack rack) {
-        for (int i = 0; i < 7; i++) {
-            JButton temp = (JButton) List_of_Letter_Rack_Buttons.get(i);
-            char temp_letter = rack.getLETTERS()[i].getLetter();
-            temp.setText(String.valueOf(temp_letter));
-        }
-
     }
 
     public void updateErrorMsg(String err) {
@@ -255,22 +255,15 @@ public class ViewFinal extends JFrame {
     }
 
 
-    public void updateBoard(char[][] b) {
+    public void updateBoard(String[][] b) {
         ArrayList<JButton> lst = List_of_Board_Buttons;
         int pos = 0;
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
-                lst.get(pos).setText(String.valueOf(b[j][i]));
+                lst.get(pos).setText(b[j][i]);
                 pos += 1;
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-
-        ViewFinal view = new ViewFinal(null);
-
     }
 
     public ArrayList ScrabbleBoard() {

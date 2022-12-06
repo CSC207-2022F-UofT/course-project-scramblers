@@ -1,5 +1,7 @@
 package io.ui.logic;
 
+import core_entities.game_parts.LetterRack;
+
 public interface PresenterViewModelInterface {
 
     /**
@@ -19,5 +21,5 @@ public interface PresenterViewModelInterface {
     /**
      * Update the LetterRack due to a change
      */
-    void updateDisplayLetterRack();
+    void updateDisplayLetterRack(char[] inputRack);
 }
