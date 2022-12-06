@@ -34,8 +34,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
      */
     @Override
     public void taketurn(TakeTrunInputData inputData) {
-        Coordinate exchange = new Coordinate(-1, -1);
-        if (inputData.getStart().equals(exchange)){
+        if (inputData.getStart().getXCoordinate() == -1 && inputData.getStart().getYCoordinate() == -1){
             // if the start coordinate is (-1, -1) exchange tiles with bag
             if (this.exchangeLettersInteractor.exchangeLetters(inputData.getWord())) {
                 TakeTurnOutputData updateinfo1 = new TakeTurnOutputData(inputData.getWord(),
@@ -48,6 +47,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                     this.presenter.updateRack(updateinfo1);
                     GameState.changeTurn();
                     saveGame.save();
+                    return;
                 }
 
             } else{

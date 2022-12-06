@@ -45,14 +45,9 @@ public class Controller {
             int startYInt = Integer.parseInt(startY);
             int endXInt = Integer.parseInt(endX);
             int endYInt = Integer.parseInt(endY);
-            if(startXInt == -1 && startYInt == -1){
-                TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
-                        new Coordinate(startXInt, startYInt),
-                        new Coordinate(endXInt, endYInt)));
-            }
             TAKE_TURN_INPUT_REF.taketurn(new TakeTrunInputData(inputWord,
                     new Coordinate(startXInt, startYInt),
-                    new Coordinate(startXInt + inputWord.length(), startYInt)));
+                    new Coordinate(endXInt, endYInt)));
         }
     }
 }

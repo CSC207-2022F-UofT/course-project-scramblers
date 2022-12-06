@@ -4,6 +4,7 @@ import core_entities.game_parts.LetterRack;
 import io.ui.logic.Controller;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +31,7 @@ public class ViewFinal extends JFrame {
     private JButton LOAD;
     private JButton NEW;
     private ArrayList<JButton> List_of_Board_Buttons;
-    private ArrayList<Object> List_of_Letter_Rack_Buttons;
+    private ArrayList<JButton> List_of_Letter_Rack_Buttons;
     private JTextField coordinates_x;
     private JTextField coordinates_y;
     private JLabel coordinates_instructions_x;
@@ -254,7 +255,11 @@ public class ViewFinal extends JFrame {
         rerackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.executeTurn("", "-1","-1", "0", "0");
+                String s = new String ();
+                for (int i = 0; i < 7; i++) {
+                    s = s.concat(List_of_Letter_Rack_Buttons.get(i).getText());
+                }
+                controller.executeTurn(s, "-1","-1", "0", "0");
             }
         });
     }
