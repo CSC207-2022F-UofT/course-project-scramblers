@@ -1,53 +1,63 @@
-import CoreEntities.IO.*;
+import CoreEntities.IO.DictionaryDataReaderGateway;
+import take_turn.TakeTrunInputBoundary;
+import take_turn.TakeTurnInteractor;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
 import default_reference_values.DefaultBoardDataAccessObject;
-import io.ui.logic.Presenter;
-import launch_new_game_use_case.LaunchGameDataAccessObject;
-import launch_new_game_use_case.LaunchGameOutputBoundary;
-import launch_new_game_use_case.LaunchNewGameInteractor;
+import io.ViewFinal;
+import io.ui.logic.*;
+import launch_new_game_use_case.*;
+import place_word_refill_user_story.PlaceWordInputBoundary;
+import place_word_refill_user_story.PlaceWordRefillInteractor;
+import storage.StorageManager;
+import use_cases.exchange_rack_letters.ExchangeLettersInputBoundary;
+import use_cases.exchange_rack_letters.ExchangeLettersInteractor;
+import use_cases.reload_game_use_case.ReloadGameDsGateway;
+import use_cases.reload_game_use_case.ReloadGameInputBoundary;
+import use_cases.reload_game_use_case.ReloadGameInteractor;
+import use_cases.save_game_use_case.SaveGameDsGateway;
+import use_cases.save_game_use_case.SaveGameInputBoundary;
+import use_cases.save_game_use_case.SaveGameInteractor;
 
 import java.io.FileNotFoundException;
 
 
 public class Main {
     public static void main (String [] args) {
-        // Instantiation of the View, ViewModel and Presenter Objects
+        ViewFinal view = new ViewFinal();
+        ViewModel viewModel = new ViewModel(null, view);
+        // Pass in an instance of view to view model for observer
 
-        //View view = new View();
-        //ViewModel viewModel = new ViewModel();
-        //viewModel.addObserver(view)
-        //Presenter p = new Presenter(viewModel);
+        Presenter p = new Presenter(viewModel);
 
-        // Delete the line below once the implemented changes have been made to Presenter
-        // This line is just so that Main will compile without error
-        Presenter p = new Presenter(null);
-
-        // LaunchNewGameInteractor Instantiation
+        // Interactor Instantiations
         BoardFactory boardFactory = new DefaultBoardFactory();
         DictionaryDataReaderGateway dictionaryGateway;
         try {
-            dictionaryGateway = new DictionaryDataReaderGateway("src/main/java/default_reference_values/scrabble_dictionary.txt");
+            dictionaryGateway = new DictionaryDataReaderGateway();
         }
         catch (FileNotFoundException e) {
             throw new RuntimeException("Default dictionary file could not be read");
         }
         LaunchGameDataAccessObject boardAccessObject = new DefaultBoardDataAccessObject();
-        LaunchGameOutputBoundary newGameOutputBoundary = p;
-        LaunchNewGameInteractor newGameInteractor = new LaunchNewGameInteractor(newGameOutputBoundary, boardAccessObject, dictionaryGateway, boardFactory);
+        LaunchNewGameInteractor launchGameInteractor = new LaunchNewGameInteractor(p, boardAccessObject, dictionaryGateway, boardFactory);
 
-        //Controller Instantiation
+        ReloadGameDsGateway reloadGameGateway = new StorageManager();
+        ReloadGameInputBoundary reloadGameInteractor = new ReloadGameInteractor(reloadGameGateway, p);
 
-        //Change this to Controller once Controller is created
-        //ViewController c = new ViewController();
+        SaveGameDsGateway saveGameGateway = new StorageManager();
+        SaveGameInputBoundary saveGameInteractor = new SaveGameInteractor(saveGameGateway, p);
 
-        //Add all the use case interactors to the Controller
-        // c.addInteractor(newGameInteractor);
+        PlaceWordInputBoundary placeWordInteractor = new PlaceWordRefillInteractor(p);
+
+        ExchangeLettersInputBoundary exchangeLettersInteractor = new ExchangeLettersInteractor();
+
+        TakeTrunInputBoundary takeTurnInteractor = new TakeTurnInteractor(p, placeWordInteractor, exchangeLettersInteractor, saveGameInteractor);
+
+        Controller c = new Controller(launchGameInteractor, reloadGameInteractor, takeTurnInteractor);
+        // Add saveGameInteractor to Controller
 
         //Add the controller to the View
-        //View.addController(c);
-
-        //Set the view to be visible
-        //view.setVisible();
+        view.setController(c);
     }
 }

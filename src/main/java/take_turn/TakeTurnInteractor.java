@@ -1,24 +1,19 @@
-package Take_Turn;
+package take_turn;
 
 import CoreEntities.Player.Player;
-import core_entities.game_parts.Bag;
 import core_entities.game_parts.Coordinate;
 import core_entities.game_parts.GameState;
 import place_word_refill_user_story.PlaceWordInputBoundary;
 import place_word_refill_user_story.PlaceWordRefillRequestModel;
-import place_word_refill_user_story.PlaceWordRefillResponseModel;
 import use_cases.exchange_rack_letters.ExchangeLettersInputBoundary;
-import use_cases.exchange_rack_letters.ExchangeLettersInteractor;
 import use_cases.save_game_use_case.SaveGameInputBoundary;
 
 public class TakeTurnInteractor implements TakeTrunInputBoundary{
 
     private final TakeTurnOutputBoundary presenter;
     private final PlaceWordInputBoundary placeword;
-    private SaveGameInputBoundary saveGame;
-
-    private ExchangeLettersInputBoundary exchangeLettersInteractor;
-
+    private final ExchangeLettersInputBoundary exchangeLettersInteractor;
+    private final SaveGameInputBoundary saveGame;
 
     public TakeTurnInteractor(TakeTurnOutputBoundary presenter,
                               PlaceWordInputBoundary placeword,
@@ -30,7 +25,6 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
         this.saveGame = saveGameInputBoundary;
     }
 
-    @Override
     /**
      * Call place_word_refill_user_story to try to place the word.
      * If the word can be placed, move to the next turn and show the new board to the user
@@ -38,6 +32,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
      * If the start coordinate is equals to (-1, -1) it is considered to be exchange tiles with bag in this turn
      * The new rack will be shown to the plauer and move to the next turn
      */
+    @Override
     public void taketurn(TakeTrunInputData inputData) {
         Coordinate exchange = new Coordinate(-1, -1);
         if (inputData.getStart().equals(exchange)){
@@ -56,7 +51,7 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                 }
 
             } else{
-                presenter.prepareFailView("Letter cannot be exchange, please try again");
+                presenter.prepareFailViewAfterExchangingLetters("Letter cannot be exchange, please try again");
             }
         }
 
@@ -72,6 +67,9 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                 GameState.changeTurn();;
                 saveGame.save();
             }
+        }
+        else {
+            presenter.prepareFailViewAfterExchangingLetters("The word could not be placed. Please try another word");
         }
     }
 

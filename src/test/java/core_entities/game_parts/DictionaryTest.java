@@ -1,10 +1,13 @@
 package core_entities.game_parts;
 
 
+import CoreEntities.IO.DictionaryDataReaderGateway;
+import launch_new_game_use_case.CreateDictionaryDataAccessObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import java.util.Set;
@@ -13,7 +16,13 @@ class DictionaryTest {
     Dictionary dictionary;
     @BeforeEach
     public void setup() {
-        dictionary = new Dictionary();
+        try {
+            CreateDictionaryDataAccessObject dataAccessObject = new DictionaryDataReaderGateway();
+            dictionary = new Dictionary(dataAccessObject.getDictionaryFile());
+        }
+        catch (FileNotFoundException e) {
+            assert (false);
+        }
     }
 
 

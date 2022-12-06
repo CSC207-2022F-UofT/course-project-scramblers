@@ -14,7 +14,7 @@ public class DictionarySearch {
     public boolean empty;
 
     public DictionarySearch(String search) {
-        Dictionary temp_dictionary = new Dictionary();
+        Dictionary temp_dictionary = GameState.getDictionary();
         this.searchList = temp_dictionary.getCharacterSetDictionary(search);
         empty= this.searchList.isEmpty();
     }
