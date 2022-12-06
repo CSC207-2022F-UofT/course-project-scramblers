@@ -203,7 +203,7 @@ public class ViewFinal extends JFrame {
     public void updateRack(char[] inputRack) {
         for (int i = 0; i < inputRack.length; i++) {
             JButton temp = (JButton) List_of_Letter_Rack_Buttons.get(i);
-            temp.setText(String.valueOf(inputRack));
+            temp.setText(String.valueOf(inputRack[i]));
         }
 
     }
