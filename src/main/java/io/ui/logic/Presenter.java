@@ -56,6 +56,9 @@ public class Presenter implements LaunchGameOutputBoundary,
     public void updateViewModel(ReloadGameResponseModel responseModel) {
         assert this.VIEW_MODEL_INTERFACE != null;
         this.VIEW_MODEL_INTERFACE.setScore(responseModel.getPlayerScore());
+        this.VIEW_MODEL_INTERFACE.setColors(responseModel.getMultiplierGrid());
+        this.VIEW_MODEL_INTERFACE.setBoard(responseModel.getCharacterGrid());
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(responseModel.getLetterRack());
     }
 
     public void prepareSuccessView(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
