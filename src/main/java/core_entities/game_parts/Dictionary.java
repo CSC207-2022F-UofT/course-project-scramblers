@@ -28,12 +28,14 @@ import java.util.*;
 
 
 
+
 public class Dictionary implements Serializable, DictionaryFunctions {
     private ArrayList<String> longDictionary;
     private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary;
 
     public Dictionary(ArrayList<String> words) {
         this.longDictionary = words;
+
         characterSetDictionary = charSetDictionary(words);
     }
 
@@ -47,9 +49,11 @@ public class Dictionary implements Serializable, DictionaryFunctions {
 
     private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(ArrayList<String> fileDict){
         HashMap<Set<Character>, ArrayList<String>> setDict = new HashMap<>();
+
 //        ArrayList<String> dict;
 //
 //        dict = fileDict;
+
 
         for (String s: longDictionary) {
             ArrayList<String> list;

@@ -17,10 +17,12 @@ public class DictionaryDataReaderGatewayTest {
 
     }
 
+
     @Test
     void checkSizeDictionaryFile() {
         ArrayList<String> dictionaryFile = testDict.getDictionaryFile();
         assert dictionaryFile.size() == 178691;
     }
+
 
 }

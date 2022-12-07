@@ -23,7 +23,9 @@ import java.io.FileNotFoundException;
 
 
 public class Main {
+
     public static void main (String [] args) throws FileNotFoundException {
+
         ViewFinal view = new ViewFinal();
         ViewModel viewModel = new ViewModel(null, view);
         // Pass in an instance of view to view model for observer
@@ -32,6 +34,7 @@ public class Main {
 
         // Interactor Instantiations
         BoardFactory boardFactory = new DefaultBoardFactory();
+
         DictionaryDataReaderGateway dictionaryGateway = new DictionaryDataReaderGateway("src/main/java/default_reference_values/scrabble_dictionary.txt");
 //        try {
 //            dictionaryGateway = new DictionaryDataReaderGateway();
@@ -39,6 +42,7 @@ public class Main {
 //        catch (FileNotFoundException e) {
 //            throw new RuntimeException("Default dictionary file could not be read");
 //        }
+
         LaunchGameDataAccessObject boardAccessObject = new DefaultBoardDataAccessObject();
         LaunchNewGameInteractor launchGameInteractor = new LaunchNewGameInteractor(p, boardAccessObject, dictionaryGateway, boardFactory);
 

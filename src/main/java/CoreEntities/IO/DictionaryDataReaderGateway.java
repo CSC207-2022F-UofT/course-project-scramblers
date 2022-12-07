@@ -43,7 +43,7 @@ public class DictionaryDataReaderGateway implements CreateDictionaryDataAccessOb
         return list;
     }
 
-    @Override
+
     public ArrayList<String> getDictionaryFile() {
         return this.dictionaryFile;
 
