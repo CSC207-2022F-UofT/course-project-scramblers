@@ -55,7 +55,7 @@
 - Launch New Game
   - ...
 - Place Word Refill
-  - 
+  - ...
 - Exchange Letters
   - ...
 - Reload Game
@@ -69,7 +69,7 @@
 ### Frameworks and Drivers
 - ...
 
-# Addressed Feedback
+# Feedback to address
 ## Functionality
   - Start working on the Main to make something happen
   - Add the turn process
@@ -78,12 +78,8 @@
   - More significant pull requests from those who haven’t 
 ## Code Organization
   - Organize into better packages (unanimous convention)
-## Testing
-  - __% Coverage
-  - Coverage Breakdown:
-    - ...
 ## Code Style
-  - Added significant JavaDoc documentation
+  - Add significant JavaDoc documentation
 ## GitHub Features
   - Keep up to date on GitHub Issues (create when working on a new feature)
   - Add current tasks to the projects feature
