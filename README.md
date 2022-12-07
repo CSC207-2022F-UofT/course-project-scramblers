@@ -54,7 +54,7 @@
 - Launch New Game
   - ...
 - Place Word Refill
-  - Checks
+  - 
 - Exchange Letters
   - ...
 - Reload Game
