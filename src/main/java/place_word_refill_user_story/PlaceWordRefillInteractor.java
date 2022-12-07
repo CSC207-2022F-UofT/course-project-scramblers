@@ -46,9 +46,61 @@ public class PlaceWordRefillInteractor implements PlaceWordInputBoundary{
         }
         Tile[] toPlace = tileCollector.collectTiles(GameState.getCurrentPlayer(), requestModel.word, existingOnBoard);
         board.placeTiles(toPlace, requestModel.c1, requestModel.c2);
+        GameState.getCurrentPlayer().getRack().discardLetters(requestModel.word);
         GameState.getCurrentPlayer().getRack().refill();
+        GameState.getCurrentPlayer().addScore(getScoreOfWord(requestModel.word, GameState.getBoard().getMultiplierGrid(), requestModel.c1, requestModel.c2));
         placeWordRefillOutputBoundary.updateViewModel(new PlaceWordRefillResponseModel(true, requestModel.word,
                 GameState.getCurrentPlayer(), GameState.getCurrentPlayer().getScore()));
         return true;
+    }
+    private int getScoreOfWord(String word, String [][] boardGrid, Coordinate c1, Coordinate c2) {
+        int wordMultiplier = 1;
+        int currentScore = 0;
+        String currentMultiplier;
+        boolean horizontal = c1.getXCoordinate() < c2.getXCoordinate();
+        for(int i = 0; i < word.length(); i++) {
+            Tile t = new Tile(Character.toUpperCase(word.charAt(i)));
+            if (horizontal) {
+                currentMultiplier = boardGrid[c1.getXCoordinate() + i][c1.getYCoordinate()];
+                if (currentMultiplier.equals("W3")) {
+                    wordMultiplier *= 3;
+                    currentScore += t.getValue();
+                }
+                else if (currentMultiplier.equals("W2")) {
+                    wordMultiplier *= 2;
+                    currentScore += t.getValue();
+                }
+                else if (currentMultiplier.equals("L3")) {
+                    currentScore += 3 * t.getValue();
+                }
+                else if (currentMultiplier.equals("L2")) {
+                    currentScore += 2 * t.getValue();
+                }
+                else {
+                    currentScore += t.getValue();
+                }
+            }
+            else {
+                currentMultiplier = boardGrid[c1.getXCoordinate()][c1.getYCoordinate() + i];
+                if (currentMultiplier.equals("W3")) {
+                    wordMultiplier *= 3;
+                    currentScore += t.getValue();
+                }
+                else if (currentMultiplier.equals("W2")) {
+                    wordMultiplier *= 2;
+                    currentScore += t.getValue();
+                }
+                else if (currentMultiplier.equals("L3")) {
+                    currentScore += 3 * t.getValue();
+                }
+                else if (currentMultiplier.equals("L2")) {
+                    currentScore += 2 * t.getValue();
+                }
+                else {
+                    currentScore += t.getValue();
+                }
+            }
+        }
+        return currentScore * wordMultiplier;
     }
 }
