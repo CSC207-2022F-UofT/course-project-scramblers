@@ -28,10 +28,14 @@ import java.util.*;
 
 
 
-public class Dictionary implements Serializable {
+
+public class Dictionary implements Serializable, DictionaryFunctions {
+    private ArrayList<String> longDictionary;
     private final HashMap<Set<Character>, ArrayList<String>> characterSetDictionary;
 
     public Dictionary(ArrayList<String> words) {
+        this.longDictionary = words;
+
         characterSetDictionary = charSetDictionary(words);
     }
 
@@ -45,11 +49,13 @@ public class Dictionary implements Serializable {
 
     private HashMap<Set<Character>, ArrayList<String>> charSetDictionary(ArrayList<String> fileDict){
         HashMap<Set<Character>, ArrayList<String>> setDict = new HashMap<>();
-        ArrayList<String> dict;
 
-        dict = fileDict;
+//        ArrayList<String> dict;
+//
+//        dict = fileDict;
 
-        for (String s: dict) {
+
+        for (String s: longDictionary) {
             ArrayList<String> list;
             if(setDict.containsKey(strToSet(s))){
                 list = setDict.get(strToSet(s));
@@ -68,9 +74,9 @@ public class Dictionary implements Serializable {
      * @param str is a String with no spaces or symbols please.
      * @return a set of characters
      */
-    public Set<Character> strToSet(String str) {
+    public Set<Character> strToSet(String str1) {
         Set<Character> set;
-
+        String str = str1.strip().toUpperCase();
         if (str == null) {
             return new HashSet<>();
         }
@@ -129,4 +135,34 @@ public class Dictionary implements Serializable {
     public HashMap<Set<Character>, ArrayList<String>> getDictionary() {
         return characterSetDictionary;
     }
+    /**
+     * This getter function is used to return an entire HashMap of the
+     * Scrabble Dictionary.  The key is a set of characters and the value is an ArrayList of all the words.
+     * @return HashMap<Set<Character>, ArrayList<String>>
+     */
+
+    public HashMap<Set<Character>, ArrayList<String>> getDictionaryMap() {
+        return characterSetDictionary;
+    }
+
+    /**
+     * This getter function is used to return an entire ArrayList of the dictionary.
+     * @return ArrayList<String> of all words in the dictionary.
+     */
+
+    public ArrayList<String> getDictionaryFile() {
+        return longDictionary;
+    }
+
+    /**
+     * This function is used to verify that a word is in the dictionary.
+     * @param word is a String with no spaces or Symbols please. in UpperCase.
+     * @return boolean true if the word is in the dictionary, false if not.
+     */
+    public boolean verifyWord(String word) {
+        ArrayList<String> list = getCharacterSetDictionary(word);
+        return list.contains(word);
+
+    }
+
 }
