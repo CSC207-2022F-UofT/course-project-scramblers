@@ -76,7 +76,6 @@ public class Dictionary implements Serializable, DictionaryFunctions {
         if (str == null) {
             return new HashSet<>();
         }
-
         set = new HashSet<>(str.length());
         for (int i = 0; i < str.length(); i++) {
             set.add(str.charAt(i));
