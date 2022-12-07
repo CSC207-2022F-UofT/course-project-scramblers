@@ -43,9 +43,9 @@
 - **Coordinate**
   - Represents a spot on the location on the grid of the board. Contains integers for the x-coordinate and y-coordinate.
 - **GameState**
-  - ...
+  - Contains static attributes to act as a global access point for the use cases to interact with the board data
 - **DefaultBoard**
-  - ...
+  - The representation of the current board state, as a default square, and has functionality to extract the letter grid and the multiplier grid
 - **Dictionary**
   - ...
 
@@ -53,7 +53,10 @@
 - Take Turn
   - ...
 - Launch New Game
-  - ...
+  - Launches the Game by creating new instances of the Entities required, then calls the method in the OutputBoundary to update the current Player's letter rack and the Board grid
+  - Involves InputBoundary, RequestModel, OutputBoundary, ResponseModel, CreateDictionaryDataAccessObject (Dependency Inversion) 
+  - References GameState.set() methods to set the current attributes after their creation
+  - Accesses a csv file for the default board multipliers
 - Place Word Refill
   - ...
 - Exchange Letters
@@ -67,28 +70,28 @@
 - ...
 
 ### Frameworks and Drivers
-- ...
+- DefaultBoardDataAccessObject - Concrete implementation of CreateDictionaryDataAccessObject that accesses board-data.csv
+- board-data.csv - Contains a csv representation of the default board mutlipliers
 
-# Feedback to address
+# Addressed Feedback
 ## Functionality
-  - Start working on the Main to make something happen
-  - Add the turn process
+  - Added the main file, with most of the game functional 
+  - Added the turn process, score accumulation, exchanging letters, launching a new game, displaying the board, and quitting/reloading/saving the game
 ## Pull Requests
-  - More detail in describing what the pull requests do
-  - More significant pull requests from those who haven’t 
+  - Future pull requests were reviewed and submitted with more detail
 ## Code Organization
-  - Organize into better packages (unanimous convention)
+  - Organized all files into proper packages
 ## Code Style
-  - Add significant JavaDoc documentation
+  - Increased documentation to most files added, explaining their functionality
 ## GitHub Features
-  - Keep up to date on GitHub Issues (create when working on a new feature)
-  - Add current tasks to the projects feature
+  - GitHub Issues were created whenever there was something to do
+  - New branches were created based on the created issues
 ## Design Patterns
-  - Utilized Factory, Facade, Dependency Injection, ...
+  - Utilized Factory, Facade and Dependency Inversion
 ## Clean Architecture
-  - Generally well done, connect view and data persistence with use case layer to complete the flow of control 
+  - Finished the clean architecture model by adding View, ViewModel and Presenter/Controller
 ## SOLID
-  - Also well done, continue following SOLID
+  - Adhered to SOLID principles, including Depedency Inversion for passing in ViewModel
 
 ## How to run the code:
-- ...
+- Open the Main.java file, and run the program. The application should open in a separate tab, and the game can be played
