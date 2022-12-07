@@ -91,4 +91,4 @@
   - Also well done, continue following SOLID
 
 ## How to run the code:
-- ...
+- Run Main.java, and a game window will open
