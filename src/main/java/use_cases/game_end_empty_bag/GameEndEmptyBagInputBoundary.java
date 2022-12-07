@@ -5,8 +5,8 @@ import core_entities.game_parts.Bag;
 
 public interface GameEndEmptyBagInputBoundary {
     /**
-    Boolean method to determine whether game ends given a bag and the players
+     Method to determine whether game ends given a bag and the players
      */
 
-    boolean gameEndEmptyBag(Bag bag, Player p1, Player p2);
+    Boolean gameEndEmptyBag(Bag bag);
 }
