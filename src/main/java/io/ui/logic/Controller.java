@@ -1,10 +1,7 @@
 package io.ui.logic;
 
 import core_entities.game_parts.Coordinate;
-import launch_new_game_use_case.*;
-import take_turn.*;
-import use_cases.launch_new_game_use_case.LaunchGameInputBoundary;
-import use_cases.launch_new_game_use_case.LaunchGameRequestModel;
+import use_cases.launch_new_game_use_case.*;
 import use_cases.reload_game_use_case.*;
 import use_cases.take_turn.TakeTrunInputBoundary;
 import use_cases.take_turn.TakeTrunInputData;
