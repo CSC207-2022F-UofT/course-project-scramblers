@@ -62,12 +62,19 @@
   - ...
 - Save Game
   - ...
+- Game End Bag Empty:
+  - This use case is supposed to be implmeneted within the Take Turn code, however it has been replaced with a more elegant fix which is a one line fix in Take Turn use case. But the original intention of this use case is to take in a a reference of the Bag created in GameState, and it would check whether it is empty and will indicate whether the game ends or not. It indicates this by implementing an interface GameEndEmptyBagInput Boundary for a successful case which is return to in the Take Turn use case using the GameEndEmptyBagOutputBoundary. And then within Take Turn, if it is true, it would find which Player has a higher score and end game with that Player as the winner.
 
 ### Interface Adapters
-- ...
+- Presenter: This is the go between layer between the use cases (business application layer) and the ViewModel (Franework and Drivers). It is set up in such a way that through dependency inversion, the use cases update the attributes in presenter through the Output Boundary interfaces and in turn, the Presenter updates the ViewModel through dependency inversion. The ViewModel then calls the update methods in ViewFinal to update the attributes and thus it updates the GUI. 
+  - 
+- Controller:
+  - 
 
 ### Frameworks and Drivers
-- ...
+- ViewFinal:
+  - This is the final framework which is the most outer layer. It interacts directly with the ViewModel. This highlights the principle of "low coupling, high cohesion". The ViewFinal class is responsible for creating the entire GUI. It sets up the frame and the board and all the buttons. And whenever a user action is called, it calls the proper methods through controller which in turn calls the right use cases that modifiy the core enteties.
+- ViewModel:
 
 # Feedback to address
 ## Functionality
@@ -91,4 +98,4 @@
   - Also well done, continue following SOLID
 
 ## How to run the code:
-- ...
+- Run the Main() file.
