@@ -27,7 +27,7 @@ class BoardTest {
         }
         board.placeTiles(tileList, c1, c2);
         for (int i = 2; i <= 6; i++) {
-            assert ('a' == board.getGrid()[1][i].getTile().getLetter());
+            assert ('a' == board.getGrid()[i][1].getTile().getLetter());
         }
     }
 }

@@ -1,8 +1,6 @@
 package save_and_restart_use_case;
 
 import CoreEntities.IO.DictionaryDataReaderGateway;
-import CoreEntities.Player.ComputerPlayer;
-import CoreEntities.Player.HumanPlayer;
 import io.ui.logic.Presenter;
 import core_entities.game_parts.BoardFactory;
 import core_entities.game_parts.DefaultBoardFactory;
@@ -47,7 +45,7 @@ public class ReloadGameInteractorTest {
 
         try {
             //Creating Game State
-            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
+            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway();
             BoardFactory factory = new DefaultBoardFactory();
             LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
             LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human Player", "Computer Player", "Billy", "Joe");

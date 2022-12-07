@@ -3,7 +3,6 @@ package launch_new_game_use_case;
 import CoreEntities.IO.DictionaryDataReaderGateway;
 import io.ui.logic.Presenter;
 import default_reference_values.DefaultBoardDataAccessObject;
-import io.ui.logic.ViewModel;
 import org.junit.jupiter.api.Test;
 import core_entities.game_parts.*;
 import CoreEntities.Player.*;
@@ -32,7 +31,7 @@ class LaunchNewGameInteractorTest {
                 {"*", "W2", "*", "*", "*", "L3", "*", "*", "*", "L3", "*", "*", "*", "W2", "*"},
                 {"W3", "*", "*", "L2", "*", "*", "*", "W3", "*", "*", "*", "L2", "*", "*", "W3"}
         };
-        Presenter p = new Presenter(null) {
+        Presenter p = new Presenter() {
             @Override
             public void updateViewModel(LaunchGameResponseModel responseModel) {
                 String [][] boardData = responseModel.getBoardLayout();
@@ -46,7 +45,7 @@ class LaunchNewGameInteractorTest {
             }
         };
         try {
-            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway("src/main/java/default_reference_values/testDictionary.txt");
+            CreateDictionaryDataAccessObject dictionaryDataAccessObject = new DictionaryDataReaderGateway();
             BoardFactory factory = new DefaultBoardFactory();
             LaunchGameDataAccessObject boardDataAccessObject = new DefaultBoardDataAccessObject();
             LaunchGameRequestModel newModel = new LaunchGameRequestModel("Human Player", "Computer Player", "Billy", "Joe");

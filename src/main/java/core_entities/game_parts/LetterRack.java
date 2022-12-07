@@ -46,6 +46,15 @@ public class LetterRack implements Serializable {
         }
     }
 
+    public void discardLetters(@NotNull String inputWord){
+        for(char characterInWord: inputWord.toCharArray()){
+            int index = findTile(characterInWord);
+            if(index != -1 ) {
+                this.LETTERS[index] =null;
+            }
+        }
+    }
+
     /**
      * finds the index of a tile based on the given letter
      * @param inputChar the desired character tile to be found in the rack

@@ -1,5 +1,7 @@
 package io.ui.logic;
 
+import core_entities.game_parts.LetterRack;
+
 public interface PresenterViewModelInterface {
 
     /**
@@ -14,8 +16,12 @@ public interface PresenterViewModelInterface {
      */
     void setBoard(String[][] newBoard);
 
+    void setBoard(char[][] newBoard);
+
     /**
-     * Update the LetterRacks due to a change
+     * Update the LetterRack due to a change
      */
-    void updateLetterRacks();
+    void updateDisplayLetterRack(char[] inputRack);
+    void setColors(String [][] newBoard);
+    void setScore(int score);
 }

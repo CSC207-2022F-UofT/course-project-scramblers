@@ -22,7 +22,7 @@ public class StorageManager implements SaveGameDsGateway, ReloadGameDsGateway {
     @Override
     public boolean saveSerializable(SerializableGameState serializableGameState) {
         try {
-            FileOutputStream f = new FileOutputStream("src/main/java/storage/state.txt");
+            FileOutputStream f = new FileOutputStream("src/main/java/storage/state.txt", false);
             ObjectOutputStream o = new ObjectOutputStream(f);
 
             o.writeObject(serializableGameState);

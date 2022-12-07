@@ -8,11 +8,12 @@ public class ReloadGameResponseModel {
     private final String [][] multiplierGrid;
     private final char [][] characterGrid;
     private final char [] letterRack;
-
-    public ReloadGameResponseModel (String [][] multiplierGrid, char [][] characterGrid, char [] letterRack) {
+    private final int score;
+    public ReloadGameResponseModel (String [][] multiplierGrid, char [][] characterGrid, char [] letterRack, int score) {
         this.multiplierGrid = multiplierGrid;
         this.characterGrid = characterGrid;
         this.letterRack = letterRack;
+        this.score = score;
     }
 
     public String[][] getMultiplierGrid() {
@@ -25,5 +26,9 @@ public class ReloadGameResponseModel {
 
     public char[] getLetterRack() {
         return letterRack;
+    }
+
+    public int getPlayerScore() {
+        return this.score;
     }
 }
