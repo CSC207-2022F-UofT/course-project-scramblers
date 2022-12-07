@@ -17,17 +17,18 @@ class BoardTest {
         factory = new DefaultBoardFactory();
         board = factory.create(multipliers);
     }
+
     @Test
     void placeTilesTest() {
         Tile[] tileList = new Tile[5];
         Coordinate c1 = new Coordinate(1, 2);
         Coordinate c2 = new Coordinate(1, 6);
         for (int i = 0; i < 5; i++) {
-            tileList[i] = new Tile('a', i);
+            tileList[i] = new Tile('A');
         }
         board.placeTiles(tileList, c1, c2);
         for (int i = 2; i <= 6; i++) {
-            assert ('a' == board.getGrid()[i][1].getTile().getLetter());
+            assert ('A' == board.getGrid()[1][i].getTile().getLetter());
         }
     }
 }
