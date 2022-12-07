@@ -1,7 +1,9 @@
 package core_entities.game_parts;
 
+import CoreEntities.IO.DictionaryDataReaderGateway;
 import CoreEntities.Player.Player;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class GameState {
@@ -35,7 +37,7 @@ public class GameState {
     public static void setDictionary(Dictionary d) {
         GameState.dict = d;
     }
-    public static void setDictionary(ArrayList<String> dictStrings) {
+    public static void setDictionary(ArrayList<String> dictStrings) throws FileNotFoundException {
         GameState.dict = new Dictionary(dictStrings);
     }
     public static void setWin(int win){
