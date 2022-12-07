@@ -26,7 +26,7 @@ public class ReloadGameInteractor implements ReloadGameInputBoundary {
             GameState.setP2(model.getP2());
             GameState.setBoard((model.getBoard()));
             this.presenter.updateViewModel(new ReloadGameResponseModel(GameState.getBoard().getMultiplierGrid(),
-                    GameState.getBoard().getLetterGrid(), GameState.getCurrentPlayer().getRack().toCharArray()));
+                    GameState.getBoard().getLetterGrid(), GameState.getCurrentPlayer().getRack().toCharArray(), GameState.getCurrentPlayer().getScore()));
             return true;
         } else {
             this.presenter.prepareFailView("Could not reload game");

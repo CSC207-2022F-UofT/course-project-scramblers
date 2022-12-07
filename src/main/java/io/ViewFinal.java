@@ -4,6 +4,7 @@ import core_entities.game_parts.LetterRack;
 import io.ui.logic.Controller;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,7 +31,7 @@ public class ViewFinal extends JFrame {
     private JButton LOAD;
     private JButton NEW;
     private ArrayList<JButton> List_of_Board_Buttons;
-    private ArrayList List_of_Letter_Rack_Buttons;
+    private ArrayList<JButton> List_of_Letter_Rack_Buttons;
     private JTextField coordinates_x;
     private JTextField coordinates_y;
     private JLabel coordinates_instructions_x;
@@ -47,6 +48,7 @@ public class ViewFinal extends JFrame {
     private JLabel score_1;
     private JLabel end_coordinates_instructions_x;
     private JLabel end_coordinates_instructions_y;
+
     private JTextField end_coordinates_x;
     private JTextField end_coordinates_y;
 
@@ -203,7 +205,7 @@ public class ViewFinal extends JFrame {
     public void updateRack(char[] inputRack) {
         for (int i = 0; i < inputRack.length; i++) {
             JButton temp = (JButton) List_of_Letter_Rack_Buttons.get(i);
-            temp.setText(String.valueOf(inputRack));
+            temp.setText(String.valueOf(inputRack[i]));
         }
 
     }
@@ -243,9 +245,21 @@ public class ViewFinal extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String text = word.getText();
                 text = text.toLowerCase().strip();
-                String x = getCoordinates_x();
-                String y = getCoordinates_y();
-                //controller.placeWordExecute(text, x, y);
+                String startX = getCoordinates_x();
+                String startY = getCoordinates_y();
+                String endX = getEnd_coordinates_x();
+                String endY = getEnd_coordinates_y();
+                controller.executeTurn(text, startX, startY, endX, endY);
+            }
+        });
+        rerackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = new String ();
+                for (int i = 0; i < 7; i++) {
+                    s = s.concat(List_of_Letter_Rack_Buttons.get(i).getText());
+                }
+                controller.executeTurn(s, "-1","-1", "0", "0");
             }
         });
     }
@@ -265,10 +279,44 @@ public class ViewFinal extends JFrame {
             }
         }
     }
+    public void updateColors(String [][] b) {
+        int pos = 0;
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                setColor(List_of_Board_Buttons.get(pos), b[i][j]);
+                pos += 1;
+            }
+        }
+    }
+
+    private void setColor(JButton button, String s) {
+        switch (s) {
+            case "W3":
+                button.setBackground(Color.red);
+                button.setOpaque(true);
+                break;
+            case "W2":
+                button.setBackground(Color.pink);
+                button.setOpaque(true);
+                break;
+            case "L2":
+                button.setBackground(Color.cyan);
+                button.setOpaque(true);
+                break;
+            case "L3":
+                button.setBackground(Color.blue);
+                button.setOpaque(true);
+                break;
+            default:
+                button.setBackground(Color.gray);
+                button.setOpaque(true);
+                break;
+        }
+    }
 
     public ArrayList ScrabbleBoard() {
 
-        ArrayList button_list = new ArrayList();
+        ArrayList<JButton> button_list = new ArrayList<>();
 
         int start_point_x = 450;
         int start_point_y = 100;
@@ -280,8 +328,6 @@ public class ViewFinal extends JFrame {
             for (int j = 0; j < 15; j++) {
                 JButton button = new JButton(" ");
                 button.setSize(5, 5);
-                button.setAlignmentX(position_i);
-                button.setAlignmentY(position_j);
                 BoardPanel.add(button);
                 button_list.add(button);
 
@@ -330,6 +376,14 @@ public class ViewFinal extends JFrame {
 
     public void setError_message_field(String err) {
         error_message_field.setText(err);
+    }
+
+    public String getEnd_coordinates_x() {
+        return end_coordinates_x.getText();
+    }
+
+    public String getEnd_coordinates_y() {
+        return end_coordinates_y.getText();
     }
 }
 

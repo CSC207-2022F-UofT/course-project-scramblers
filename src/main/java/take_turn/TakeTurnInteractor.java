@@ -34,12 +34,11 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
      */
     @Override
     public void taketurn(TakeTrunInputData inputData) {
-        Coordinate exchange = new Coordinate(-1, -1);
-        if (inputData.getStart().equals(exchange)){
+        if (inputData.getStart().getXCoordinate() == -1 && inputData.getStart().getYCoordinate() == -1){
             // if the start coordinate is (-1, -1) exchange tiles with bag
             if (this.exchangeLettersInteractor.exchangeLetters(inputData.getWord())) {
                 TakeTurnOutputData updateinfo1 = new TakeTurnOutputData(inputData.getWord(),
-                        GameState.getCurrentPlayer().getRack(), inputData.getStart(), inputData.getEnd());
+                        GameState.getCurrentPlayer().getRack(), inputData.getStart(), inputData.getEnd(), GameState.getCurrentPlayer().getScore());
 
                 //check if player win the game if not save the game and change turn
                 if (checkwin()){
@@ -48,6 +47,8 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
                     this.presenter.updateRack(updateinfo1);
                     GameState.changeTurn();
                     saveGame.save();
+                    this.presenter.updateOnlyRack(new TakeTurnOutputData("", GameState.getCurrentPlayer().getRack(), null, null, GameState.getCurrentPlayer().getScore()));
+                    return;
                 }
 
             } else{
@@ -64,7 +65,8 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
             if(checkwin()){
                 return;
             } else{
-                GameState.changeTurn();;
+                GameState.changeTurn();
+                this.presenter.updateOnlyRack(new TakeTurnOutputData(inputData.getWord(), GameState.getCurrentPlayer().getRack(), null, null, GameState.getCurrentPlayer().getScore()));
                 saveGame.save();
             }
         }

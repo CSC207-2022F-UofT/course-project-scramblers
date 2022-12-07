@@ -9,6 +9,7 @@ public class ViewModel implements PresenterViewModelInterface{
      */
     private String outputText;
     private String [][] boardRepresentation;
+    private String [][] colorRepresentation;
     private char[] displayRack;
     private final ViewFinal VIEW_FINAL_REF;
 
@@ -39,6 +40,16 @@ public class ViewModel implements PresenterViewModelInterface{
     public void setBoard(char[][] newBoard){
         this.boardRepresentation = convertCharToStringArrays(newBoard);
         VIEW_FINAL_REF.updateBoard(this.boardRepresentation);
+    }
+
+    public void setColors(String [][] newBoard) {
+        this.colorRepresentation = newBoard;
+        VIEW_FINAL_REF.updateColors(newBoard);
+    }
+
+    @Override
+    public void setScore(int score) {
+        this.VIEW_FINAL_REF.setScore_1(Integer.toString(score));
     }
 
 
