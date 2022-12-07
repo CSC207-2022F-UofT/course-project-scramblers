@@ -50,5 +50,9 @@ class DictionaryTest {
     }
 
 
-
+    @Test
+    void verifyWord() {
+        assert dictionary.verifyWord("ZEBRA");
+        assert dictionary.verifyWord("ABACUS");
+    }
 }

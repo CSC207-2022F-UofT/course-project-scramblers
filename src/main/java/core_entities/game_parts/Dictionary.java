@@ -157,7 +157,8 @@ public class Dictionary implements Serializable, DictionaryFunctions {
      * @return boolean true if the word is in the dictionary, false if not.
      */
     public boolean verifyWord(String word) {
-        return longDictionary.contains(word);
+        ArrayList<String> list = getCharacterSetDictionary(word);
+        return list.contains(word);
 
     }
 
