@@ -65,7 +65,8 @@ public class TakeTurnInteractor implements TakeTrunInputBoundary{
             if(checkwin()){
                 return;
             } else{
-                GameState.changeTurn();;
+                GameState.changeTurn();
+                this.presenter.updateOnlyRack(new TakeTurnOutputData(inputData.getWord(), GameState.getCurrentPlayer().getRack(), null, null, GameState.getCurrentPlayer().getScore()));
                 saveGame.save();
             }
         }
