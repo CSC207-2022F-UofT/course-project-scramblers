@@ -34,13 +34,16 @@ public class Presenter implements LaunchGameOutputBoundary,
     @Override
     public void updateViewModel(LaunchGameResponseModel responseModel) {
         assert this.VIEW_MODEL_INTERFACE != null;
-        this.VIEW_MODEL_INTERFACE.setBoard(responseModel.getBoardLayout());
+        this.VIEW_MODEL_INTERFACE.setColors(responseModel.getBoardLayout());
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(responseModel.getLetterRack());
+        this.VIEW_MODEL_INTERFACE.setScore(responseModel.getScore());
     }
 
     @Override
     public void updateViewModel(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
         assert this.VIEW_MODEL_INTERFACE != null;
         this.VIEW_MODEL_INTERFACE.setBoard(GameState.getBoard().getLetterGrid());
+        this.VIEW_MODEL_INTERFACE.setScore(placeWordRefillResponseModel.getPlayerScore());
     }
 
     @Override
@@ -52,6 +55,10 @@ public class Presenter implements LaunchGameOutputBoundary,
     @Override
     public void updateViewModel(ReloadGameResponseModel responseModel) {
         assert this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.setScore(responseModel.getPlayerScore());
+        this.VIEW_MODEL_INTERFACE.setColors(responseModel.getMultiplierGrid());
+        this.VIEW_MODEL_INTERFACE.setBoard(responseModel.getCharacterGrid());
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(responseModel.getLetterRack());
     }
 
     public void prepareSuccessView(PlaceWordRefillResponseModel placeWordRefillResponseModel) {
@@ -65,6 +72,13 @@ public class Presenter implements LaunchGameOutputBoundary,
         this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(updateinfo.getRack().toCharArray());
         this.VIEW_MODEL_INTERFACE.setMessageText(updateinfo.getWordPlaced()+" has been placed start on square ("
                 +updateinfo.getStart().getXCoordinate()+", "+updateinfo.getStart().getYCoordinate()+").");
+        this.VIEW_MODEL_INTERFACE.setScore(updateinfo.getPlayerScore());
+    }
+
+    public void updateOnlyRack(TakeTurnOutputData updateInfo) {
+        assert this.VIEW_MODEL_INTERFACE != null;
+        this.VIEW_MODEL_INTERFACE.updateDisplayLetterRack(updateInfo.getRack().toCharArray());
+        this.VIEW_MODEL_INTERFACE.setScore(updateInfo.getPlayerScore());
     }
 
     @Override
@@ -81,6 +95,7 @@ public class Presenter implements LaunchGameOutputBoundary,
 
     @Override
     public void winning(String winningPlayer) {
+        assert this.VIEW_MODEL_INTERFACE != null;
         this.VIEW_MODEL_INTERFACE.setMessageText(winningPlayer);
     }
 }

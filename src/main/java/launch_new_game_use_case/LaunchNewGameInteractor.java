@@ -18,6 +18,7 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
     }
     @Override
     public void createGameState(LaunchGameRequestModel inputData) {
+        int requiredWinState = 100;
         Bag bag = new Bag();
         LetterRack p1rack = new LetterRack(bag, 7);
         LetterRack p2rack = new LetterRack(bag, 7);
@@ -40,7 +41,9 @@ public class LaunchNewGameInteractor implements LaunchGameInputBoundary{
         try {
             GameState.setDictionary(new Dictionary(dictionaryAccessObject.getDictionaryFile()));
             GameState.setBoard(factory.create(dataAccessObject.createBoardMultiplierGrid(inputData.getBoardCsvFile())));
-            presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid(), GameState.getCurrentPlayer().getRack().toCharArray()));
+            GameState.setBag(bag);
+            GameState.setWin(requiredWinState);
+            presenter.updateViewModel(new LaunchGameResponseModel(GameState.getBoard().getMultiplierGrid(), GameState.getCurrentPlayer().getRack().toCharArray(), GameState.getCurrentPlayer().getScore()));
         }
         catch (IOException e) {
             presenter.prepareFailView("CSV File not found");

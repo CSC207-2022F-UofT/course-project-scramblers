@@ -22,4 +22,6 @@ public interface PresenterViewModelInterface {
      * Update the LetterRack due to a change
      */
     void updateDisplayLetterRack(char[] inputRack);
+    void setColors(String [][] newBoard);
+    void setScore(int score);
 }
