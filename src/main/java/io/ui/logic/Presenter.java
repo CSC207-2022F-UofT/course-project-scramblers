@@ -4,9 +4,15 @@ import take_turn.*;
 import core_entities.game_parts.GameState;
 import launch_new_game_use_case.*;
 import place_word_refill_user_story.*;
+import use_cases.launch_new_game_use_case.LaunchGameOutputBoundary;
+import use_cases.launch_new_game_use_case.LaunchGameResponseModel;
+import use_cases.place_word_refill_user_story.PlaceWordRefillOutputBoundary;
+import use_cases.place_word_refill_user_story.PlaceWordRefillResponseModel;
 import use_cases.reload_game_use_case.ReloadGameOutputBoundary;
 import use_cases.reload_game_use_case.ReloadGameResponseModel;
 import use_cases.save_game_use_case.SaveGameOutputBoundary;
+import use_cases.take_turn.TakeTurnOutputBoundary;
+import use_cases.take_turn.TakeTurnOutputData;
 
 //basis for most the dependency injections as this allows us to consolidate similar tasks and functions
 public class Presenter implements LaunchGameOutputBoundary,

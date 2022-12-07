@@ -1,9 +1,8 @@
 package use_cases.exchange_rack_letters;
-import CoreEntities.Player.*;
 
 import java.util.*;
 import core_entities.game_parts.*;
-import io.ui.logic.Presenter;
+import core_entities.player.HumanPlayer;
 import org.junit.jupiter.api.*;
 
 public class ExchangeLettersInteractorTest {

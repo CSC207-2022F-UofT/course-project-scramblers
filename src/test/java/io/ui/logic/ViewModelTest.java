@@ -1,14 +1,13 @@
 package io.ui.logic;
 
 
-import CoreEntities.Player.HumanPlayer;
-import CoreEntities.Player.Player;
+import core_entities.player.HumanPlayer;
+import core_entities.player.Player;
 import core_entities.game_parts.Bag;
 import core_entities.game_parts.GameState;
 import core_entities.game_parts.LetterRack;
 import org.junit.jupiter.api.*;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class ViewModelTest {
