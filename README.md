@@ -4,7 +4,17 @@
 <img width="476" alt="Screen Shot 2022-12-07 at 3 42 58 PM" src="https://user-images.githubusercontent.com/74324750/206292676-a3779840-ec4a-4246-bb51-66ecfafe9609.png">
 
 ## Functionality
-So far, functionality is limited to rather basic moves but several features are missing or are problematic. However, we have made notable gain getting display functionality as well as a good nuknernpfnlayers working together to complete different use cases.
+Functionality is limited to rather basic moves with some features missing or are problematic. 
+However, we have made notable gain getting display functionality as well as the different 
+layers working together to complete different use cases.
+**Use Case Status:**
+- Take Turn: Working
+- Launch New Game: Working
+- Place word refill: Working with minor bugs
+- Exchange Letters: Working with minor bugs
+- Reload Game: Working
+- Save Game: Working
+- Game End Bag Empty: Unknown
 
 ## Explanation of Design Patterns
 
@@ -73,7 +83,10 @@ So far, functionality is limited to rather basic moves but several features are 
   - Establishes classes for delegated tasks
   - Currently does not check the dictionary, but should in the future
 - Exchange Letters
-  - ...
+  - Involves InputBoundary and Interactor
+  - References GameState to get the current player making the move
+  - Utilises methods established in both LetterRack and Bag to exchange letters between the bag and player's LetterRack
+  - Initially functional but has recently failed some edge cases, will require more debugging to fix
 - Reload Game
   - Involves InputBoundary, RequestModel, OutputBoundary, ResponseModel, and DS Gateway
   - Obtains SerializableGameState from file
@@ -88,10 +101,10 @@ So far, functionality is limited to rather basic moves but several features are 
   - This use case was meant to be implemented in take turn when a player wants to make a move on the board. Due to changes in the implementation of the game, this use case has been replaced with other code in take turn. Originally, this use case was meant to determine if a chosen word by a player was in the dictionary or not in order to allow them to place a valid word on the board, by calling the Dictionary.getCharacterSetDictionary method.
 
 ### Interface Adapters
-- Presenter: This is the go between layer between the use cases (business application layer) and the ViewModel (Franework and Drivers). It is set up in such a way that through dependency inversion, the use cases update the attributes in presenter through the Output Boundary interfaces and in turn, the Presenter updates the ViewModel through dependency inversion. The ViewModel then calls the update methods in ViewFinal to update the attributes and thus it updates the GUI. 
-  - ...
+- Presenter: 
+  - This is the go between layer between the use cases (business application layer) and the ViewModel (Framework and Drivers). It is set up in such a way that through dependency inversion, the use cases update the attributes in presenter through the Output Boundary interfaces and in turn, the Presenter updates the ViewModel through dependency inversion. The ViewModel then calls the update methods in ViewFinal to update the attributes and thus it updates the GUI.
 - Controller:
-  - ...
+  - Determines which use case is called and is depended on by View. 
 - DictionaryGatewayReader decouples the accessing of data from the construction of the dictionary. This allows for easily swapping out different languages or alphabets in future use while allowing the Dictionary to form regardless. 
 ### Frameworks and Drivers
 - ViewFinal:
