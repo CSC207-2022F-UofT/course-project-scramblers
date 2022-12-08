@@ -4,7 +4,7 @@
 <img width="476" alt="Screen Shot 2022-12-07 at 3 42 58 PM" src="https://user-images.githubusercontent.com/74324750/206292676-a3779840-ec4a-4246-bb51-66ecfafe9609.png">
 
 ## Functionality
-So far, functionality is limited to rather basic moves but several features are missing or are problematic.
+So far, functionality is limited to rather basic moves but several features are missing or are problematic. However, we have made notable gain getting display functionality as well as a good nuknernpfnlayers working together to complete different use cases.
 
 ## Explanation of Design Patterns
 
