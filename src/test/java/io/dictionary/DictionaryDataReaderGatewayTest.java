@@ -1,4 +1,4 @@
-package CoreEntities.IO;
+package io.dictionary;
 
 
 
