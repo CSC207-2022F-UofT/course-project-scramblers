@@ -1,6 +1,6 @@
 package core_entities.game_parts.use_case_turn;
 
-import CoreEntities.IO.TurnBuilderBoundary;
+import io.turns.TurnBuilderBoundary;
 
 public class TurnBuilder implements TurnBuilderBoundary {
 

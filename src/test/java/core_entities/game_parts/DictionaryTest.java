@@ -1,8 +1,8 @@
 package core_entities.game_parts;
 
 
-import CoreEntities.IO.DictionaryDataReaderGateway;
-import launch_new_game_use_case.CreateDictionaryDataAccessObject;
+import io.dictionary.DictionaryDataReaderGateway;
+import use_cases.launch_new_game_use_case.CreateDictionaryDataAccessObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
