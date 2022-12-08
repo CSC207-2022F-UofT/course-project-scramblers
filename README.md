@@ -14,6 +14,7 @@
   - GameState
   - Various Use Case Interactors
   - Controller
+  - DictionaryFunctions
 - Main reason for use is to:
   - ensure the same objects are being referenced from different entities
     - Using aliasing to simulate real such tiles out of a bag that everyone shares
@@ -31,6 +32,9 @@
 - Used in PlaceWordRefillInteractor, further explained in detail in its JavaDoc
 - Complies with Open/Closed and Single Responsibility principle's of SOLID
 - This design pattern was used in order to comply with the Single Responsibility Rule, which is done by delegating certain tasks to other classes so that the Interactor is only responsible for its tasks.
+### Singleton
+- Used in Dictionary as it is only created once it fulfils single responsibility.
+- Uses an interface to be accessed by use cases to decouple and eliminate dependancies. 
 
 ## Overall Structure - What is in each layer and how the flow of control works
 
@@ -50,7 +54,7 @@
 - **DefaultBoard**
   - The representation of the current board state, as a default square, and has functionality to extract the letter grid and the multiplier grid
 - **Dictionary**
-  - ...
+  - This represents all the valid 176,000 words sthat can be used in the game of Scrabble. It contains a hashmap of unique keys represented as sets of    characters, and arraylists of strings as values. 
 
 ### Application Business Rules (Use Cases)
 - Take Turn
@@ -84,7 +88,7 @@
   - ...
 - Controller:
   - ...
-
+- DictionaryGatewayReader decouples the accessing of data from the construction of the dictionary. This allows for easily swapping out different languages or alphabets in future use while allowing the Dictionary to form regardless. 
 ### Frameworks and Drivers
 - ViewFinal:
   - This is the final framework which is the most outer layer. It interacts directly with the ViewModel. This highlights the principle of "low coupling, high cohesion". The ViewFinal class is responsible for creating the entire GUI. It sets up the frame and the board and all the buttons. And whenever a user action is called, it calls the proper methods through controller which in turn calls the right use cases that modifiy the core enteties.
