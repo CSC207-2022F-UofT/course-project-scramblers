@@ -51,7 +51,10 @@
 
 ### Application Business Rules (Use Cases)
 - Take Turn
-  - ...
+  - Determine which use case to call either Place Word Refill or Exchange Letter.
+  - If the word is suceessfully being placed or exchanged, check if the game need to end.
+  - If the game need to end, call the method in outputboundary to update view.
+  - If the game does not need to end, change turn and call the Save Game use case.
 - Launch New Game
   - Launches the Game by creating new instances of the Entities required, then calls the method in the OutputBoundary to update the current Player's letter rack and the Board grid
   - Involves InputBoundary, RequestModel, OutputBoundary, ResponseModel, CreateDictionaryDataAccessObject (Dependency Inversion) 
