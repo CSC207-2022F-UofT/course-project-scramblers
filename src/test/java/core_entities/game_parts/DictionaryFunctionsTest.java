@@ -1,7 +1,7 @@
 //package core_entities.game_parts;
 //
 //import CoreEntities.IO.DictionaryDataReaderGateway;
-//import CoreEntities.IO.DictionaryDataReaderGatewayTest;
+//import io.dictionary.DictionaryDataReaderGatewayTest;
 //import core_entities.game_parts.Dictionary;
 //import core_entities.game_parts.DictionaryFunctions;
 //import org.junit.jupiter.api.BeforeAll;
