@@ -75,9 +75,13 @@
 - Exchange Letters
   - ...
 - Reload Game
-  - ...
+  - Involves InputBoundary, RequestModel, OutputBoundary, ResponseModel, and DS Gateway
+  - Obtains SerializableGameState from file
+  - Adds attributes to GameState from the Serializable GameState class
 - Save Game
-  - ...
+  - Involves InputBoundary, RequestModel, OutputBoundary, and DS Gateway
+  - Gets a SerializableGameState object from GameState using getSerializableGameState method
+  - Saves the SerializableGameState object as a text file for future reference
 - Game End Bag Empty:
   - This use case is supposed to be implmeneted within the Take Turn code, however it has been replaced with a more elegant fix which is a one line fix in Take Turn use case. But the original intention of this use case is to take in a a reference of the Bag created in GameState, and it would check whether it is empty and will indicate whether the game ends or not. It indicates this by implementing an interface GameEndEmptyBagInput Boundary for a successful case which is return to in the Take Turn use case using the GameEndEmptyBagOutputBoundary. And then within Take Turn, if it is true, it would find which Player has a higher score and end game with that Player as the winner.
 - Choose word:
