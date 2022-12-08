@@ -2,6 +2,12 @@ package take_turn_use_case;
 
 import java.io.FileNotFoundException;
 
+import io.View;
+import io.ui.logic.PresenterViewModelInterface;
+import io.ui.logic.ViewModel;
+import place_word_refill_user_story.PlaceWordRefillInteractor;
+import place_word_refill_user_story.PlaceWordRefillRequestModel;
+import place_word_refill_user_story.PlaceWordRefillResponseModel;
 import take_turn.*;
 import core_entities.game_parts.*;
 import default_reference_values.DefaultBoardDataAccessObject;
@@ -40,6 +46,9 @@ public class TakeTurnTest {
                 assert(false);
             }
 
+            @Override
+            public void updateViewModel(PlaceWordRefillResponseModel placeWordRefillResponseModel) {assert true;}
+
         };
         try{
             // create game state
@@ -50,12 +59,13 @@ public class TakeTurnTest {
             LaunchNewGameInteractor launchNewGameInteractor = new LaunchNewGameInteractor(p, boardDataAccessObject, dictionaryDataAccessObject, factory);
             launchNewGameInteractor.createGameState(newModel);
 
+            placeword = new PlaceWordRefillInteractor(p);
 
             // test take turn
 
             Coordinate cor = new Coordinate(0, 0);
             TakeTrunInputData data = new TakeTrunInputData("E", cor, cor);
-            TakeTurnInteractor interactor = new TakeTurnInteractor(presenter, placeword, changeletter, saveGame);
+            TakeTurnInteractor interactor = new TakeTurnInteractor(p, placeword, changeletter, saveGame);
             interactor.taketurn(data);
 
 
@@ -78,6 +88,8 @@ public class TakeTurnTest {
             public void prepareFailViewAfterExchangingLetters(String message) {
                 assert(false);
             }
+            @Override
+            public void updateViewModel(PlaceWordRefillResponseModel placeWordRefillResponseModel) {assert true;}
 
         };
         try{
@@ -89,12 +101,12 @@ public class TakeTurnTest {
             LaunchNewGameInteractor launchNewGameInteractor = new LaunchNewGameInteractor(p, boardDataAccessObject, dictionaryDataAccessObject, factory);
             launchNewGameInteractor.createGameState(newModel);
 
-
+            placeword = new PlaceWordRefillInteractor(p);
             // test take turn
 
             Coordinate cor = new Coordinate(-1, -1);
             TakeTrunInputData data = new TakeTrunInputData("E", cor, cor);
-            TakeTurnInteractor interactor = new TakeTurnInteractor(presenter, placeword, changeletter, saveGame);
+            TakeTurnInteractor interactor = new TakeTurnInteractor(p, placeword, changeletter, saveGame);
             interactor.taketurn(data);
 
 

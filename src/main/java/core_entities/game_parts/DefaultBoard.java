@@ -39,10 +39,10 @@ public class DefaultBoard implements Serializable, Board{
         int initialYCoordinate = c1.getYCoordinate();
         for (int i = 0; i < tileList.length; i++) {
             if (horizontal) {
-                this.grid[initialXCoordinate][initialYCoordinate + i].setTile(tileList[i]);
+                this.grid[initialXCoordinate + i][initialYCoordinate].setTile(tileList[i]);
             }
             else {
-                this.grid[initialXCoordinate + i][initialYCoordinate].setTile(tileList[i]);
+                this.grid[initialXCoordinate][initialYCoordinate + i].setTile(tileList[i]);
             }
         }
     }
