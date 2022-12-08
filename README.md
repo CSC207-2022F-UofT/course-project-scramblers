@@ -76,6 +76,8 @@
   - ...
 - Game End Bag Empty:
   - This use case is supposed to be implmeneted within the Take Turn code, however it has been replaced with a more elegant fix which is a one line fix in Take Turn use case. But the original intention of this use case is to take in a a reference of the Bag created in GameState, and it would check whether it is empty and will indicate whether the game ends or not. It indicates this by implementing an interface GameEndEmptyBagInput Boundary for a successful case which is return to in the Take Turn use case using the GameEndEmptyBagOutputBoundary. And then within Take Turn, if it is true, it would find which Player has a higher score and end game with that Player as the winner.
+- Choose word:
+  - This use case was meant to be implemented in take turn when a player wants to make a move on the board. Due to changes in the implementation of the game, this use case has been replaced with other code in take turn. Originally, this use case was meant to determine if a chosen word by a player was in the dictionary or not in order to allow them to place a valid word on the board, by calling the Dictionary.getCharacterSetDictionary method.
 
 ### Interface Adapters
 - Presenter: This is the go between layer between the use cases (business application layer) and the ViewModel (Franework and Drivers). It is set up in such a way that through dependency inversion, the use cases update the attributes in presenter through the Output Boundary interfaces and in turn, the Presenter updates the ViewModel through dependency inversion. The ViewModel then calls the update methods in ViewFinal to update the attributes and thus it updates the GUI. 
