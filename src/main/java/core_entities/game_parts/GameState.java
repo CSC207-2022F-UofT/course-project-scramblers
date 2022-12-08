@@ -1,7 +1,7 @@
 package core_entities.game_parts;
 
-import CoreEntities.IO.DictionaryDataReaderGateway;
-import CoreEntities.Player.Player;
+import io.dictionary.DictionaryDataReaderGateway;
+import core_entities.player.*;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
