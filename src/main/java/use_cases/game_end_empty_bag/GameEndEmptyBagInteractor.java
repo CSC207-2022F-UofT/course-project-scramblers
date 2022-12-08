@@ -1,6 +1,6 @@
 package use_cases.game_end_empty_bag;
 
-import CoreEntities.Player.Player;
+import core_entities.player.*;
 import core_entities.game_parts.Bag;
 
 
