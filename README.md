@@ -4,6 +4,7 @@
 <img width="476" alt="Screen Shot 2022-12-07 at 3 42 58 PM" src="https://user-images.githubusercontent.com/74324750/206292676-a3779840-ec4a-4246-bb51-66ecfafe9609.png">
 
 ## Functionality
+- ...
 
 ## Explanation of Design Patterns
 
@@ -29,6 +30,8 @@
 ### Facade
 - Used in PlaceWordRefillInteractor, further explained in detail in its JavaDoc
 - Complies with Open/Closed and Single Responsibility principle's of SOLID
+- This design pattern was used in order to comply with the Single Responsibility Rule, which is done by delegating certain tasks to other classes so that the Interactor is only responsible for its tasks.
+
 ## Overall Structure - What is in each layer and how the flow of control works
 
 ### Enterprise Business Rules (Entities)
@@ -58,7 +61,10 @@
   - References GameState.set() methods to set the current attributes after their creation
   - Accesses a csv file for the default board multipliers
 - Place Word Refill
-  - ...
+  - Involves InputBoundary, RequestModel, OutputBoundary, ResponseModel, and classes for delegated tasks (Facade)
+  - References GameState getters to obtain players and the board
+  - Establishes classes for delegated tasks
+  - Currently does not check the dictionary, but should in the future
 - Exchange Letters
   - ...
 - Reload Game
